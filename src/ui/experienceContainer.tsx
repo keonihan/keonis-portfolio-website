@@ -6,6 +6,34 @@ function ExperienceContainer() {
                 Experience
             </p>  
             <div className="job-container hidden">
+            <a href="https://www.hawaii.edu/" target="_blank">
+                <p className="company-text">University of Hawai'i</p>
+            </a>
+                <p className="position-text">Fullstack Web Developer</p>
+                <p className="date-text">November 202<span className="dash">5 - </span>Current</p>
+                    <ul>
+                        <li>Designed and developed responsive web interfaces using HTML, CSS, JavaScript, and Tailwind, ensuring compliance with ADA accessibility standards.</li>
+                        <li>Created UI/UX mockups and wireframes in Figma to communicate design ideas and improve user experience.</li>
+                        <li>Collaborated with stakeholders to translate business and functional requirements into clear, user-centered website designs.</li>
+                        <li>Assisted with Cascade CMS page template design, content updates, and user documentation to support consistent branding and usability.</li>
+                        <li>Utilized Git/GitHub for version control and project collaboration during front-end development and site maintenance.</li>
+                    </ul>
+            </div>
+            <div className="job-container hidden">
+            <a href="https://www.cpshawaii.net/" target="_blank">
+                <p className="company-text">Controlpoint Surveying</p>
+            </a>
+                <p className="position-text">CAD Technician</p>
+                <p className="date-text">Jun<span className="dash">e - </span>November 2025</p>
+                    <ul>
+                        <li>Point Cloud Processing: Perform QC and multi-station adjustments to align and optimize scan data for accuracy, ensuring consistency with control scans.</li>
+                        <li>Data Registration: Merging and registering multiple scan stations to produce a unified, high-accuracy point cloud.</li>
+                        <li>Linework Preparation: Identifying and labeling all stationary features (e.g., buildings, curbs, signs, utility infrastructure) to prepare data for CAD workflows.</li>
+                        <li>Topographic Mapping: Creating accurate topographic maps by interpreting linework and integrating scan data to support design, planning, and engineering workflows.</li>
+                        <li>Collaboration: Supporting survey teams and CAD technicians by delivering clean, precise point cloud data for use in mapping, modeling, and design.</li>
+                    </ul>
+            </div>
+            <div className="job-container hidden">
             <a href="https://oceanit.com/" target="_blank">
                 <p className="company-text">Oceanit</p>
             </a>

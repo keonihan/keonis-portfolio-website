@@ -13,7 +13,7 @@ function ContactContainer() {
                 <div className="title-row">
                     <p className="dev-name">Keoni Han</p>
                     <div className="button-grid">
-                        <a href="https://github.com/KeoniHan2024" target='_blank' aria-label='Github'>
+                        <a href="https://github.com/KeoniHan" target='_blank' aria-label='Github'>
                             <button className="contact-button">
                                 <FontAwesomeIcon icon={faGithub} size='2xl'/>
                             </button>
@@ -42,7 +42,9 @@ function ContactContainer() {
                 </div>
                 <div className="bio-row">
                     <p className='bio-text'>
-                        I'm a software developer from Honolulu. I have been programming for about 5 years.
+                        I'm a software developer from Honolulu with about 5 years of experience. 
+                        I enjoy building thoughtful, efficient software and constantly learning new tools. 
+                        Outside of coding, I love playing the guitar, golfing, cooking, watching basketball and football.
                     </p>
                 </div>
             </div>
