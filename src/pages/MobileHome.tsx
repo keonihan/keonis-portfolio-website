@@ -28,7 +28,8 @@ function MobileHome() {
     };
 
     return(<>
-        <div className="flex flex-col">
+        <div className="fixed min-h-screen bg-black top-0 bottom-0 right-0 left-0 -z-4"></div>
+        <div className="flex flex-col w-full">
             <div className="h-125 flex flex-col gap-2 pb-10 justify-end font-[Mazzard] text-white">
                 <div className="-z-1 bg-gradient-to-t from-black via-black/90 to-transparent h-full w-full fixed top-0 bottom-0 left-0 right-0"></div>
                 {projects[activeId].video == null && (
@@ -41,14 +42,14 @@ function MobileHome() {
                     </video>
                 )}
 
-                <div className="flex flex-row justify-center text-4xl w-[75%] mx-auto text-center">{projects[activeId].title}</div>
+                <div className="flex flex-row justify-center text-4xl w-[75%] mx-auto text-center font-[Mazzard]">{projects[activeId].title}</div>
                 {projects[activeId].video != null && 
-                    (<button className='cursor-pointer flex flex-row mx-auto'  onClick={toggleMute} aria-label={isMuted ? "Unmute" : "Mute"}>
+                    (<button className='cursor-pointer flex flex-row mx-auto '  onClick={toggleMute} aria-label={isMuted ? "Unmute" : "Mute"}>
                         {isMuted ? <FontAwesomeIcon className='text-[#C4C4C4] hover:text-white text-xl align-middle' icon={faVolumeXmark} /> : <FontAwesomeIcon className='text-[#C4C4C4] hover:text-white text-xl' icon={faVolume} />}
                     </button>)
                     }
-                <div className="flex flex-row justify-center ">{projects[activeId].date}</div>
-                <div className="flex flex-row justify-center text-xs text-center w-[85%] mx-auto">{projects[activeId].description}</div>
+                <div className="flex flex-row justify-center font-[Mazzard-Light]">{projects[activeId].date}</div>
+                <div className="flex flex-row justify-center text-xs text-center font-[Mazzard-Light] w-[85%] mx-auto">{projects[activeId].description}</div>
                 <div className="flex flex-row justify-center text-xs text-center mx-auto">
                     {(projects[activeId].github != null)  && (
                     <a href={`${projects[activeId].github}`} target='_blank'>
