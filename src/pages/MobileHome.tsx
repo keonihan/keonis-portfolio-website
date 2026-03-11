@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedin, faSpotify, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { faVolumeXmark, faVolume} from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import codingProjectData from '../../src/json/projects.json'
 import graphicDesignProjectData from '../../src/json/graphic_design_projects.json'
 import { useRef, useState } from 'react';
@@ -19,13 +18,13 @@ function MobileHome() {
     
     const videoRef = useRef<HTMLVideoElement>(null);
     // const scrollRef = useRef<HTMLDivElement>(null);
-    const [isMuted, setIsMuted] = useState(true);
-    const toggleMute = () => {
-        if (videoRef.current) {
-        videoRef.current.muted = !videoRef.current.muted; 
-        setIsMuted(videoRef.current.muted); 
-        }
-    };
+    // const [isMuted, setIsMuted] = useState(true);
+    // const toggleMute = () => {
+    //     if (videoRef.current) {
+    //     videoRef.current.muted = !videoRef.current.muted; 
+    //     setIsMuted(videoRef.current.muted); 
+    //     }
+    // };
 
     return(<>
 
