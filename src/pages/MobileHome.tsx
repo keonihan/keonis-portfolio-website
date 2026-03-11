@@ -29,7 +29,7 @@ function MobileHome() {
 
     return(<>
         <div className="fixed min-h-screen bg-black top-0 bottom-0 right-0 left-0 -z-4"></div>
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col w-full  overflow-x-hidden">
             <div className="h-125 flex flex-col gap-2 pb-10 justify-end font-[Mazzard] text-white">
                 <div className="-z-1 bg-gradient-to-t from-black via-black/90 to-transparent h-full w-full fixed top-0 bottom-0 left-0 right-0"></div>
                 {projects[activeId].video == null && (
@@ -76,9 +76,9 @@ function MobileHome() {
                 </div>
             </div>
             
-            <div className="px-5 w-full overflow-x-hidden flex flex-col h-[300px]">
+            <div className="ml-5 w-full flex flex-col h-[300px]  overflow-x-hidden">
                 <div className="font-[Mazzard] text-white text-2xl my-1">Coding Projects</div>
-                    <div className="transition-transform duration-500 flex flex-row h-full min-w-full max-w-full flex-nowrap justify-start gap-2">
+                    <div className="transition-transform [&::-webkit-scrollbar]:[width:1px] overflow-x-scroll duration-500 flex flex-row h-full min-w-full max-w-full flex-nowrap justify-start gap-2">
                     {codingProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
@@ -95,9 +95,9 @@ function MobileHome() {
                 </div>
             </div>
             
-            <div className="px-6 w-full overflow-x-hidden flex flex-col h-[300px] my-10">
-                <div className="font-[Mazzard] text-white text-2xl">Graphic Design</div>
-                <div className="transition-transform duration-500 flex flex-row  h-full min-w-full max-w-full flex-nowrap justify-start gap-2">
+            <div className="ml-5   w-full overflow-x-hidden flex flex-col h-[300px] my-10">
+                <div className="font-[Mazzard] text-white text-2xl my-1">Graphic Design</div>
+                <div className="transition-transform [&::-webkit-scrollbar]:[width:1px] overflow-x-scroll duration-500 flex flex-row  h-full min-w-full max-w-full flex-nowrap justify-start gap-2">
                     {graphicDesignProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
