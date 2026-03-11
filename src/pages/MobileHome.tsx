@@ -33,7 +33,7 @@ function MobileHome() {
             <div className="h-125 flex flex-col gap-2 pb-10 justify-end font-[Mazzard] text-white">
                 <div className="-z-1 bg-gradient-to-t from-black via-black/90 to-transparent h-full w-full fixed top-0 bottom-0 left-0 right-0"></div>
                 {projects[activeId].video == null && (
-                    <img src={`/img/${projects[activeId].title.replaceAll("/","")}.png`} className="-z-2 fixed bottom-0 h-full w-full object-cover"></img>
+                    <img src={`/img/${projects[activeId].title.replaceAll("/","")}.png`} className="-z-2 fixed bottom-0 min-w-dvh object-cover min-h-dvh"></img>
                 )}
                 {projects[activeId].video != null && (
                     <video key={projects[activeId].video} ref={videoRef} className="-z-2 h-full w-full fixed top-0 bottom-0 left-0 right-0 object-cover" muted={isMuted} autoPlay playsInline>
