@@ -74,7 +74,7 @@ function DesktopHome() {
         )} */}
 
             {/* // <img src={`/img/${projects[activeId].title.replaceAll("/","")}.png`} className="-z-2 h-full w-full fixed top-0 bottom-0 left-0 right-0 object-cover"></img> */}
-        <img src={`/img/Keoni-Hero.png`} className="-z-2 h-[130vh] w-full fixed -top-70 left-0 right-0 object-cover"></img>
+        <img src={`/img/Keoni-Hero.png`} className="-z-2 w-full fixed -top-100 h-[160vh] left-0 right-0 object-cover"></img>
 
         <Header />
         <div className="flex flex-col justify-end mb-5">
