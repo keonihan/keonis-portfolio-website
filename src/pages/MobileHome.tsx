@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faSpotify, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faLinkedin, faSpotify, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faVolumeXmark, faVolume} from '@fortawesome/free-solid-svg-icons';
 import codingProjectData from '../../src/json/projects.json'
 import graphicDesignProjectData from '../../src/json/graphic_design_projects.json'
@@ -11,7 +11,7 @@ function MobileHome() {
     let graphicDesignProjects: Project[] = graphicDesignProjectData.projects
     let projects: Project[] = [...codingProjects, ...graphicDesignProjects]
 
-    const [activeId, setActiveId] = useState(0);
+    const [activeId, setActiveId] = useState(null);
 
     const toggleCard = (id : any) => {
         setActiveId(activeId === id ? activeId : id);
@@ -28,61 +28,89 @@ function MobileHome() {
     };
 
     return(<>
+
+        
+
+                <div className={`${activeId != null ? 'opacity-[1.0] pointer-events-auto' : ' opacity-0 pointer-events-none'} z-5 font-[Mazzard] transition-opacity duration-750 fixed overflow-y-scroll top-0 bottom-0 h-screen w-full bg-black text-white`}>
+                    {activeId !== null && (
+                    <>
+                    <div className='flex flex-col'>
+                    <button onClick={() => {setActiveId(null);}} className="fixed right-0 py-2 px-3 z-7 align-middle m-5 bg-black/80 rounded-4xl cursor-pointer focus:bg-black">X</button>
+                        {projects[activeId].video == null && (
+                            <img src={`/img/${projects[activeId].title.replaceAll("/","")}.png`} className="sticky h-[250px] top-0 object-cover w-full"></img>
+                        )}
+                        {projects[activeId].video != null && (
+                            <video key={projects[activeId].video} ref={videoRef} className="sticky h-[250px] w-full top-0 object-cover" autoPlay controls playsInline>
+                                <source src={`/video/${projects[activeId].video}.mp4`} type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        )}
+                        <div className="flex flex-col py-5 w-[85%] justify-end">
+                            <div className="text-4xl">{projects[activeId].title}</div>
+                            <div className="text-xs py-3">{projects[activeId].date}</div>
+                            <div className="text-xs font-[Mazzard-Light]">{projects[activeId].description}</div>
+                        </div>
+                    </div>
+                    
+            </>
+        )}
+                </div>
+        
         <div className="fixed bg-black inset-0 top-0 bottom-0 right-0 left-0 -z-4"></div>
         <div className="flex flex-col w-full overflow-x-hidden">
-            <div className="h-125 flex flex-col gap-2 pb-10 justify-end font-[Mazzard] text-white">
+            <div className="h-110 flex flex-col gap-1 pb-10 justify-end font-[Mazzard] text-white">
                 <div className="-z-1 bg-gradient-to-t from-black via-black/90 to-transparent h-full w-full fixed top-0 bottom-0 left-0 right-0"></div>
-                {projects[activeId].video == null && (
-                    <img src={`/img/${projects[activeId].title.replaceAll("/","")}.png`} className="-z-2 fixed bottom-0  w-full object-cover h-full"></img>
-                )}
-                {projects[activeId].video != null && (
-                    <video key={projects[activeId].video} ref={videoRef} className="-z-2 h-full w-full fixed top-0 bottom-0 left-0 right-0 object-cover" muted={isMuted} autoPlay playsInline>
-                        <source src={`/video/${projects[activeId].video}.mp4`} type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                )}
+                {(
+                    <>
+                    
+                    <img src="/img/Keoni-Hero.png" className="-z-2 w-full h-[50%] fixed top-0 left-0 right-0 object-cover"></img>
+                    
+                    {/* {projects[6].video != null && (
+                        <video key={projects[6].video} ref={videoRef} className="-z-2 w-full h-[50%] fixed top-0 left-0 right-0 object-cover" muted={isMuted} autoPlay playsInline>
+                            <source src={`/video/${projects[6].video}.mp4`} type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    )} */}
 
-                <div className="flex flex-row justify-center text-4xl w-[75%] mx-auto text-center font-[Mazzard]">{projects[activeId].title}</div>
-                {projects[activeId].video != null && 
-                    (<button className='cursor-pointer flex flex-row mx-auto '  onClick={toggleMute} aria-label={isMuted ? "Unmute" : "Mute"}>
+                    {/* {projects[6].video != null && 
+                        (<button className='cursor-pointer flex flex-row mx-auto '  onClick={toggleMute} aria-label={isMuted ? "Unmute" : "Mute"}>
                         {isMuted ? <FontAwesomeIcon className='text-[#C4C4C4] hover:text-white text-xl align-middle' icon={faVolumeXmark} /> : <FontAwesomeIcon className='text-[#C4C4C4] hover:text-white text-xl' icon={faVolume} />}
-                    </button>)
-                    }
-                <div className="flex flex-row justify-center font-[Mazzard-Light]">{projects[activeId].date}</div>
-                <div className="flex flex-row justify-center text-xs text-center font-[Mazzard-Light] w-[85%] mx-auto">{projects[activeId].description}</div>
-                <div className="flex flex-row justify-center text-xs text-center mx-auto">
-                    {(projects[activeId].github != null)  && (
-                    <a href={`${projects[activeId].github}`} target='_blank'>
-                        <button className="cursor-pointer text-black text-2xl rounded-2xl bg-white p-3 flex-row flex font-[Mazzard]">
-                            <FontAwesomeIcon className='p-0 m-0' icon={faGithub} />
+                        </button>)
+                        } */}
+                    
+                <div className="justify-center text-6xl w-[85%] items-center mx-auto text-center font-[Mazzard] leading-[0.6]">Keoni Han</div>
+                <div className="flex flex-row justify-center font-[Mazzard-Light]">Web & Software Developer</div>
+                <div className="flex flex-row justify-center mt-3 text-xs text-center mx-auto gap-3">
+                    <a href="https://github.com/keonihan"  className='group' target='_blank'>
+                        <button className="cursor-pointer text-black text-2xl rounded-2xl bg-white p-2 flex-row flex font-[Mazzard] ">
+                            <FontAwesomeIcon className='p-0 m-0 group-hover:text-[#8534F3] group-focus:bg-black' icon={faGithub} />
                         </button>
                     </a>
-                    )}
-                    {(projects[activeId].youtube != null) && (
-                    <a href={`${projects[activeId].youtube}`} target='_blank'>
-                        <button className="cursor-pointer text-black text-2xl rounded-2xl bg-white p-3 flex-row flex font-[Mazzard]">
-                            <FontAwesomeIcon className='p-0 m-0 text-[#FF0000]' icon={faYoutube} />
+                    <a href="https://www.youtube.com/c/KeoniHan" className='group' target='_blank'>
+                        <button className="cursor-pointer text-black text-2xl rounded-2xl bg-white p-2 flex-row flex font-[Mazzard]  group-focus:bg-black">
+                            <FontAwesomeIcon className='p-0 m-0 text-black group-hover:text-[#FF0000]' icon={faYoutube} />
                         </button>
                     </a>
-                    )}
 
-                    {(projects[activeId].spotify != null) && (
-                    <a href={`${projects[activeId].spotify}`} target='_blank'>
-                        <button className="cursor-pointer text-black text-2xl rounded-2xl bg-white p-3 flex-row flex font-[Mazzard]">
-                            <FontAwesomeIcon className='p-0 m-0 text-[#1DB954]' icon={faSpotify} />
+                    <a href="linkedin.com/in/keonihan"  className='group' target='_blank'>
+                        <button className="cursor-pointer text-black text-2xl rounded-2xl bg-white p-2 flex-row flex font-[Mazzard] group-focus:bg-black">
+                            <FontAwesomeIcon className='p-0 m-0 text-black group-hover:text-[#0A66C2]' icon={faLinkedin} />
                         </button>
-                    </a>)}
+                    </a>
 
                 </div>
+                </>
+                )}
+                
             </div>
             
-            <div className="ml-5 w-full flex flex-col  overflow-x-hidden">
-                <div className="font-[Mazzard] text-white text-2xl my-1">Coding Projects</div>
-                    <div className="transition-transform [&::-webkit-scrollbar]:[width:1px] overflow-x-scroll duration-500 h-[300px] py-2 flex flex-row min-w-full max-w-full flex-nowrap justify-start gap-2">
+            <div className="ml-5 w-full flex flex-col">
+                <div className="font-[Mazzard] text-white text-xl my-1">Coding Projects</div>
+                    <div className={`${activeId == null ? 'overflow-x-scroll' : ''} transition-transform [&::-webkit-scrollbar]:[width:1px]  duration-500 h-[175px] py-2 flex flex-row min-w-full max-w-full flex-nowrap justify-start gap-2`}>
                     {codingProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
-                            <div className={`${isActive ? 'w-40 drop-shadow-2xl' : ''} border-white border-1 relative shrink-0 cursor-pointer overflow-hidden duration-500 ease-in-out w-40 px-4 py-4 rounded-2xl flex flex-col justify-end `} 
+                            <div className={`${isActive ? 'w-40 drop-shadow-2xl scale-[7] z-1' : ''} transition-transform duration-750 border-white border-1 relative shrink-0 cursor-pointer overflow-hidden duration-500 ease-in-out w-40 px-4 py-4 rounded-2xl flex flex-col justify-end `} 
                                 onClick={() => {
                                     toggleCard(project.id)
                                 }}>
@@ -95,9 +123,9 @@ function MobileHome() {
                 </div>
             </div>
             
-            <div className="ml-5   w-full overflow-x-hidden flex flex-col my-10">
-                <div className="font-[Mazzard] text-white text-2xl my-1">Graphic Design</div>
-                <div className="transition-transform [&::-webkit-scrollbar]:[width:1px] overflow-x-scroll duration-500 h-[300px] py-2 flex flex-row min-w-full max-w-full flex-nowrap justify-start gap-2">
+            <div className="ml-5   w-full overflow-x-hidden flex flex-col">
+                <div className="font-[Mazzard] text-white text-xl my-1">Graphic Design</div>
+                <div className="transition-transform [&::-webkit-scrollbar]:[width:1px] overflow-x-scroll duration-500 h-[175px] py-2 flex flex-row min-w-full max-w-full flex-nowrap justify-start gap-2">
                     {graphicDesignProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
