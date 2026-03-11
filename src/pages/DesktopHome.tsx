@@ -1,7 +1,6 @@
 import Header from '../components/header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedin, faSpotify, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { faVolumeXmark, faVolume } from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faLinkedin,  faYoutube } from '@fortawesome/free-brands-svg-icons';
 import codingProjectData from '../../src/json/projects.json'
 import graphicDesignProjectData from '../../src/json/graphic_design_projects.json'
 import pikachuImage from '../img/pikachu.png';
@@ -11,7 +10,7 @@ import type { Project } from '../types/project';
 function DesktopHome() {
     let codingProjects: Project[] = codingProjectData.projects
     let graphicDesignProjects: Project[] = graphicDesignProjectData.projects
-    let projects: Project[] = [...codingProjects, ...graphicDesignProjects]
+    // let projects: Project[] = [...codingProjects, ...graphicDesignProjects]
 
     const [activeId, setActiveId] = useState(null);
 
@@ -21,13 +20,13 @@ function DesktopHome() {
     
     const videoRef = useRef<HTMLVideoElement>(null);
     // const scrollRef = useRef<HTMLDivElement>(null);
-    const [isMuted, setIsMuted] = useState(true);
-    const toggleMute = () => {
-        if (videoRef.current) {
-        videoRef.current.muted = !videoRef.current.muted; 
-        setIsMuted(videoRef.current.muted); 
-        }
-    };
+    // const [isMuted, setIsMuted] = useState(true);
+    // const toggleMute = () => {
+    //     if (videoRef.current) {
+    //     videoRef.current.muted = !videoRef.current.muted; 
+    //     setIsMuted(videoRef.current.muted); 
+    //     }
+    // };
 
     // const scrollLeft = () => {
     //     if(!scrollRef.current) {return}
@@ -109,7 +108,7 @@ function DesktopHome() {
                 
             </div>
             <div className="px-16 w-full overflow-x-hidden flex flex-col h-[400px]">
-                <div className="font-[Mazzard] text-white text-4xl">Coding Projects</div>
+                <div className="text-white/85 text-xl font-[Mazzard-Light] font-extrabold">Coding Projects</div>
 
                     {/* <FontAwesomeIcon  className='cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 z-10 text-white text-2xl' icon={faArrowLeft} /> */}
                     <div className="transition-transform duration-500 flex flex-row h-full min-w-full max-w-full flex-nowrap justify-start gap-2">
