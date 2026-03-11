@@ -30,7 +30,7 @@ function MobileHome() {
 
         
 
-                <div className={`${activeId != null ? 'opacity-[1.0] pointer-events-auto' : ' opacity-0 pointer-events-none'} z-2 font-[Mazzard] transition-opacity duration-750 fixed overflow-y-scroll top-0 bottom-0 h-screen w-full bg-black text-white`}>
+                <div className={`${activeId != null ? 'opacity-[1.0] pointer-events-auto' : ' opacity-0 pointer-events-none'} z-2 font-[Mazzard] ease-in-out transition-opacity duration-325 fixed overflow-y-scroll top-0 bottom-0 h-screen w-full bg-black text-white`}>
                     {activeId !== null && (
                     <>
                     <div className='flex flex-col'>
@@ -136,7 +136,7 @@ function MobileHome() {
                     {codingProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
-                            <div className={`${isActive ? 'w-40 drop-shadow-2xl scale-[2] z-1' : ''} transition-transform duration-350 relative shrink-0 cursor-pointer overflow-hidden duration-500 ease-in-out w-30 px-3 py-1 rounded-lg flex flex-col justify-end `} 
+                            <div className={`${isActive ? 'w-40 drop-shadow-2xl scale-[3] z-1' : ''} transition-transform duration-50 ease-in-out relative shrink-0 cursor-pointer overflow-hidden duration-500 ease-in-out w-30 px-3 py-1 rounded-lg flex flex-col justify-end `} 
                                 onClick={() => {
                                     toggleCard(project.id)
                                 }}>

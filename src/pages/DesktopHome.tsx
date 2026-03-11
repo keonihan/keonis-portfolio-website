@@ -78,14 +78,13 @@ function DesktopHome() {
         <img src={`/img/Keoni-Hero.png`} className="-z-2 h-[130vh] w-full fixed -top-70 left-0 right-0 object-cover"></img>
 
         <Header />
-        <div className="flex flex-col justify-end">
+        <div className="flex flex-col justify-end mb-5">
             <div className="mt-20 px-16 w-1/2 h-125 flex flex-col justify-center">
                 <div className="text-white text-7xl font-[Mazzard]">
                     Keoni Han
                 </div>
                 
-                <div className="py-4 text-white/90 text-2xl font-[Mazzard-Light]">Web & Software Developer</div>
-                {/* <div className="text-white/90 font-[Mazzard] line-clamp-4">{projects[activeId].description}</div> */}
+                <div className="pb-5 text-white/90 text-2xl font-[Mazzard-Light]">Web & Software Developer</div>
 
                 <div className="flex flex-row gap-3 justify-start items-start">
                     <a href="https://github.com/keonihan"  className='group' target='_blank'>
@@ -112,13 +111,12 @@ function DesktopHome() {
             <div className="px-16 w-full overflow-x-hidden flex flex-col h-[400px]">
                 <div className="font-[Mazzard] text-white text-4xl">Coding Projects</div>
 
-                <div className="relative">
                     {/* <FontAwesomeIcon  className='cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 z-10 text-white text-2xl' icon={faArrowLeft} /> */}
-                    <div className="transition-transform duration-500 flex flex-row h-80 min-w-full max-w-full flex-nowrap justify-start gap-2">
+                    <div className="transition-transform duration-500 flex flex-row h-full min-w-full max-w-full flex-nowrap justify-start gap-2">
                     {codingProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
-                            <div className={`${isActive ? 'w-135 drop-shadow-2xl' : ''} relative overflow-hidden hover:w-135  hover:h-full shrink-0 cursor-pointer duration-500 ease-in-out w-75 px-4 py-4 rounded-lg flex flex-col justify-end `} 
+                            <div className={`${isActive ? 'w-135 drop-shadow-2xl' : ''} relative overflow-hidden hover:w-135 hover:h-full shrink-0 cursor-pointer duration-350 ease-in-out w-65 px-4 py-4 rounded-lg flex flex-col justify-end `} 
                                 style={{ backgroundImage: `url(${pikachuImage})`}} 
                                 onClick={() => {
                                     toggleCard(project.id)
@@ -130,15 +128,14 @@ function DesktopHome() {
                         </>)
                     })}
                 </div>
-                </div>
             </div>
             <div className="px-16 w-full overflow-x-hidden flex flex-col h-[400px]">
                 <div className="font-[Mazzard] text-white text-4xl">Graphic Design</div>
-                <div className=" flex flex-row h-80 min-w-full max-w-full flex-nowrap no-scrollbar  justify-start gap-2">
+                <div className="flex flex-row h-full min-w-full max-w-full flex-nowrap no-scrollbar  justify-start gap-2">
                     {graphicDesignProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
-                            <div className={`${isActive ? 'w-135' : ''} relative overflow-hidden hover:w-135  hover:h-full shrink-0 cursor-pointer duration-500 ease-in-out w-75 px-4 py-4 rounded-lg flex flex-col justify-end`} 
+                            <div className={`${isActive ? 'w-135' : ''} relative  overflow-hidden hover:w-135  shrink-0 cursor-pointer duration-350 ease-in-out w-65 px-4 py-4 rounded-lg flex flex-col justify-end`} 
                                 onClick={() => {
                                     toggleCard(project.id)
                                 }}>
