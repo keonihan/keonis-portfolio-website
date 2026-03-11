@@ -1,0 +1,52 @@
+{
+    "projects" : [
+        {
+            "id" : 0,
+            "type" : "coding",
+            "title" : "AR LEED Stories Dashboard",
+            "date" : "May 2024",
+            "description" : "React web app for augmented reality stories that showcase how the Shiley Marcos building at the University of Portland was able to achieve LEED Status. While also creating a dashboard that shows mock data of the building. (we weren't given access to the real Building automation system)",
+            "github" : "https://github.com/leeh24/ar_leed_stories_client"
+        },
+        {
+            "id" : 1,
+            "type" : "coding",
+            "title" : "Ebay Clone",
+            "date" : "December 2022",
+            "description" : "Built a full-stack web app replicating eBay's bidding, item listing, buying, and authentication using the LAMP stack (Linux, Apache, MySQL, PHP). Developed a secure user authentication system with password hashing and session management. Implemented a real-time bidding system with bid validation, history tracking, and countdown timers. Designed item listing and search functionality with filters for easy discovery. Used cookies for session persistence and improved user experience.",
+            "github" : "https://github.com/keonihan/Ebay-Clone"
+        },
+        {
+            "id" : 2,
+            "type" : "coding",
+            "title" : "NBA Stats Analysis Application",
+            "date" : "March 2022",
+            "description" : "A Python application to compare NBA player statistics across seasons. Users select players and stats via a Tkinter GUI, with data fetched using the NBA API. Sklearn powers statistical comparisons (like similarity scores), and Matplotlib visualizes the results in insightful charts.",
+            "github" : "https://github.com/keonihan/CS352-Final-Project"
+        },
+        {
+            "id" : 3,
+            "type" : "coding",
+            "title" : "ASL Detection Application",
+            "date" : "May 2024",
+            "description" : "Using Hugging Face, this application allows a user to put ASL signs and have it detect in real time what letter you are holding up.",
+            "github" : "https://github.com/keonihan/ASL-Detection-Application"
+        },
+        {
+            "id" : 4,
+            "type" : "coding",
+            "title" : "3D Molecule Visualizer w/ Hand Tracking",
+            "date" : "Aug 2024",
+            "description" : "3D Molecule Visualizer w/ Hand Tracking",
+            "github" : "https://github.com/keonihan/3D-Molecule-Visualization-with-HandTracking"
+        },
+        {
+            "id" : 5,
+            "type" : "coding",
+            "title" : "Gym Tracker Application",
+            "date" : "Marcch 2025",
+            "description" : "Gym Tracker Application",
+            "github" : "https://github.com/keonihan/Gym-Tracker-FrontEnd"
+        }
+    ]
+}

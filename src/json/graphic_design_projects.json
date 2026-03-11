@@ -1,0 +1,38 @@
+{
+    "projects" : [
+        {
+            "id" : 6,
+            "type" : "graphic design",
+            "title" : "Hallucinate Visualizer",
+            "date" : "September 2025",
+            "description" : "Custom-built motion graphics for the debut of DJAL’s 'Hallucinate' while opening for Wuki. Built with After Effects for timed motion and Premiere Pro for final synchronization.",
+            "video" : "Hallucinate Visualizer",
+            "youtube" : "https://www.youtube.com/watch?v=4CdiOH7bMxU"
+        },
+        {
+            "id" : 7,
+            "type" : "graphic design",
+            "title" : "DJAL Backdrop",
+            "date" : "May 2024",
+            "description" : "To solidify DJAL’s visual brand during his opening set for Wuki at Hawaiian Brian’s, I developed a stage backdrop featuring his custom signature typography. Using After Effects, I animated the custom font to pulse and breathe with the track's sub-bass, creating a constant brand presence that cut through the strobe lights. The final composition was refined in Premiere Pro to ensure the looping animations felt seamless and high-energy throughout his debut performance.",
+            "video" : "Backdrop",
+            "youtube" : "https://www.youtube.com/watch?v=2i3lhc8J7L0&t"
+        },
+        {
+            "id" : 8,
+            "type" : "graphic design",
+            "title" : "DJAL Website Backdrop",
+            "date" : "March 2026",
+            "description" : ""
+        },
+        {
+            "id" : 9,
+            "type" : "graphic design",
+            "title" : "Guilty Pleasures Spotify Canvas Loop",
+            "date" : "December 2025",
+            "description" : "",
+            "video" : "Guilty Pleasures Spotify Canvas Loop", 
+            "spotify" : "https://open.spotify.com/track/5GWTfmLR3Gc8llywNHKhRn"
+        }
+    ]
+}
