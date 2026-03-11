@@ -4,7 +4,7 @@ import { faGithub, faLinkedin,  faYoutube } from '@fortawesome/free-brands-svg-i
 import codingProjectData from '../../src/json/projects.json'
 import graphicDesignProjectData from '../../src/json/graphic_design_projects.json'
 import pikachuImage from '../img/pikachu.png';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import type { Project } from '../types/project';
 
 function DesktopHome() {
@@ -18,7 +18,7 @@ function DesktopHome() {
         setActiveId(activeId === id ? activeId : id);
     };
     
-    const videoRef = useRef<HTMLVideoElement>(null);
+    // const videoRef = useRef<HTMLVideoElement>(null);
     // const scrollRef = useRef<HTMLDivElement>(null);
     // const [isMuted, setIsMuted] = useState(true);
     // const toggleMute = () => {
