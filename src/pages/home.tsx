@@ -1,7 +1,7 @@
 import Header from '../components/header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faSpotify, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { faVolumeXmark, faVolume, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faVolumeXmark, faVolume, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import codingProjectData from '../../src/json/projects.json'
 import graphicDesignProjectData from '../../src/json/graphic_design_projects.json'
 import pikachuImage from '../img/pikachu.png';
@@ -20,6 +20,7 @@ function Home() {
     };
     
     const videoRef = useRef<HTMLVideoElement>(null);
+    // const scrollRef = useRef<HTMLDivElement>(null);
     const [isMuted, setIsMuted] = useState(true);
     const toggleMute = () => {
         if (videoRef.current) {
@@ -27,6 +28,40 @@ function Home() {
         setIsMuted(videoRef.current.muted); 
         }
     };
+
+    // const scrollLeft = () => {
+    //     if(!scrollRef.current) {return}
+
+    //     const style = window.getComputedStyle(scrollRef.current);
+    //     const matrix = new DOMMatrix(style.transform);
+    //     const currentX = matrix.m41;
+    //     let newX = currentX - 200
+
+    //     if (newX < 0) {
+    //         newX = 0
+    //     }
+        
+
+    //     scrollRef.current.style.transform = `translateX(${newX}px)`;
+    // };
+
+    // const scrollRight = () => {
+    //     if(!scrollRef.current) {return}
+
+    //     const style = window.getComputedStyle(scrollRef.current);
+    //     const matrix = new DOMMatrix(style.transform);
+    //     const currentX = matrix.m41;
+    //     let newX = currentX - 400
+
+    //     if (newX < -400) {
+    //         newX = -400
+    //     }
+
+    //     console.log(newX)
+
+    //     scrollRef.current.style.transform = `translateX(${newX}px)`;
+    // };
+
 
     return (
         <>
@@ -91,10 +126,10 @@ function Home() {
             </div>
             <div className="px-16 w-full overflow-x-hidden flex flex-col h-[400px]">
                 <div className="font-[Mazzard] text-white text-4xl">Coding Projects</div>
-                <div className=" flex flex-row h-80 min-w-full max-w-full flex-nowrap   justify-start gap-2">
-                    <div className="text-white flex flex-col absolute top-[5px]">
-                        <FontAwesomeIcon className='text-white justify-center items-center' icon={faArrowLeft} />
-                    </div>
+
+                <div className="relative">
+                    {/* <FontAwesomeIcon  className='cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 z-10 text-white text-2xl' icon={faArrowLeft} /> */}
+                    <div className="transition-transform duration-500 flex flex-row h-80 min-w-full max-w-full flex-nowrap   justify-start gap-2">
                     {codingProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
@@ -109,6 +144,11 @@ function Home() {
                             </div>
                         </>)
                     })}
+                </div>
+                {/* <button onClick={scrollRight}>
+                    <FontAwesomeIcon className='absolute -right-10 top-1/2 -translate-y-1/2 z-10 text-white text-2xl' icon={faArrowRight} />
+                </button> */}
+
                 </div>
             </div>
             <div className="px-16 w-full overflow-x-hidden flex flex-col h-[400px]">
