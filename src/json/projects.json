@@ -14,7 +14,9 @@
             "title" : "Ebay Clone",
             "date" : "December 2022",
             "description" : "Built a full-stack web app replicating eBay's bidding, item listing, buying, and authentication using the LAMP stack (Linux, Apache, MySQL, PHP). Developed a secure user authentication system with password hashing and session management. Implemented a real-time bidding system with bid validation, history tracking, and countdown timers. Designed item listing and search functionality with filters for easy discovery. Used cookies for session persistence and improved user experience.",
-            "github" : "https://github.com/keonihan/Ebay-Clone"
+            "github" : "https://github.com/keonihan/Ebay-Clone",
+            "youtube" : "",
+            "spotify" : ""
         },
         {
             "id" : 2,

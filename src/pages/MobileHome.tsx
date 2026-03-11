@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faLinkedin, faSpotify, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import codingProjectData from '../../src/json/projects.json'
 import graphicDesignProjectData from '../../src/json/graphic_design_projects.json'
 import { useRef, useState } from 'react';
@@ -30,23 +30,50 @@ function MobileHome() {
 
         
 
-                <div className={`${activeId != null ? 'opacity-[1.0] pointer-events-auto' : ' opacity-0 pointer-events-none'} z-5 font-[Mazzard] transition-opacity duration-750 fixed overflow-y-scroll top-0 bottom-0 h-screen w-full bg-black text-white`}>
+                <div className={`${activeId != null ? 'opacity-[1.0] pointer-events-auto' : ' opacity-0 pointer-events-none'} z-2 font-[Mazzard] transition-opacity duration-750 fixed overflow-y-scroll top-0 bottom-0 h-screen w-full bg-black text-white`}>
                     {activeId !== null && (
                     <>
                     <div className='flex flex-col'>
                     <button onClick={() => {setActiveId(null);}} className="fixed right-0 py-2 px-3 z-7 align-middle m-5 bg-black/80 rounded-4xl cursor-pointer focus:bg-black">X</button>
                         {projects[activeId].video == null && (
-                            <img src={`/img/${projects[activeId].title.replaceAll("/","")}.png`} className="sticky h-[250px] top-0 object-cover w-full"></img>
+                            <>
+                                <div className="z-3 bg-gradient-to-t pointer-events-none from-black via-black/20 to-transparent h-[260px] w-full fixed top-0 bottom-0 left-0 right-0"></div>
+                                <img src={`/img/${projects[activeId].title.replaceAll("/","")}.png`} className="sticky h-[250px] top-0 object-cover w-full"></img>
+                            </>
                         )}
                         {projects[activeId].video != null && (
-                            <video key={projects[activeId].video} ref={videoRef} className="sticky h-[250px] w-full top-0 object-cover" autoPlay controls playsInline>
-                                <source src={`/video/${projects[activeId].video}.mp4`} type="video/mp4" />
-                                Your browser does not support the video tag.
-                            </video>
+                            <>
+                                <div className="z-3 bg-gradient-to-t pointer-events-none from-black via-black/20 to-transparent h-[260px] w-full fixed top-0 bottom-0 left-0 right-0"></div>
+                                <video key={projects[activeId].video} ref={videoRef} className="sticky h-[250px] w-full top-0 object-cover" autoPlay playsInline>
+                                    <source src={`/video/${projects[activeId].video}.mp4`} type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+                            </>
                         )}
-                        <div className="flex flex-col py-5 w-[85%] justify-end">
-                            <div className="text-4xl">{projects[activeId].title}</div>
-                            <div className="text-xs py-3">{projects[activeId].date}</div>
+                        <div className="flex flex-col py-5 px-2 justify-end">
+                            <div className="text-2xl">{projects[activeId].title}</div>
+                            <div className="text-md py-3 text-white/85">{projects[activeId].date}</div>
+                            <div className="flex flex-row mb-3 w-[100%] gap-1">
+                                {(projects[activeId].github != null)  && (
+                                    <a href={`${projects[activeId].github}`} target='_blank' className="cursor-pointer justify-center items-center w-[100%] text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard]">
+                                            <FontAwesomeIcon className='p-0 m-0 text-xl' icon={faGithub} />
+                                            <span className='text-sm'>Github</span>
+                                    </a>
+                                )}
+                                {(projects[activeId].youtube != null) && (
+                                    <a href={`${projects[activeId].youtube}`} target='_blank' className="cursor-pointer justify-center items-center w-[100%] text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard]">
+                                        <FontAwesomeIcon className='p-0 m-0 text-[#FF0000] text-xl' icon={faYoutube} />
+                                        <span className='text-sm'>Youtube</span>
+                                    </a>
+                                )}
+            
+                                {(projects[activeId].spotify != null) && (
+                                    <a href={`${projects[activeId].spotify}`} target='_blank' className="cursor-pointer justify-center items-center w-[100%] text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard]">
+                                        <FontAwesomeIcon className='p-0 m-0 text-[#1DB954] text-' icon={faSpotify} />
+                                        <span className=' text-sm'>Spotify</span>
+                                    </a>
+                                )}
+                            </div>
                             <div className="text-xs font-[Mazzard-Light]">{projects[activeId].description}</div>
                         </div>
                     </div>
@@ -109,7 +136,7 @@ function MobileHome() {
                     {codingProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
-                            <div className={`${isActive ? 'w-40 drop-shadow-2xl scale-[7] z-1' : ''} transition-transform duration-750 relative shrink-0 cursor-pointer overflow-hidden duration-500 ease-in-out w-30 px-3 py-1 rounded-lg flex flex-col justify-end `} 
+                            <div className={`${isActive ? 'w-40 drop-shadow-2xl scale-[2] z-1' : ''} transition-transform duration-350 relative shrink-0 cursor-pointer overflow-hidden duration-500 ease-in-out w-30 px-3 py-1 rounded-lg flex flex-col justify-end `} 
                                 onClick={() => {
                                     toggleCard(project.id)
                                 }}>
@@ -128,7 +155,7 @@ function MobileHome() {
                     {graphicDesignProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
-                            <div className={`${isActive ? 'w-40' : ''} relative overflow-hidden shrink-0 cursor-pointer duration-500 ease-in-out w-30 px-3 py-1 rounded-lg flex flex-col justify-end`} 
+                            <div className={`${isActive ? 'w-40 drop-shadow-2xl scale-[2] z-1' : ''} transition-transform duration-350 relative overflow-hidden shrink-0 cursor-pointer duration-500 ease-in-out w-30 px-3 py-1 rounded-lg flex flex-col justify-end`} 
                                 onClick={() => {
                                     toggleCard(project.id)
                                 }}>
