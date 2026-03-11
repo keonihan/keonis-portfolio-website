@@ -108,7 +108,7 @@ function DesktopHome() {
                 
             </div>
             <div className="px-16 w-full overflow-x-hidden flex flex-col h-[400px]">
-                <div className="text-white/85 text-xl font-[Mazzard-Light] font-extrabold">Coding Projects</div>
+                <div className="text-white/85 text-xl font-[Mazzard-Light]">Coding Projects</div>
 
                     {/* <FontAwesomeIcon  className='cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 z-10 text-white text-2xl' icon={faArrowLeft} /> */}
                     <div className="transition-transform duration-500 flex flex-row h-full min-w-full max-w-full flex-nowrap justify-start gap-2">
@@ -129,7 +129,7 @@ function DesktopHome() {
                 </div>
             </div>
             <div className="px-16 w-full overflow-x-hidden flex flex-col h-[400px]">
-                <div className="font-[Mazzard] text-white text-4xl">Graphic Design</div>
+                <div className="font-[Mazzard] text-white text-xl font-[Mazzard-Light]">Graphic Design Projects</div>
                 <div className="flex flex-row h-full min-w-full max-w-full flex-nowrap no-scrollbar  justify-start gap-2">
                     {graphicDesignProjects.map((project) => {
                         const isActive = activeId === project.id;
