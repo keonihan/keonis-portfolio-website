@@ -28,15 +28,15 @@ function MobileHome() {
     };
 
     return(<>
-        <div className="fixed min-h-dvh bg-black top-0 bottom-0 right-0 left-0 -z-4"></div>
-        <div className="flex flex-col w-full overflow-x-hidden">
+        <div className="fixed min-h-dvh bg-black inset-0 top-0 bottom-0 right-0 left-0 -z-4"></div>
+        <div className="flex inset-0 flex-col w-full overflow-x-hidden">
             <div className="h-125 flex flex-col gap-2 pb-10 justify-end font-[Mazzard] text-white">
                 <div className="-z-1 bg-gradient-to-t from-black via-black/90 to-transparent h-full w-full fixed top-0 bottom-0 left-0 right-0"></div>
                 {projects[activeId].video == null && (
-                    <img src={`/img/${projects[activeId].title.replaceAll("/","")}.png`} className="-z-2 fixed bottom-0 min-w-dvh object-cover min-h-dvh"></img>
+                    <img src={`/img/${projects[activeId].title.replaceAll("/","")}.png`} className="-z-2 fixed bottom-0  w-full object-cover min-h-dvh"></img>
                 )}
                 {projects[activeId].video != null && (
-                    <video key={projects[activeId].video} ref={videoRef} className="-z-2 h-full w-full fixed top-0 bottom-0 left-0 right-0 object-cover" muted={isMuted} autoPlay playsInline>
+                    <video key={projects[activeId].video} ref={videoRef} className="-z-2 min-h-dvh w-full fixed top-0 bottom-0 left-0 right-0 object-cover" muted={isMuted} autoPlay playsInline>
                         <source src={`/video/${projects[activeId].video}.mp4`} type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
@@ -76,9 +76,9 @@ function MobileHome() {
                 </div>
             </div>
             
-            <div className="ml-5 w-full flex flex-col h-[300px]  overflow-x-hidden">
+            <div className="ml-5 w-full flex flex-col  overflow-x-hidden">
                 <div className="font-[Mazzard] text-white text-2xl my-1">Coding Projects</div>
-                    <div className="transition-transform [&::-webkit-scrollbar]:[width:1px] overflow-x-scroll duration-500 flex flex-row h-full min-w-full max-w-full flex-nowrap justify-start gap-2">
+                    <div className="transition-transform [&::-webkit-scrollbar]:[width:1px] overflow-x-scroll duration-500 h-[300px] py-2 flex flex-row min-w-full max-w-full flex-nowrap justify-start gap-2">
                     {codingProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
@@ -86,7 +86,7 @@ function MobileHome() {
                                 onClick={() => {
                                     toggleCard(project.id)
                                 }}>
-                                    <img className='object-cover w-full h-full absolute left-0 top-0 bottom-0' src={`/img/${project.title.replaceAll("/","")}.png`}></img>
+                                    <img className='object-cover w-full h-full absolute left-0 top-0 bottom-0 inset-0' src={`/img/${project.title.replaceAll("/","")}.png`}></img>
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
                                     <p className="font-[Mazzard] text-white text-lg absolute">{project.title}</p>
                             </div>
@@ -95,9 +95,9 @@ function MobileHome() {
                 </div>
             </div>
             
-            <div className="ml-5   w-full overflow-x-hidden flex flex-col h-[300px] my-10">
+            <div className="ml-5   w-full overflow-x-hidden flex flex-col my-10">
                 <div className="font-[Mazzard] text-white text-2xl my-1">Graphic Design</div>
-                <div className="transition-transform [&::-webkit-scrollbar]:[width:1px] overflow-x-scroll duration-500 flex flex-row  h-full min-w-full max-w-full flex-nowrap justify-start gap-2">
+                <div className="transition-transform [&::-webkit-scrollbar]:[width:1px] overflow-x-scroll duration-500 h-[300px] py-2 flex flex-row min-w-full max-w-full flex-nowrap justify-start gap-2">
                     {graphicDesignProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
