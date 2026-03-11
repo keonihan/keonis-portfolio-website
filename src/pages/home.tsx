@@ -95,7 +95,7 @@ function Home() {
                     <div className="text-white flex flex-col absolute top-[5px]">
                         <FontAwesomeIcon className='text-white justify-center items-center' icon={faArrowLeft} />
                     </div>
-                    {codingProjects.map((project, index) => {
+                    {codingProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
                             <div className={`${isActive ? 'w-135 drop-shadow-2xl' : ''} border-white border-1 relative overflow-hidden hover:w-135  hover:h-full shrink-0 cursor-pointer duration-500 ease-in-out w-75 px-4 py-4 rounded-2xl flex flex-col justify-end `} 
@@ -114,7 +114,7 @@ function Home() {
             <div className="px-16 w-full overflow-x-hidden flex flex-col h-[400px]">
                 <div className="font-[Mazzard] text-white text-4xl">Graphic Design</div>
                 <div className=" flex flex-row h-80 min-w-full max-w-full flex-nowrap no-scrollbar  justify-start gap-2">
-                    {graphicDesignProjects.map((project, index) => {
+                    {graphicDesignProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
                             <div className={`${isActive ? 'w-135' : ''} border-white border-1 relative overflow-hidden hover:w-135  hover:h-full shrink-0 cursor-pointer duration-500 ease-in-out w-75 px-4 py-4 rounded-2xl flex flex-col justify-end`} 
