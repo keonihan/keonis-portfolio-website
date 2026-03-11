@@ -105,17 +105,17 @@ function MobileHome() {
             
             <div className="ml-5 w-full flex flex-col">
                 <div className="font-[Mazzard] text-white text-xl my-1">Coding Projects</div>
-                    <div className={`${activeId == null ? 'overflow-x-scroll' : ''} transition-transform [&::-webkit-scrollbar]:[width:1px]  duration-500 h-[175px] py-2 flex flex-row min-w-full max-w-full flex-nowrap justify-start gap-2`}>
+                    <div className={`${activeId == null ? 'overflow-x-scroll' : ''} transition-transform [&::-webkit-scrollbar]:[width:1px]  duration-500 h-[200px] py-2 flex flex-row min-w-full max-w-full flex-nowrap justify-start gap-2`}>
                     {codingProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
-                            <div className={`${isActive ? 'w-40 drop-shadow-2xl scale-[7] z-1' : ''} transition-transform duration-750 border-white border-1 relative shrink-0 cursor-pointer overflow-hidden duration-500 ease-in-out w-40 px-4 py-4 rounded-2xl flex flex-col justify-end `} 
+                            <div className={`${isActive ? 'w-40 drop-shadow-2xl scale-[7] z-1' : ''} transition-transform duration-750 relative shrink-0 cursor-pointer overflow-hidden duration-500 ease-in-out w-30 px-3 py-1 rounded-lg flex flex-col justify-end `} 
                                 onClick={() => {
                                     toggleCard(project.id)
                                 }}>
                                     <img className='object-cover w-full h-full absolute left-0 top-0 bottom-0 inset-0' src={`/img/${project.title.replaceAll("/","")}.png`}></img>
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
-                                    <p className="font-[Mazzard] text-white text-lg absolute">{project.title}</p>
+                                    <p className="font-[Mazzard] text-white text-sm absolute line-clamp-1">{project.title}</p>
                             </div>
                         </>)
                     })}
@@ -124,17 +124,17 @@ function MobileHome() {
             
             <div className="ml-5   w-full overflow-x-hidden flex flex-col">
                 <div className="font-[Mazzard] text-white text-xl my-1">Graphic Design</div>
-                <div className="transition-transform [&::-webkit-scrollbar]:[width:1px] overflow-x-scroll duration-500 h-[175px] py-2 flex flex-row min-w-full max-w-full flex-nowrap justify-start gap-2">
+                <div className="transition-transform [&::-webkit-scrollbar]:[width:1px] overflow-x-scroll duration-500 h-[200px] py-2 flex flex-row min-w-full max-w-full flex-nowrap justify-start gap-2">
                     {graphicDesignProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
-                            <div className={`${isActive ? 'w-40' : ''} border-white border-1 relative overflow-hidden  shrink-0 cursor-pointer duration-500 ease-in-out w-40 px-4 py-4 rounded-2xl flex flex-col justify-end`} 
+                            <div className={`${isActive ? 'w-40' : ''} relative overflow-hidden shrink-0 cursor-pointer duration-500 ease-in-out w-30 px-3 py-1 rounded-lg flex flex-col justify-end`} 
                                 onClick={() => {
                                     toggleCard(project.id)
                                 }}>
                                     <img className='object-cover w-full h-full absolute left-0 top-0 bottom-0' src={`/img/${project.title.replaceAll("/","")}.png`}></img>
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
-                                    <p className="font-[Mazzard] text-white text-lg absolute">{project.title}</p>
+                                    <p className="font-[Mazzard] text-white text-sm absolute line-clamp-1">{project.title}</p>
                             </div>
                         </>)
                     })}

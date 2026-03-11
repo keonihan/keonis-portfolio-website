@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from "./pages/home"
 import Experience from './pages/experience';
-import ProjectModal from './pages/ProjectModal';
 
 function App() {
   return (
