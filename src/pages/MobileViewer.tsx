@@ -3,7 +3,6 @@ import { faBarsStaggered, faBasketball, faBriefcase, faClose, faDiagramProject, 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DesktopHome from "./desktop/DesktopHome";
 import MobileHome from "./mobile/MobileHome";
-import Experience from "./Experience";
 import { useWebHaptics } from "web-haptics/react";
 import MobileExperience from "./mobile/ExperienceMobile";
 import ProjectMobile from "./mobile/ProjectsMobile";
@@ -114,7 +113,7 @@ function MobileViewer() {
                     case 'home':
                         return <DesktopHome />;
                     case 'experience':
-                        return <Experience />;
+                        // return <Experience />;
                     case 'skills':
                         // return <About />;
                     case 'projects':
