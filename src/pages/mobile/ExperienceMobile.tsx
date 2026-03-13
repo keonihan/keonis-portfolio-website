@@ -5,7 +5,7 @@ import type { Experience } from '../../types/experience';
 function MobileExperience() {
     let experiences: Experience[] = experienceProjectData.experience
 
-    const [activeId, setActiveId] = useState(null);
+    const [activeId, ] = useState(null);
 
     // const toggleCard = (id : any) => {
     //     setActiveId(activeId === id ? activeId : id);
@@ -85,7 +85,7 @@ function MobileExperience() {
             <div className=" px-8 w-full overflow-x-scroll [&::-webkit-scrollbar]:[width:1px] flex flex-col lg:h-[400px] h-[calc(60dvh)]">
                     <div className="drop-shadow-lg drop-shadow-[#000000] transition-transform duration-500 flex flex-col h-full min-w-full max-w-full flex-nowrap justify-start gap-2 ">
                     {experiences.map((experience, index) => {
-                        const isActive = activeId === experience.id;
+                        // const isActive = activeId === experience.id;
                         return (<>
                                 {
                                     (() => {
