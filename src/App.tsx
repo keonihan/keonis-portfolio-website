@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
-import Experience from './pages/experience';
+import Experience from './pages/Experience';
 
 
 function App() {

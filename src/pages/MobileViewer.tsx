@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { faBarsStaggered, faBriefcase, faClose, faDiagramProject, faHome, faPhone, faTools } from "@fortawesome/free-solid-svg-icons";
+import { faBarsStaggered, faBasketball, faBriefcase, faClose, faDiagramProject, faHome, faPhone, faTools } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DesktopHome from "./desktop/DesktopHome";
 import MobileHome from "./mobile/MobileHome";
-import Experience from "./experience";
+import Experience from "./Experience";
 import { useWebHaptics } from "web-haptics/react";
+import MobileExperience from "./mobile/ExperienceMobile";
+import ProjectMobile from "./mobile/ProjectsMobile";
+import ContactMobile from "./mobile/ContactMobile";
 
 function MobileViewer() {
     const [minimize, setMinimize] = useState(true);
@@ -51,15 +54,29 @@ function MobileViewer() {
                             <FontAwesomeIcon className='p-0 m-0 text-4xl' icon={faBriefcase} />
                             <p> &nbsp;&nbsp;&nbsp;Experience</p>
                         </button>
+                        <button className="flex-row flex cursor-pointer" onClick={()=> {
+                        trigger("success")
+                        setCurrentPage("projects")
+                        toggleOverflow(),
+                        setMinimize(!minimize)
+                        }}>
+                            <FontAwesomeIcon className='p-0 m-0 text-4xl' icon={faDiagramProject} />
+                            <p> &nbsp;&nbsp;&nbsp;Projects</p>
+                        </button>
                         <button className="flex-row flex cursor-pointer">
                             <FontAwesomeIcon className='p-0 m-0 text-4xl' icon={faTools} />
                             <p> &nbsp;&nbsp;&nbsp;Skills</p>
                         </button>
                         <button className="flex-row flex cursor-pointer">
-                            <FontAwesomeIcon className='p-0 m-0 text-4xl' icon={faDiagramProject} />
-                            <p> &nbsp;&nbsp;&nbsp;Projects</p>
+                            <FontAwesomeIcon className='p-0 m-0 text-4xl' icon={faBasketball} />
+                            <p> &nbsp;&nbsp;&nbsp;Hobbies</p>
                         </button>
-                        <button className="flex-row flex cursor-pointer">
+                        <button className="flex-row flex cursor-pointer" onClick={()=> {
+                        trigger("success")
+                        setCurrentPage("contact")
+                        toggleOverflow(),
+                        setMinimize(!minimize)
+                        }}>
                             <FontAwesomeIcon className='p-0 m-0 text-4xl' icon={faPhone} />
                             <p> &nbsp;&nbsp;&nbsp;Contact Me</p>
                         </button>
@@ -76,13 +93,13 @@ function MobileViewer() {
                                 case 'home':
                                     return <MobileHome />;
                                 case 'experience':
-                                    // return <Experience />;
+                                    return <MobileExperience />;
                                 case 'skills':
                                     // return <About />;
                                 case 'projects':
-                                    // return <About />;
+                                    return <ProjectMobile />;
                                 case 'contact':
-                                    // return <About />;
+                                    return <ContactMobile />;
                                 default:
                                     return <MobileHome />;
                                 }
@@ -90,7 +107,7 @@ function MobileViewer() {
                         }
                 </div>
         </div>
-        <div className="hidden lg:block">
+        <div className="hidden md:block">
             {
                 (() => {
                     switch(currentPage) {

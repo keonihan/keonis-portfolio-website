@@ -1,0 +1,69 @@
+{
+    "experience" : [
+        {
+            "id" : 0,
+            "type" : "full-time job",
+            "company" : "University of Hawai'i System",
+            "position" : "Full Stack Web Developer",
+            "start_date" : "Nov 2025",
+            "description" : "",
+            "website" : "",
+            "linkedin" : ""
+        },
+        {
+            "id" : 1,
+            "type" : "full-time job",
+            "company" : "Controlpoint Surveying Inc.",
+            "position" : "CAD Technician",
+            "start_date" : "Jun 2025",
+            "end_date" : "Nov 2025",
+            "description" : "",
+            "website" : "",
+            "linkedin" : ""
+        },
+        {
+            "id" : 2,
+            "type" : "internship",
+            "company" : "Oceanit",
+            "position" : "Software Engineer Intern",
+            "start_date" : "Jun 2024",
+            "end_date" : "Aug 2024",
+            "description" : "",
+            "website" : "",
+            "linkedin" : ""
+        },
+        {
+            "id" : 3,
+            "type" : "internship",
+            "company" : "Accuity LLP",
+            "position" : "IT Auditor Intern",
+            "start_date" : "Jun 2023",
+            "end_date" : "Apr 2024",
+            "description" : "",
+            "website" : "",
+            "linkedin" : ""
+        },
+        {
+            "id" : 4,
+            "type" : "part-time job",
+            "company" : "Honolulu Physical Therapy",
+            "position" : "Front Desk Assistant",
+            "start_date" : "Jun 2019",
+            "end_date" : "Aug 2023",
+            "description" : "",
+            "website" : "",
+            "linkedin" : ""
+        },
+        {
+            "id" : 5,
+            "type" : "part-time job",
+            "company" : "Consolidated Theatres",
+            "position" : "Service Associate",
+            "start_date" : "Jul 2022",
+            "end_date" : "Jan 2023",
+            "description" : "",
+            "website" : "",
+            "linkedin" : ""
+        }
+    ]
+}
