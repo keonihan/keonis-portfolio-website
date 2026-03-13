@@ -1,4 +1,7 @@
 // import { useState } from 'react';
+import { faGithub, faInstagram, faLinkedin, faSpotify, faTiktok, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faX } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
 
@@ -13,13 +16,50 @@ function ContactMobile() {
     const Card = () => {
     return (
         <StyledWrapper>
-        <div className="e-card playing">
+        <div className="e-card playing drop-shadow-xl drop-shadow-[#000000]">
             <div className="image" />
             <div className="wave" />
             <div className="wave" />
             <div className="wave" />
             <div className="infotop">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="icon">
+
+            <div className="flex flex-col">
+                <div className="name text-2xl">Keoni Han</div>
+                <div className="name text-sm font-[Mazzard-Light]">Web & Software Developer</div>
+                <div className="name text-xs font-[Mazzard-Light]">
+                    <a href="mailto:keonihan@gmail.com" target='_blank' className="cursor-pointer justify-center items-center rounded-md p-2 flex-row flex font-[Mazzard-Light]">
+                    keonihan@gmail.com
+                    </a>
+                </div>
+                <div className="flex flex-row gap-1 p-3 items-end justify-center flex-wrap">
+                    <a href="https://github.com/keonihan" target='_blank' className="cursor-pointer justify-center items-center  text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard] active:bg-[#9B59B6] active:translate-x-[1px] active:translate-y-[1px]">
+                        <FontAwesomeIcon className='p-0 m-0 text-[#9B59B6] active:text-black text-2xl' icon={faGithub} />
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/keonihan/" target='_blank' className="cursor-pointer justify-center items-center  text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard] active:bg-[#0e76a8] active:translate-x-[1px] active:translate-y-[1px]">
+                        <FontAwesomeIcon className='p-0 m-0 text-[#0e76a8] text-2xl active:text-black' icon={faLinkedin} />
+                    </a>
+            
+                    <a href="https://www.youtube.com/c/KeoniHan" target='_blank' className="cursor-pointer justify-center items-center  text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard] active:bg-[#FF0000] active:translate-x-[1px] active:translate-y-[1px]">
+                        <FontAwesomeIcon className='p-0 m-0 text-[#FF0000] text-2xl active:text-black' icon={faYoutube} />
+                    </a>
+
+                    <a href="https://open.spotify.com/user/icyflame31?si=76970125a7364197" target='_blank' className="cursor-pointer justify-center items-center  text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard] active:bg-[#1DB954] active:translate-x-[1px] active:translate-y-[1px]">
+                        <FontAwesomeIcon className='p-0 m-0 text-[#1DB954] active:text-black text-2xl' icon={faSpotify} />
+                    </a>
+
+                    <a href="https://www.instagram.com/keoni.han/?hl=en" target='_blank' className="cursor-pointer justify-center items-center  text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard] active:bg-black active:translate-x-[1px] active:translate-y-[1px]">
+                        <FontAwesomeIcon className='p-0 m-0 text-2xl active:text-white' icon={faInstagram} />
+                    </a>
+                    <a href="https://x.com/keonihan" target='_blank' className="cursor-pointer justify-center items-center  text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard] active:bg-black active:translate-x-[1px] active:translate-y-[1px]">
+                        <FontAwesomeIcon className='p-0 m-0 text-2xl active:text-white' icon={faX} />
+                    </a>
+                    <a href="https://www.tiktok.com/@keoni_h" target='_blank' className="cursor-pointer justify-center items-center  text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard] active:bg-black active:translate-x-[1px] active:translate-y-[1px]">
+                        <FontAwesomeIcon className='p-0 m-0 text-2xl active:text-white' icon={faTiktok} />
+                    </a>
+                </div>
+            </div>
+            {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="icon">
                 <path fill="currentColor" d="M19.4133 4.89862L14.5863 2.17544C12.9911 1.27485 11.0089 1.27485 9.41368 2.17544L4.58674
             4.89862C2.99153 5.7992 2 7.47596 2 9.2763V14.7235C2 16.5238 2.99153 18.2014 4.58674 19.1012L9.41368
             21.8252C10.2079 22.2734 11.105 22.5 12.0046 22.5C12.6952 22.5 13.3874 22.3657 14.0349 22.0954C14.2204
@@ -33,10 +73,9 @@ function ContactMobile() {
             15.2665 11.4515 13.921C13.1353 12.4181 15.3198 11.5908 17.6022 11.5908C18.3804 11.5908 19.1477 11.6864
             19.8922 11.8742V14.7235C19.8922 15.2278 19.7589 15.7254 19.5119 16.1662C18.7615 15.3596 17.6806 14.8528
             16.4783 14.8528C14.2136 14.8528 12.3781 16.6466 12.3781 18.8598C12.3781 19.3937 12.4861 19.9021 12.68
-            20.3676C11.9347 20.5316 11.1396 20.4203 10.4684 20.0413H10.4676Z" /></svg><br />      
-            Web & Software Developer
+            20.3676C11.9347 20.5316 11.1396 20.4203 10.4684 20.0413H10.4676Z" /></svg><br />       */}
+            
             <br />
-            <div className="name">Keoni Han</div>
             </div>
         </div>
         </StyledWrapper>
@@ -63,7 +102,13 @@ function ContactMobile() {
         top: 0;
         margin-left: -50%;
         margin-top: -70%;
-        background: linear-gradient(744deg,#af40ff,#5b42f3 60%,#00ddeb);
+        background: linear-gradient(
+        744deg,
+        #0b0b0c,
+        #1a0a0a 40%,
+        #c1121f 70%,
+        #00e0c6
+        );
     }
 
     .icon {
@@ -84,11 +129,6 @@ function ContactMobile() {
     }
 
     .name {
-        font-size: 14px;
-        font-weight: 100;
-        position: relative;
-        top: 1em;
-        text-transform: lowercase;
     }
 
     .wave:nth-child(2),
@@ -139,7 +179,7 @@ function ContactMobile() {
         <div className="flex items-center justify-center h-screen">
             <Card/>
         </div>
-        <div className="fixed top-0 left-0 h-dvh w-dvw bg-black/70 -z-1 rounded-2xl"></div>
+        <div className="fixed top-0 left-0 h-dvh w-dvw bg-black/50 -z-1 rounded-2xl"></div>
         <img src={`/img/Keoni-Hero.png`} className="-z-2 fixed top-0 h-dvh left-0 right-0 object-cover rounded-2xl">
         </img>
         </>

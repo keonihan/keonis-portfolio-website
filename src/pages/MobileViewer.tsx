@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { faBarsStaggered, faBasketball, faBriefcase, faClose, faDiagramProject, faHome, faPhone, faTools } from "@fortawesome/free-solid-svg-icons";
+import { faBarsStaggered, faBasketball, faBriefcase, faClose, faDiagramProject, faHome, faTools, faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DesktopHome from "./desktop/DesktopHome";
 import MobileHome from "./mobile/MobileHome";
@@ -77,8 +77,8 @@ function MobileViewer() {
                         toggleOverflow(),
                         setMinimize(!minimize)
                         }}>
-                            <FontAwesomeIcon className='p-0 m-0 text-4xl' icon={faPhone} />
-                            <p> &nbsp;&nbsp;&nbsp;Contact Me</p>
+                            <FontAwesomeIcon className='p-0 m-0 text-4xl' icon={faUserGroup} />
+                            <p> &nbsp;&nbsp;&nbsp;Socials</p>
                         </button>
                     </div>
                     
