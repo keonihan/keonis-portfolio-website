@@ -7,7 +7,7 @@ function Header() {
 
     return (<>
         {/* Header */}
-        <div className="py-8 px-4 flex-row flex justify-between items-center tw-w-full sticky top-0">
+        <div className="hidden lg:block py-8 px-4 flex-row flex justify-between items-center tw-w-full sticky top-0">
             <div className="flex flex-row">
                 <a className={`px-4 text-xl font-[Mazzard] cursor-pointer hover:text-white ${subpageName == "home" ? 'text-white' : 'text-white/60'}`} href="/home">Home</a>
                 <a className={`px-4 text-xl  font-[Mazzard] cursor-pointer hover:text-white ${subpageName == "experience" ? 'text-white' : 'text-white/60'}`} href="/experience">Experience</a>
