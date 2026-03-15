@@ -31,7 +31,7 @@ function Experience() {
                                 {projects[activeId].video == null && (
                                     <>
                                         <div className="z-3 bg-gradient-to-t pointer-events-none from-black via-black/20 to-transparent h-[461px] rounded-2xl fixed top-0 bottom-100 left-0 right-0"></div>
-                                        <img src={`/img/${projects[activeId].title.replaceAll("/","")}.png`} className="sticky h-[460px] rounded-2xl top-0 object-cover w-full"></img>
+                                        <img src={`/img/${projects[activeId].title.replaceAll("/","")}.webp`} className="sticky h-[460px] rounded-2xl top-0 object-cover w-full"></img>
                                     </>
                                 )}
                                 {projects[activeId].video != null && (
@@ -76,7 +76,7 @@ function Experience() {
         </div>
         
         <div className="fixed -top-300 left-0 h-[5000px] w-dvw bg-black/70  -z-1"></div>
-        <img src={`/img/Keoni-Hero.png`} className="-z-2 w-full fixed -top-100 lg:h-[160vh] h-[200vh] left-0 right-0 object-cover"></img>
+        <img src={`/img/Keoni-Hero.webp`} className="-z-2 w-full fixed -top-100 lg:h-[160vh] h-[200vh] left-0 right-0 object-cover"></img>
 
         <Header />
         <div className="flex flex-col justify-end mb-5">
@@ -95,7 +95,7 @@ function Experience() {
                                 onClick={() => {
                                     toggleCard(project.id)
                                 }}>
-                                    <img className='object-cover w-full h-full absolute left-0 top-0 bottom-0 ' src={`/img/${project.title.replaceAll("/","")}.png`}></img>
+                                    <img className='object-cover w-full h-full absolute left-0 top-0 bottom-0 ' src={`/img/${project.title.replaceAll("/","")}.webp`}></img>
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
                                     <p className="font-[Mazzard] text-white/95 text-lg absolute line-clamp-1">{project.title}</p>
                             </div>

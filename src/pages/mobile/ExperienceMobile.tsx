@@ -15,7 +15,7 @@ function MobileExperience() {
         <>
 
         <div className="fixed top-0 left-0 h-dvh w-dvw bg-black/70 -z-1 rounded-2xl"></div>
-        <img src={`/img/Keoni-Hero.png`} className="-z-2 fixed top-0 h-dvh left-0 right-0 object-cover rounded-2xl">
+        <img src={`/img/Keoni-Hero.webp`} className="-z-2 fixed top-0 h-dvh left-0 right-0 object-cover rounded-2xl">
         </img>
 
         <div className={`${activeId != null ? 'opacity-[1.0] pointer-events-auto' : ' opacity-0 pointer-events-none'} z-1 inset-0 bg-black/70 fixed top-0 bottom-0 left-0 right-0`}></div>

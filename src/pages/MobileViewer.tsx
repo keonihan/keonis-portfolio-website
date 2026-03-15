@@ -127,7 +127,7 @@ function MobileViewer() {
             }
         </div>
         <div className="">
-            <img src={`/img/Keoni-Hero.png`} className={`${!minimize ? 'opacity-20 ' : 'opacity-0 '} -z-2 w-full fixed -top-100 h-[160vh] left-0 right-0 object-cover transition-opacity duration-780`}></img>
+            <img src={`/img/Keoni-Hero.webp`} className={`${!minimize ? 'opacity-20 ' : 'opacity-0 '} -z-2 w-full fixed -top-100 h-[160vh] left-0 right-0 object-cover transition-opacity duration-780`}></img>
         </div>
 
     </>) 

@@ -180,7 +180,7 @@ function ContactMobile() {
             <Card/>
         </div>
         <div className="fixed top-0 left-0 h-dvh w-dvw bg-black/50 -z-1 rounded-2xl"></div>
-        <img src={`/img/Keoni-Hero.png`} className="-z-2 fixed top-0 h-dvh left-0 right-0 object-cover rounded-2xl">
+        <img src={`/img/Keoni-Hero.webp`} className="-z-2 fixed top-0 h-dvh left-0 right-0 object-cover rounded-2xl">
         </img>
         </>
     )

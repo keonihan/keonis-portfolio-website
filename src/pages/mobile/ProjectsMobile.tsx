@@ -30,7 +30,7 @@ function ProjectMobile() {
                         {projects[activeId].video == null && (
                             <>
                                 <div className="z-3 bg-gradient-to-t pointer-events-none from-black via-black/20 to-transparent h-[260px] w-full fixed top-0 bottom-0 left-0 right-0"></div>
-                                <img src={`/img/${projects[activeId].title.replaceAll("/","")}.png`} className="sticky h-[250px] top-0 object-cover w-full"></img>
+                                <img src={`/img/${projects[activeId].title.replaceAll("/","")}.webp`} className="sticky h-[250px] top-0 object-cover w-full"></img>
                             </>
                         )}
                         {projects[activeId].video != null && (
@@ -81,7 +81,7 @@ function ProjectMobile() {
                 {(
                     <>
                     
-                    <img src="/img/Keoni-Hero.png" className="-z-2 w-full h-[50%] fixed top-0 left-0 right-0 object-cover rounded-2xl"></img>
+                    <img src="/img/Keoni-Hero.webp" className="-z-2 w-full h-[50%] fixed top-0 left-0 right-0 object-cover rounded-2xl"></img>
                     
                     {/* {projects[6].video != null && (
                         <video key={projects[6].video} ref={videoRef} className="-z-2 w-full h-[50%] fixed top-0 left-0 right-0 object-cover" muted={isMuted} autoPlay playsInline>
@@ -132,7 +132,7 @@ function ProjectMobile() {
                                 onClick={() => {
                                     toggleCard(project.id)
                                 }}>
-                                    <img className='object-cover w-full h-full absolute left-0 top-0 bottom-0 inset-0' src={`/img/${project.title.replaceAll("/","")}.png`}></img>
+                                    <img className='object-cover w-full h-full absolute left-0 top-0 bottom-0 inset-0' src={`/img/${project.title.replaceAll("/","")}.webp`}></img>
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
                                     <p className="font-[Mazzard] text-white text-sm absolute line-clamp-1">{project.title}</p>
                             </div>
@@ -151,7 +151,7 @@ function ProjectMobile() {
                                 onClick={() => {
                                     toggleCard(project.id)
                                 }}>
-                                    <img className='object-cover w-full h-full absolute left-0 top-0 bottom-0' src={`/img/${project.title.replaceAll("/","")}.png`}></img>
+                                    <img className='object-cover w-full h-full absolute left-0 top-0 bottom-0' src={`/img/${project.title.replaceAll("/","")}.webp`}></img>
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
                                     <p className="font-[Mazzard] text-white text-sm absolute line-clamp-1">{project.title}</p>
                             </div>
