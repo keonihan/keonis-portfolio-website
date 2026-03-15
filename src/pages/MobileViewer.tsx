@@ -33,7 +33,7 @@ function MobileViewer() {
         <div className="md:hidden">
             <div className={`${!minimize ? 'opacity-100 ' : 'opacity-0 '}  transition-opacity duration-1000 scale-[0.85] overflow-hidden font-[Mazzard] text-4xl text-white gap-10 flex flex-col h-screen fixed left-[45%] w-[85%] -translate-x-1/2`}>
                         <button className="flex-row flex justify-end">
-                            <FontAwesomeIcon className='p-8 m-0 text-4xl cursor-pointer' icon={faClose}  onClick={()=> {toggleOverflow(), setMinimize(!minimize)}} />
+                            <FontAwesomeIcon className='fixed top-0 right-0 p-8 m-0 text-4xl cursor-pointer' icon={faClose}  onClick={()=> {toggleOverflow(), setMinimize(!minimize)}} />
                         </button>
                         <button className="flex-row flex cursor-pointer" onClick={()=> {
                         trigger("success")
