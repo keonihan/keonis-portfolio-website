@@ -1,7 +1,8 @@
 import Header from '../../components/header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedin,  faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faInstagram, faLinkedin,  faSpotify,  faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { useEffect, useState } from 'react';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 
 function DesktopContact() {
     const [rowClass, setRowClass] = useState('opacity-0 translate-y-4');
@@ -29,7 +30,12 @@ function DesktopContact() {
                 <div className={`text-white text-7xl font-[Mazzard] text-center ${rowClass}`}>
                     Keoni Han
                 </div>
-                <div className={`pb-5 text-white/90 text-2xl font-[Mazzard-Light] text-center ${rowClass}`}>Web & Software Developer</div>
+                <div className={`text-white text-xl font-[Mazzard-Light] underline text-center mb-3 ${rowClass}`}>
+                    <a href="mailto:keonihan@gmail.com"  className='group' target='_blank'>
+                        keonihan@gmail.com
+                    </a>
+                </div>
+                
 
                 <div className={`flex flex-row gap-3  ${iconClass} items-start`}>
                     <a href="https://github.com/keonihan"  className='group' target='_blank'>
@@ -46,6 +52,24 @@ function DesktopContact() {
                     <a href="linkedin.com/in/keonihan"  className='group' target='_blank'>
                         <button className="cursor-pointer text-black text-2xl rounded-xl bg-white p-4 flex-row flex font-[Mazzard] group-focus:bg-black">
                             <FontAwesomeIcon className='p-0 m-0 text-black group-hover:text-[#0A66C2]' icon={faLinkedin} />
+                        </button>
+                    </a>
+
+                    <a href="https://open.spotify.com/user/icyflame31?si=76970125a7364197"  className='group' target='_blank'>
+                        <button className="cursor-pointer text-black text-2xl rounded-xl bg-white p-4 flex-row flex font-[Mazzard] group-focus:bg-black">
+                            <FontAwesomeIcon className='p-0 m-0 text-black group-hover:text-[#1DB954]' icon={faSpotify} />
+                        </button>
+                    </a>
+
+                    <a href="https://x.com/KeoniHan"  className='group' target='_blank'>
+                        <button className="cursor-pointer text-black text-2xl rounded-xl bg-white p-4 flex-row flex font-[Mazzard] group-focus:bg-black">
+                            <FontAwesomeIcon className='p-0 m-0 text-black' icon={faX} />
+                        </button>
+                    </a>
+
+                    <a href="https://www.instagram.com/keoni.han/"  className='group' target='_blank'>
+                        <button className="cursor-pointer text-black text-2xl rounded-xl bg-white p-4 flex-row flex font-[Mazzard] group-focus:bg-black">
+                            <FontAwesomeIcon className='p-0 m-0 text-black ' icon={faInstagram} />
                         </button>
                     </a>
                 </div>

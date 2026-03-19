@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin,  faSpotify,  faYoutube } from '@fortawesome/free-brands-svg-icons';
 import codingProjectData from '../../json/projects.json'
 import graphicDesignProjectData from '../../json/graphic_design_projects.json'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { Project } from '../../types/project';
 import { faAngleLeft, faAngleRight, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,6 +13,20 @@ function DesktopHome() {
     let projects: Project[] = [...codingProjects, ...graphicDesignProjects]
 
     const [activeId, setActiveId] = useState(null);
+
+    const [rowClass, setRowClass] = useState('opacity-0 translate-y-4');
+    const [iconClass, setIconClass] = useState('opacity-0 -translate-x-20 justify-start');
+
+    useEffect(() => {
+        // 2. Trigger the change after the component mounts
+        // A small timeout can help ensure the CSS transition registers
+        const timer = setTimeout(() => {
+            setRowClass('opacity-100 translate-y-0 transition-all duration-700');
+            setIconClass('opacity-100 translate-x-0 justify-center transition-all duration-800');
+        }, 100);
+
+        return () => clearTimeout(timer); // Cleanup
+    }, []);
 
     const toggleCard = (id : any) => {
         setActiveId(activeId === id ? activeId : id);
@@ -101,7 +115,7 @@ function DesktopHome() {
 
         <Header />
         <div className="flex flex-col justify-end mb-5">
-            <div className="lg:mt-20 my-10 px-16 w-1/2 lg:h-125 h-64 flex flex-col justify-center">
+            <div className={`lg:mt-20 my-10 px-16 w-1/2 lg:h-125 h-64 flex flex-col justify-center ${rowClass}`}>
                 <div className="text-white text-7xl font-[Mazzard]">
                     Keoni Han
                 </div>
