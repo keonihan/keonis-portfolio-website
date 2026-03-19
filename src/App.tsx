@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
+import DesktopContact from './pages/desktop/DesktopContact';
 
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
-        {/* <Route path="/experience" element={<Experience />} /> */}
+        <Route path="/contact" element={<DesktopContact />} />
 
       </Routes>
     </BrowserRouter>

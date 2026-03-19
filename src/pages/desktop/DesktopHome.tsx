@@ -5,7 +5,7 @@ import codingProjectData from '../../json/projects.json'
 import graphicDesignProjectData from '../../json/graphic_design_projects.json'
 import { useState } from 'react';
 import type { Project } from '../../types/project';
-import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faAngleRight, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
 function DesktopHome() {
     let codingProjects: Project[] = codingProjectData.projects
@@ -17,6 +17,16 @@ function DesktopHome() {
     const toggleCard = (id : any) => {
         setActiveId(activeId === id ? activeId : id);
     };
+
+    function scrollRow(rowId : string, distance : number) {
+        const row = document.getElementById(rowId);
+        if (row != null) {
+            row.scrollBy({
+                left: distance,
+                behavior: 'smooth'
+            });
+        }
+    }
 
     return (
         <>
@@ -45,7 +55,7 @@ function DesktopHome() {
                                         </video>
                                     </>
                                 )}
-                                <div className="flex flex-col py-5 px-2 justify-end">
+                                <div className="flex flex-col py-5 px-5 justify-end">
                                     <div className="text-2xl">{projects[activeId].title}</div>
                                     <div className="text-md py-3 text-white/85">{projects[activeId].date}</div>
                                     <div className="flex flex-row mb-3 w-[100%] gap-1">
@@ -121,42 +131,60 @@ function DesktopHome() {
                 
             </div>
                 <div className="px-16 text-white/85 text-xl font-[Mazzard-Light]">Coding Projects</div>
-            <div className=" px-16 w-full overflow-x-scroll [&::-webkit-scrollbar]:[width:1px] flex flex-col lg:h-[400px] h-70">
+                    <div className="flex flex-row relative items-center">
+                        <button className='hover:cursor-pointer text-white absolute left-6 z-20 p-3 bg-black rounded-xl' onClick={()=> {scrollRow('row1', -500)}}>
+                            <FontAwesomeIcon className='p-0 m-0 text-white group-hover:text-[#0A66C2]' icon={faAngleLeft} />
+                        </button>
+                        <div id="row1" className=" px-16 w-full overflow-x-scroll [&::-webkit-scrollbar]:[width:1px] flex flex-col lg:h-[400px] h-70">
 
-                    <div className="drop-shadow-lg drop-shadow-[#000000] transition-transform duration-500 flex flex-row h-full min-w-full max-w-full flex-nowrap justify-start gap-2 ">
-                    {codingProjects.map((project) => {
-                        const isActive = activeId === project.id;
-                        return (<>
-                            <div className={`${isActive ? 'w-135' : ''} relative overflow-hidden hover:w-135  hover:h-full shrink-0 cursor-pointer duration-350 ease-in-out w-65 px-4 py-4 rounded-lg flex flex-col justify-end `} 
-                                onClick={() => {
-                                    toggleCard(project.id)
-                                }}>
-                                    <img className='object-cover w-full h-full absolute left-0 top-0 bottom-0 ' src={`/img/${project.title.replaceAll("/","")}.webp`}></img>
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
-                                    <p className="font-[Mazzard] text-white/95 text-lg absolute line-clamp-1">{project.title}</p>
+                            <div className="drop-shadow-lg drop-shadow-[#000000]  flex flex-row h-full min-w-full max-w-full flex-nowrap justify-start gap-2 ">
+                            {codingProjects.map((project) => {
+                                const isActive = activeId === project.id;
+                                return (<>
+                                    <div className={`${isActive ? 'w-135' : ''} relative overflow-hidden hover:w-135  hover:h-full shrink-0 cursor-pointer duration-350 ease-in-out w-65 px-4 py-4 rounded-lg flex flex-col justify-end `} 
+                                        onClick={() => {
+                                            toggleCard(project.id)
+                                        }}>
+                                            <img className='object-cover w-full h-full absolute left-0 top-0 bottom-0 ' src={`/img/${project.title.replaceAll("/","")}.webp`}></img>
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                                            <p className="font-[Mazzard] text-white/95 text-lg absolute line-clamp-1">{project.title}</p>
+                                    </div>
+                                </>)
+                            })}
                             </div>
-                        </>)
-                    })}
+
+                        </div>
+                    <button className='hover:cursor-pointer text-white absolute right-6 z-20 p-3 bg-black rounded-xl' onClick={()=> {scrollRow('row1', 500)}}>
+                        <FontAwesomeIcon className='p-0 m-0 text-white group-hover:text-[#0A66C2]' icon={faAngleRight} />
+                    </button>
                 </div>
-            </div>
+
                 <div className="px-16 text-white text-xl font-[Mazzard-Light]">Graphic Design Projects</div>
-            <div className="px-16 w-full overflow-x-scroll [&::-webkit-scrollbar]:[width:1px] flex flex-col lg:h-[400px] h-70">
-                <div className="drop-shadow-lg drop-shadow-[#000000] flex flex-row h-full min-w-full max-w-full flex-nowrap   justify-start gap-2">
-                    {graphicDesignProjects.map((project) => {
-                        const isActive = activeId === project.id;
-                        return (<>
-                            <div className={`${isActive ? 'w-135' : ''} relative  overflow-hidden hover:w-135  shrink-0 cursor-pointer duration-350 ease-in-out w-65 px-4 py-4 rounded-lg flex flex-col justify-end`} 
-                                onClick={() => {
-                                    toggleCard(project.id)
-                                }}>
-                                    <img className='object-cover w-full h-full absolute left-0 top-0 bottom-0' src={`/img/${project.title.replaceAll("/","")}.webp`}></img>
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
-                                    <p className="font-[Mazzard] text-white/95 text-lg absolute line-clamp-1">{project.title}</p>
-                            </div>
-                        </>)
-                    })}
+                <div className="flex flex-row relative items-center">
+                    <button className='hover:cursor-pointer text-white absolute left-6 z-20 p-3 bg-black rounded-xl' onClick={()=> {scrollRow('row2', -500)}}>
+                        <FontAwesomeIcon className='p-0 m-0 text-white group-hover:text-[#0A66C2]' icon={faAngleLeft} />
+                    </button>
+                    <div id="row2" className="px-16 w-full overflow-x-scroll [&::-webkit-scrollbar]:[width:1px] flex flex-col lg:h-[400px] h-70">
+                        <div className="drop-shadow-lg drop-shadow-[#000000] flex flex-row h-full min-w-full max-w-full flex-nowrap   justify-start gap-2">
+                            {graphicDesignProjects.map((project) => {
+                                const isActive = activeId === project.id;
+                                return (<>
+                                    <div className={`${isActive ? 'w-135' : ''} relative  overflow-hidden hover:w-135  shrink-0 cursor-pointer duration-350 ease-in-out w-65 px-4 py-4 rounded-lg flex flex-col justify-end`}
+                                        onClick={() => {
+                                            toggleCard(project.id)
+                                        }}>
+                                            <img className='object-cover w-full h-full absolute left-0 top-0 bottom-0' src={`/img/${project.title.replaceAll("/","")}.webp`}></img>
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                                            <p className="font-[Mazzard] text-white/95 text-lg absolute line-clamp-1">{project.title}</p>
+                                    </div>
+                                </>)
+                            })}
+                        </div>
+                    </div>
+                    <button className='hover:cursor-pointer text-white right-6 absolute z-20 p-3 bg-black rounded-xl' onClick={()=> {scrollRow('row2', 500)}}>
+                        <FontAwesomeIcon className='p-0 m-0 text-white group-hover:text-[#0A66C2]' icon={faAngleRight} />
+                    </button>
                 </div>
-            </div>
            
             </div>
         </>
