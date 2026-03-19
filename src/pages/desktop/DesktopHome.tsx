@@ -15,14 +15,12 @@ function DesktopHome() {
     const [activeId, setActiveId] = useState(null);
 
     const [rowClass, setRowClass] = useState('opacity-0 translate-y-4');
-    const [iconClass, setIconClass] = useState('opacity-0 -translate-x-20 justify-start');
 
     useEffect(() => {
         // 2. Trigger the change after the component mounts
         // A small timeout can help ensure the CSS transition registers
         const timer = setTimeout(() => {
             setRowClass('opacity-100 translate-y-0 transition-all duration-700');
-            setIconClass('opacity-100 translate-x-0 justify-center transition-all duration-800');
         }, 100);
 
         return () => clearTimeout(timer); // Cleanup
