@@ -7,8 +7,22 @@
             "position" : "Full Stack Web Developer",
             "start_date" : "Nov 2025",
             "description" : "",
-            "website" : "",
-            "linkedin" : ""
+            "tasks" : [
+                "Built reusable, component-based features in Cascade CMS using JavaScript, HTML, CSS, Apache Velocity, and Tailwind CSS to support scalable, system-wide website development across campuses.",
+                
+                "Met with schools and units to gather feature requests during stakeholder meetings, translating requirements into new CMS components and enhancements.",
+                
+                "Collaborated with Mānoa Marketing and Branding to review proposed features and component changes, ensuring alignment with brand standards and consistent adoption across schools and departments.",
+                
+                "Developed and maintained shared CMS templates and components (news listings, directories, navigation, cards, RSS feeds, factoids, headers, footers, etc.) used across multiple schools and units.",
+                
+                "Supported large-scale website migrations, including Admissions and Law School sites, ensuring accurate content transfer, structural integrity, and minimal disruption to stakeholders.",
+                
+                "Implemented WCAG 2.1 accessibility standards and system-wide language access solutions, including Hawaiian diacritics support across templates, navigation, headers, footers, and page-level components.",
+                
+                "Authored internal documentation for Tailwind CSS usage, custom CMS components, and bug fixes to support team knowledge sharing and long-term maintainability."],
+            "website" : "https://manoa.hawaii.edu/",
+            "linkedin" : "https://www.linkedin.com/school/uhawaiinews/"
         },
         {
             "id" : 1,
@@ -18,7 +32,13 @@
             "start_date" : "Jun 2025",
             "end_date" : "Nov 2025",
             "description" : "",
-            "website" : "",
+            "tasks" : [
+                "Point Cloud Processing: Perform QC and multi-station adjustments to align and optimize scan data for accuracy, ensuring consistency with control scans.",
+                "Data Registration: Merging and registering multiple scan stations to produce a unified, high-accuracy point cloud.",
+                "Linework Preparation: Identifying and labeling all stationary features (e.g., buildings, curbs, signs, utility infrastructure) to prepare data for CAD workflows.",
+                "Topographic Mapping: Creating accurate topographic maps by interpreting linework and integrating scan data to support design, planning, and engineering workflows."
+            ],
+            "website" : "https://www.cpshawaii.net/",
             "linkedin" : ""
         },
         {
@@ -29,19 +49,19 @@
             "start_date" : "Jun 2024",
             "end_date" : "Aug 2024",
             "description" : "",
-            "website" : "",
-            "linkedin" : ""
+            "website" : "https://oceanit.com/",
+            "linkedin" : "https://www.linkedin.com/company/oceanit/"
         },
         {
             "id" : 3,
             "type" : "internship",
             "company" : "Accuity LLP",
-            "position" : "IT Auditor Intern",
+            "position" : "IT Audit Intern",
             "start_date" : "Jun 2023",
             "end_date" : "Apr 2024",
             "description" : "",
-            "website" : "",
-            "linkedin" : ""
+            "website" : "https://www.accuityadvisors.com/",
+            "linkedin" : "https://www.linkedin.com/company/accuityadvisors/"
         },
         {
             "id" : 4,
@@ -51,8 +71,8 @@
             "start_date" : "Jun 2019",
             "end_date" : "Aug 2023",
             "description" : "",
-            "website" : "",
-            "linkedin" : ""
+            "website" : "https://honpt.com/",
+            "linkedin" : "https://www.linkedin.com/company/honolulu-physical-therapy/about/"
         },
         {
             "id" : 5,
@@ -62,8 +82,8 @@
             "start_date" : "Jul 2022",
             "end_date" : "Jan 2023",
             "description" : "",
-            "website" : "",
-            "linkedin" : ""
+            "website" : "https://consolidatedtheatres.com/",
+            "linkedin" : "https://www.linkedin.com/company/consolidated-theatres/"
         }
     ]
 }

@@ -5,74 +5,61 @@ import type { Experience } from '../../types/experience';
 function MobileExperience() {
     let experiences: Experience[] = experienceProjectData.experience
 
-    const [activeId, ] = useState(null);
+    const [activeId, setActiveId] = useState(null);
 
-    // const toggleCard = (id : any) => {
-    //     setActiveId(activeId === id ? activeId : id);
-    // };
+    const toggleCard = (id : any) => {
+        setActiveId(activeId === id ? activeId : id);
+    };
 
     return (
         <>
 
-        <div className="fixed top-0 left-0 h-dvh w-dvw bg-black/70 -z-1 rounded-2xl"></div>
-        <img src={`/img/Keoni-Hero.webp`} className="-z-2 fixed top-0 h-dvh left-0 right-0 object-cover rounded-2xl">
-        </img>
-
-        <div className={`${activeId != null ? 'opacity-[1.0] pointer-events-auto' : ' opacity-0 pointer-events-none'} z-1 inset-0 bg-black/70 fixed top-0 bottom-0 left-0 right-0`}></div>
-        {/* <div className={`${activeId != null ? 'opacity-[1.0] pointer-events-auto' : ' opacity-0 pointer-events-none'}  z-2 font-[Mazzard] ease-in-out drop-shadow-xl drop-shadow-[#000000] transition-opacity duration-435 fixed translate-x-1/2  rounded-xl  w-1/2 h-10/11 top-0  bg-black text-white`}>             
+        <div className={`${activeId != null ? 'opacity-[1.0] pointer-events-auto' : ' opacity-0 pointer-events-none'} rounded-2xl z-2 font-[Mazzard] ease-in-out transition-opacity duration-325 fixed top-0 h-dvh w-full bg-black/90 text-white`}>
                             {activeId !== null && (
                             <>
-                            <div id="homeCard" className='flex flex-col'>
-                            <button onClick={() => {setActiveId(null);}} className="fixed leading-[0] right-0 z-7 align-middle m-5 rounded-4xl cursor-pointer focus:bg-black">
-                                <FontAwesomeIcon className='p-0 m-0 text-4xl' icon={faWindowClose} />
-                            </button>
-                                {projects[activeId].video == null && (
-                                    <>
-                                        <div className="z-3 bg-gradient-to-t pointer-events-none from-black via-black/20 to-transparent h-[461px] rounded-2xl fixed top-0 bottom-100 left-0 right-0"></div>
-                                        <img src={`/img/${projects[activeId].title.replaceAll("/","")}.png`} className="sticky h-[460px] rounded-2xl top-0 object-cover w-full"></img>
-                                    </>
-                                )}
-                                {projects[activeId].video != null && (
-                                    <>
-                                        <div className="z-3 bg-gradient-to-t pointer-events-none from-black via-black/10 to-transparent h-[460px] w-full fixed top-0 bottom-0 left-0 right-0"></div>
-                                        <video key={projects[activeId].video} className="sticky h-[460px] w-full top-0 object-cover" autoPlay playsInline>
-                                            <source src={`/video/${projects[activeId].video}.mp4`} type="video/mp4" />
-                                            Your browser does not support the video tag.
-                                        </video>
-                                    </>
-                                )}
-                                <div className="flex flex-col py-5 px-2 justify-end">
-                                    <div className="text-2xl">{projects[activeId].title}</div>
-                                    <div className="text-md py-3 text-white/85">{projects[activeId].date}</div>
+                            <div className='flex flex-col p-7'>
+                            <button onClick={() => {setActiveId(null);}} className="fixed right-0 py-2 px-3 z-7 align-middle m-5 bg-black/80 rounded-4xl cursor-pointer focus:bg-black">X</button>
+                                <div className="flex flex-col py-5 px-2 justify-end mt-10 ">
+                                    <div className="text-2xl">{experiences[activeId].company}</div>
+                                    <div className="text-md py-3 text-white/85">{experiences[activeId].position}</div>
+                                    <div className="text-md py-1 text-white/85">
+                                        {experiences[activeId].start_date} - {experiences[activeId].end_date && experiences[activeId].end_date} {!experiences[activeId].end_date && "Current"}
+                                    </div>  
+                                    
+
+
+
                                     <div className="flex flex-row mb-3 w-[100%] gap-1">
-                                        {(projects[activeId].github != null)  && (
-                                            <a href={`${projects[activeId].github}`} target='_blank' className="cursor-pointer justify-center items-center w-[100%] text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard]">
-                                                    <FontAwesomeIcon className='p-0 m-0 text-xl' icon={faGithub} />
-                                                    <span className='text-sm'>Github</span>
-                                            </a>
-                                        )}
-                                        {(projects[activeId].youtube != null) && (
-                                            <a href={`${projects[activeId].youtube}`} target='_blank' className="cursor-pointer justify-center items-center w-[100%] text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard]">
-                                                <FontAwesomeIcon className='p-0 m-0 text-[#FF0000] text-xl' icon={faYoutube} />
-                                                <span className='text-sm'>Youtube</span>
-                                            </a>
-                                        )}
-                    
-                                        {(projects[activeId].spotify != null) && (
-                                            <a href={`${projects[activeId].spotify}`} target='_blank' className="cursor-pointer justify-center items-center w-[100%] text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard]">
-                                                <FontAwesomeIcon className='p-0 m-0 text-[#1DB954] text-' icon={faSpotify} />
-                                                <span className=' text-sm'>Spotify</span>
-                                            </a>
-                                        )}
+                                        <ul className='text-sm font-[Mazzard-Light]'>
+                                       {experiences[activeId].tasks && experiences[activeId].tasks.map((task) => {
+                                            return (<>
+                                                    {
+                                                        (() => {
+                                                                return (
+                                                                <>
+                                                                <div className="">
+                                                                        <li className='list-disc py-2'>
+                                                                            {`${task}`}
+                                                                        </li>
+                                                                </div>
+                                                                </>)
+                                                        })()
+                                                    }
+                                            </>)
+                                        })}
+                                        </ul>
                                     </div>
-                                    <div className="text-xs font-[Mazzard-Light]">{projects[activeId].description}</div>
+                                    <div className="text-xs font-[Mazzard-Light]">{experiences[activeId].description}</div>
                                 </div>
                             </div>
                             
-                        </>
-                    )}
-        </div> */}
+                    </>
+                )}
+        </div>
         
+    
+        <div className="fixed top-0 left-0 h-dvh w-dvw bg-black/50 -z-1 rounded-2xl"></div>
+        <img src={`/img/Keoni-Hero.webp`} className="-z-3 fixed top-0 h-dvh left-0 right-0 object-cover rounded-2xl" />
 
         <div className="flex flex-col justify-end mb-5">
             <div className="lg:mt-20 my-10 mx-auto lg:h-125 h-40 flex flex-col justify-end drop-shadow-lg drop-shadow-[#000000] ">
@@ -93,7 +80,9 @@ function MobileExperience() {
                                             return (
                                             <>
                                                 <div className="text-white flex flex-row items-center mx-1/2">
-                                                    <div className={`w-1/2 flex flex-col ${isEven ? 'justify-end pr-4' : 'justify-start pl-4'}`}>
+                                                    <div className={`w-1/2 flex flex-col ${isEven ? 'justify-end pr-4' : 'justify-start pl-4'}  cursor-pointer`}  onClick={() => {
+                                                            toggleCard(experience.id)
+                                                        }}>
                                                         {isEven && (
                                                             <>
                                                                 <p className="font-[Mazzard] text-white/95 text-lg tracking-wide">{experience.company}</p>
@@ -112,7 +101,9 @@ function MobileExperience() {
                                                                 stroke-linecap="round" />
                                                         </svg> */}
                                                     </div>
-                                                    <div className={`w-1/2 flex flex-col ${!isEven ? 'justify-start pl-4' : 'justify-end pr-4'}`}>
+                                                    <div className={`w-1/2 flex flex-col ${!isEven ? 'justify-start pl-4' : 'justify-end pr-4'}  cursor-pointer`} onClick={() => {
+                                                            toggleCard(experience.id)
+                                                        }}>
                                                         {!isEven && (
                                                             <>
                                                                 <p className="font-[Mazzard] text-white/95 text-lg tracking-wide">{experience.company}</p>
