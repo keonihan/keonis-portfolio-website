@@ -17,7 +17,7 @@ function MobileExperience() {
         <div className={`${activeId != null ? 'opacity-[1.0] pointer-events-auto' : ' opacity-0 pointer-events-none'} rounded-2xl z-2 font-[Mazzard] ease-in-out transition-opacity duration-325 fixed top-0 h-dvh w-full bg-black/90 text-white`}>
                             {activeId !== null && (
                             <>
-                            <div className='flex flex-col p-7'>
+                            <div className='flex flex-col p-7 h-full overflow-y-auto outline-none'>
                             <button onClick={() => {setActiveId(null);}} className="fixed right-0 py-2 px-3 z-7 align-middle m-5 bg-black/80 rounded-4xl cursor-pointer focus:bg-black">X</button>
                                 <div className="flex flex-col py-5 px-2 justify-end mt-10 ">
                                     <div className="text-2xl">{experiences[activeId].company}</div>
@@ -29,7 +29,7 @@ function MobileExperience() {
 
 
 
-                                    <div className="flex flex-row mb-3 w-[100%] gap-1">
+                                    <div className="flex flex-row mb-3 w-[100%] gap-1 ">
                                         <ul className='text-sm font-[Mazzard-Light]'>
                                        {experiences[activeId].tasks && experiences[activeId].tasks.map((task) => {
                                             return (<>

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedin, faSpotify, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faSpotify, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import codingProjectData from '../../json/projects.json'
 import graphicDesignProjectData from '../../json/graphic_design_projects.json'
 import { useRef, useState } from 'react';
@@ -76,47 +76,12 @@ function ProjectMobile() {
         
         <div className="rounded-2xl fixed bg-black inset-0 top-0 bottom-0 right-0 left-0 -z-4"></div>
         <div className="flex flex-col w-full overflow-x-hidden  ">
-            <div className="h-110 flex flex-col gap-1 pb-10 justify-end font-[Mazzard] text-white">
-                <div className="-z-1 bg-gradient-to-t from-black via-black/90 to-transparent h-full w-full fixed top-0 bottom-0 left-0 right-0"></div>
+            <div className="h-20 flex flex-col gap-1 pb-10 justify-end font-[Mazzard] text-white">
                 {(
                     <>
+                    <div className="fixed top-0 left-0 h-dvh w-dvw bg-black/60 -z-1 rounded-2xl"></div>
+                     <img src={`/img/Keoni-Hero.webp`} className="-z-3 fixed top-0 h-dvh left-0 right-0 object-cover rounded-2xl" />
                     
-                    <img src="/img/Keoni-Hero.webp" className="-z-2 w-full h-[50%] fixed top-0 left-0 right-0 object-cover rounded-2xl"></img>
-                    
-                    {/* {projects[6].video != null && (
-                        <video key={projects[6].video} ref={videoRef} className="-z-2 w-full h-[50%] fixed top-0 left-0 right-0 object-cover" muted={isMuted} autoPlay playsInline>
-                            <source src={`/video/${projects[6].video}.mp4`} type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </video>
-                    )} */}
-
-                    {/* {projects[6].video != null && 
-                        (<button className='cursor-pointer flex flex-row mx-auto '  onClick={toggleMute} aria-label={isMuted ? "Unmute" : "Mute"}>
-                        {isMuted ? <FontAwesomeIcon className='text-[#C4C4C4] hover:text-white text-xl align-middle' icon={faVolumeXmark} /> : <FontAwesomeIcon className='text-[#C4C4C4] hover:text-white text-xl' icon={faVolume} />}
-                        </button>)
-                        } */}
-                    
-                <div className="justify-center text-6xl w-[85%] items-center mx-auto text-center font-[Mazzard] leading-[0.6]">Keoni Han</div>
-                <div className="flex flex-row justify-center font-[Mazzard-Light]">Web & Software Developer</div>
-                <div className="flex flex-row justify-center mt-3 text-xs text-center mx-auto gap-3">
-                    <a href="https://github.com/keonihan"  className='group' target='_blank'>
-                        <button className="cursor-pointer text-black text-2xl rounded-2xl bg-white p-2 flex-row flex font-[Mazzard] ">
-                            <FontAwesomeIcon className='p-0 m-0 group-hover:text-[#8534F3] group-focus:bg-black' icon={faGithub} />
-                        </button>
-                    </a>
-                    <a href="https://www.youtube.com/c/KeoniHan" className='group' target='_blank'>
-                        <button className="cursor-pointer text-black text-2xl rounded-2xl bg-white p-2 flex-row flex font-[Mazzard]  group-focus:bg-black">
-                            <FontAwesomeIcon className='p-0 m-0 text-black group-hover:text-[#FF0000]' icon={faYoutube} />
-                        </button>
-                    </a>
-
-                    <a href="linkedin.com/in/keonihan"  className='group' target='_blank'>
-                        <button className="cursor-pointer text-black text-2xl rounded-2xl bg-white p-2 flex-row flex font-[Mazzard] group-focus:bg-black">
-                            <FontAwesomeIcon className='p-0 m-0 text-black group-hover:text-[#0A66C2]' icon={faLinkedin} />
-                        </button>
-                    </a>
-
-                </div>
                 </>
                 )}
                 
