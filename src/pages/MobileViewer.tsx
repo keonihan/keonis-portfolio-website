@@ -7,6 +7,7 @@ import { useWebHaptics } from "web-haptics/react";
 import MobileExperience from "./mobile/ExperienceMobile";
 import ProjectMobile from "./mobile/ProjectsMobile";
 import ContactMobile from "./mobile/ContactMobile";
+import HobbiesMobile from "./mobile/HobbiesMobile";
 
 function MobileViewer() {
     const [minimize, setMinimize] = useState(true);
@@ -62,14 +63,25 @@ function MobileViewer() {
                             <FontAwesomeIcon className='p-0 m-0 text-4xl' icon={faDiagramProject} />
                             <p> &nbsp;&nbsp;&nbsp;Projects</p>
                         </button>
-                        <button className="flex-row flex cursor-pointer">
+                        <button className="flex-row flex cursor-pointer" onClick={()=> {
+                        trigger("success")
+                        setCurrentPage("skills")
+                        toggleOverflow(),
+                        setMinimize(!minimize)
+                        }}>
                             <FontAwesomeIcon className='p-0 m-0 text-4xl' icon={faTools} />
                             <p> &nbsp;&nbsp;&nbsp;Skills</p>
                         </button>
-                        <button className="flex-row flex cursor-pointer">
+                        <button className="flex-row flex cursor-pointer" onClick={()=> {
+                        trigger("success")
+                        setCurrentPage("hobbies")
+                        toggleOverflow(),
+                        setMinimize(!minimize)
+                        }}>
                             <FontAwesomeIcon className='p-0 m-0 text-4xl' icon={faBasketball} />
                             <p> &nbsp;&nbsp;&nbsp;Hobbies</p>
                         </button>
+                        
                         <button className="flex-row flex cursor-pointer" onClick={()=> {
                         trigger("success")
                         setCurrentPage("contact")
@@ -95,6 +107,8 @@ function MobileViewer() {
                                     return <MobileExperience />;
                                 case 'skills':
                                     // return <About />;
+                                case 'hobbies':
+                                    return <HobbiesMobile />;
                                 case 'projects':
                                     return <ProjectMobile />;
                                 case 'contact':
