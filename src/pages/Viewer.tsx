@@ -8,8 +8,13 @@ import MobileExperience from "./mobile/ExperienceMobile";
 import ProjectMobile from "./mobile/ProjectsMobile";
 import ContactMobile from "./mobile/ContactMobile";
 import HobbiesMobile from "./mobile/HobbiesMobile";
+import DesktopExperience from "./desktop/DesktopExperience";
+import { useLocation } from 'react-router-dom';
+import DesktopContact from "./desktop/DesktopContact";
+import DesktopProjects from "./desktop/DesktopProjects";
+import DesktopHobbies from "./desktop/DesktopHobbies";
 
-function MobileViewer() {
+function Viewer() {
     const [minimize, setMinimize] = useState(true);
     const [overflow, setOverflow] = useState(false);
     const [currentPage, setCurrentPage] = useState("home")
@@ -29,6 +34,9 @@ function MobileViewer() {
             setOverflow(!overflow)
         }
     };
+
+    const location = useLocation();
+    const subpageName = location.pathname.split('/').pop(); // Gets the last part of the URL
 
     return(<>
         <div className="md:hidden">
@@ -121,19 +129,55 @@ function MobileViewer() {
                 </div>
         </div>
         <div className="hidden md:block">
+            {/* Header */}
+            <div className="hidden md:block py-8 px-4 flex-row flex justify-between items-center tw-w-full sticky top-0">
+                <div className="flex flex-row">
+                    <a className={`px-4 text-xl font-[Mazzard] cursor-pointer hover:text-white ${subpageName == "home" ? 'text-white' : 'text-white/60'}`}
+                    onClick={()=> {
+                            trigger("success")
+                            setCurrentPage("home"),
+                            toggleOverflow(),
+                            setMinimize(!minimize)
+                            }}>Home</a>
+                    <a className={`px-4 text-xl  font-[Mazzard] cursor-pointer hover:text-white ${subpageName == "experience" ? 'text-white' : 'text-white/60'}`} onClick={()=> {
+                            trigger("success")
+                            setCurrentPage("experience"),
+                            toggleOverflow(),
+                            setMinimize(!minimize)
+                            }}>Experience</a>
+                    <a className={`px-4 text-xl font-[Mazzard] cursor-pointer hover:text-white ${subpageName == "skills" ? 'text-white' : 'text-white/60'}`} onClick={()=> {
+                            trigger("success")
+                            setCurrentPage("hobbies"),
+                            toggleOverflow(),
+                            setMinimize(!minimize)
+                            }}>Hobbies</a>
+                    <a className={`px-4 text-xl font-[Mazzard] cursor-pointer hover:text-white ${subpageName == "projects" ? 'text-white' : 'text-white/60'}`} onClick={()=> {
+                            trigger("success")
+                            setCurrentPage("projects"),
+                            toggleOverflow(),
+                            setMinimize(!minimize)
+                            }}>Projects</a>
+                    <a className={`px-4 text-xl font-[Mazzard] cursor-pointer hover:text-white ${subpageName == "contact" ? 'text-white' : 'text-white/60'}`} onClick={()=> {
+                            trigger("success")
+                            setCurrentPage("contact"),
+                            toggleOverflow(),
+                            setMinimize(!minimize)
+                            }}>Socials</a>
+                </div>
+            </div>
             {
                 (() => {
                     switch(currentPage) {
                     case 'home':
                         return <DesktopHome />;
                     case 'experience':
-                        // return <Experience />;
-                    case 'skills':
-                        // return <About />;
+                        return <DesktopExperience />;
+                    case 'hobbies':
+                        return <DesktopHobbies />;
                     case 'projects':
-                        // return <About />;
+                        return <DesktopProjects/>;
                     case 'contact':
-                        // return <About />;
+                        return <DesktopContact />;
                     default:
                         return <DesktopHome />;
                     }
@@ -147,4 +191,5 @@ function MobileViewer() {
     </>) 
 }
 
-export default MobileViewer;
+export default Viewer;
+

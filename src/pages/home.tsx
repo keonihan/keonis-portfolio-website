@@ -1,7 +1,6 @@
-
-import MobileViewer from "./MobileViewer";
+import Viewer from "./Viewer"
 
 export default function Home() {
 
-  return <MobileViewer />
+  return <Viewer />
 }

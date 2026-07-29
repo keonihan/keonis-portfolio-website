@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
-import DesktopContact from './pages/desktop/DesktopContact';
+import DesktopExperience from './pages/desktop/DesktopExperience';
 
 
 function App() {
@@ -9,9 +9,6 @@ function App() {
       {/* Routes */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/contact" element={<DesktopContact />} />
-
       </Routes>
     </BrowserRouter>
   )

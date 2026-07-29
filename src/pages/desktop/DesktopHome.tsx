@@ -1,4 +1,3 @@
-import Header from '../../components/header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin,  faSpotify,  faYoutube } from '@fortawesome/free-brands-svg-icons';
 import codingProjectData from '../../json/projects.json'
@@ -111,7 +110,6 @@ function DesktopHome() {
             {/* // <img src={`/img/${projects[activeId].title.replaceAll("/","")}.webp`} className="-z-2 h-full w-full fixed top-0 bottom-0 left-0 right-0 object-cover"></img> */}
         <img src={`/img/Keoni-Hero.webp`} className="-z-2 w-full fixed -top-100 lg:h-[160vh] h-[200vh] left-0 right-0 object-cover"></img>
 
-        <Header />
         <div className="flex flex-col justify-end mb-5">
             <div className={`lg:mt-20 my-10 px-16 w-1/2 lg:h-125 h-64 flex flex-col justify-center ${rowClass}`}>
                 <div className="text-white text-7xl font-[Mazzard]">

@@ -1,4 +1,3 @@
-import Header from '../../components/header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faInstagram, faLinkedin,  faSpotify,  faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { useEffect, useState } from 'react';
@@ -24,7 +23,6 @@ function DesktopContact() {
         <>
         <div className="-z-1 bg-gradient-to-r from-black via-black/30 to-transparent fixed top-0 bottom-0 left-0 right-0"></div>
         <img src={`/img/Keoni-Hero.webp`} className="-z-2 w-full fixed -top-100 lg:h-[160vh] h-[200vh] left-0 right-0 object-cover"></img>
-        <Header />
         <div className="flex flex-col justify-end mb-5">
             <div className={`lg:mt-20 my-10 px-16 w-full lg:h-125 h-64 flex flex-col justify-center ${rowClass}`}>
                 <div className={`text-white text-7xl font-[Mazzard] text-center ${rowClass}`}>
