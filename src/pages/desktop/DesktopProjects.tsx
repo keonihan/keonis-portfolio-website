@@ -76,12 +76,12 @@ function DesktopProjects() {
                 </div>
         
         <div className="rounded-2xl fixed bg-black inset-0 top-0 bottom-0 right-0 left-0 -z-4"></div>
-        <div className="flex flex-col w-full overflow-x-hidden  ">
+        <div className="flex flex-col w-full overflow-x-hidden pb-30 ">
             <div className="h-10 flex flex-col gap-1 pb-10 justify-end font-[Mazzard] text-white">
                 {(
                     <>
                     <div className="fixed top-0 left-0 h-full w-dvw bg-black/60 -z-1 rounded-2xl"></div>
-                     <img src={`/img/Keoni-Hero.webp`} className="-z-3 fixed top-0 h-full left-0 right-0 object-cover rounded-2xl" />
+                     <img src={`/img/Keoni-Hero.webp`} className="-z-3 fixed top-0 h-full w-full object-cover rounded-2xl" />
                     
                 </>
                 )}
