@@ -33,6 +33,14 @@
             "description" : "",
             "video" : "Guilty Pleasures Spotify Canvas Loop", 
             "spotify" : "https://open.spotify.com/track/5GWTfmLR3Gc8llywNHKhRn"
+        },
+        {
+            "id": 10,
+            "type": "graphic design",
+            "title": "DJAL Instagram Ad",
+            "date": "May 2026",
+            "description": "",
+            "video": "DJAL_Ad"
         }
     ]
 }

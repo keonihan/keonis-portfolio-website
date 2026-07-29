@@ -80,7 +80,7 @@ function ProjectMobile() {
                 {(
                     <>
                     <div className="fixed top-0 left-0 h-dvh w-dvw bg-black/60 -z-1 rounded-2xl"></div>
-                     <img src={`/img/Keoni-Hero.webp`} className="-z-3 fixed top-0 h-dvh left-0 right-0 object-cover rounded-2xl" />
+                     <img src={`/img/Keoni-Hero.webp`} className="-z-3 fixed top-0 h-full left-0 right-0 object-cover rounded-2xl" />
                     
                 </>
                 )}
@@ -89,11 +89,11 @@ function ProjectMobile() {
             
             <div className="ml-5 w-full flex flex-col">
                 <div className="font-[Mazzard] text-white text-xl my-1">Coding Projects</div>
-                    <div className={`${activeId == null ? 'overflow-x-scroll' : ''} transition-transform [&::-webkit-scrollbar]:[width:1px]  duration-500 h-[200px] py-2 flex flex-row min-w-full max-w-full flex-nowrap justify-start gap-2`}>
+                    <div className={`${activeId == null ? 'overflow-x-scroll' : ''} transition-transform [&::-webkit-scrollbar]:[width:1px]  duration-500 h-[500px] py-2 grid grid-cols-2 w-[90%] flex-nowrap justify-start gap-2`}>
                     {codingProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
-                            <div className={`${isActive ? 'w-40 drop-shadow-2xl scale-[3] z-1' : ''} transition-transform duration-50 ease-in-out relative shrink-0 cursor-pointer overflow-hidden duration-500 ease-in-out w-30 px-3 py-1 rounded-lg flex flex-col justify-end `} 
+                            <div className={`${isActive ? 'w-40 drop-shadow-2xl scale-[3] z-1' : ''} transition-transform duration-50 ease-in-out mx-auto relative shrink-0 cursor-pointer  overflow-hidden duration-500 ease-in-out w-full px-3 py-1 rounded-lg flex flex-col justify-end `} 
                                 onClick={() => {
                                     toggleCard(project.id)
                                 }}>
@@ -108,11 +108,11 @@ function ProjectMobile() {
             
             <div className="ml-5 w-full overflow-x-hidden flex flex-col">
                 <div className="font-[Mazzard] text-white text-xl my-1">Graphic Design</div>
-                <div className="transition-transform [&::-webkit-scrollbar]:[width:1px] overflow-x-scroll duration-500 h-[200px] py-2 flex flex-row min-w-full max-w-full flex-nowrap justify-start gap-2">
+                <div className="transition-transform [&::-webkit-scrollbar]:[width:1px]  duration-500 h-[500px] py-2 grid grid-cols-2 w-[90%] flex-nowrap justify-start gap-2">
                     {graphicDesignProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
-                            <div className={`${isActive ? 'w-40 drop-shadow-2xl scale-[2] z-1' : ''} transition-transform duration-350 relative overflow-hidden shrink-0 cursor-pointer duration-500 ease-in-out w-30 px-3 py-1 rounded-lg flex flex-col justify-end`} 
+                            <div className={`${isActive ? 'w-40 drop-shadow-2xl scale-[2] z-1' : ''} transition-transform duration-50 ease-in-out mx-auto relative shrink-0 cursor-pointer  overflow-hidden duration-500 ease-in-out w-full px-3 py-1 rounded-lg flex flex-col justify-end `} 
                                 onClick={() => {
                                     toggleCard(project.id)
                                 }}>

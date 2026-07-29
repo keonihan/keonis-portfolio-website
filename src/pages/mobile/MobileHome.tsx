@@ -43,8 +43,8 @@ function MobileHome() {
                         )}
                         {projects[activeId].video != null && (
                             <>
-                                <div className="z-3 bg-gradient-to-t pointer-events-none from-black via-black/20 to-transparent h-[260px] w-full fixed top-0 bottom-0 left-0 right-0"></div>
-                                <video key={projects[activeId].video} ref={videoRef} className="relative h-[250px] w-full top-0 object-cover" autoPlay playsInline preload='none'>
+                                <div className="z-3 bg-gradient-to-t pointer-events-none from-black via-black/20 to-transparent h-full w-full fixed top-0 bottom-0 left-0 right-0"></div>
+                                <video key={projects[activeId].video} ref={videoRef} className="relative h-full w-full top-0 object-cover" autoPlay playsInline preload='none'>
                                     <source src={`/video/${projects[activeId].video}.mp4`} type="video/mp4" />
                                     Your browser does not support the video tag.
                                 </video>
