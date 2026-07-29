@@ -1,12 +1,12 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faSpotify, faYoutube } from '@fortawesome/free-brands-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faGithub, faSpotify, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import hobbiesData from '../../json/hobbies.json'
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import type { Hobby } from '../../types/hobby';
 
 function HobbiesMobile() {
     let hobbies: Hobby[] = hobbiesData.hobbies
-    let projects: Hobby[] = [...hobbies]
+    // let projects: Hobby[] = [...hobbies]
 
     const [activeId, setActiveId] = useState(null);
 
@@ -14,7 +14,7 @@ function HobbiesMobile() {
         setActiveId(activeId === id ? activeId : id);
     };
     
-    const videoRef = useRef<HTMLVideoElement>(null);
+    // const videoRef = useRef<HTMLVideoElement>(null);
 
     return(<><div className="fixed top-0 left-0 h-dvh w-dvw bg-black/50 -z-1 rounded-2xl"></div>
         <img src={`/img/Keoni-Hero.webp`} className="-z-3 fixed top-0 h-dvh left-0 right-0 object-cover rounded-2xl" />
