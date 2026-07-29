@@ -79,7 +79,7 @@ function ProjectMobile() {
             <div className="h-20 flex flex-col gap-1 pb-10 justify-end font-[Mazzard] text-white">
                 {(
                     <>
-                    <div className="fixed top-0 left-0 h-dvh w-dvw bg-black/60 -z-1 rounded-2xl"></div>
+                    <div className="fixed top-0 left-0 h-full w-dvw bg-black/60 -z-1 rounded-2xl"></div>
                      <img src={`/img/Keoni-Hero.webp`} className="-z-3 fixed top-0 h-full left-0 right-0 object-cover rounded-2xl" />
                     
                 </>
