@@ -29,7 +29,8 @@ function ProjectMobile() {
                     <button onClick={() => {setActiveId(null);}} className="fixed right-0 py-2 px-3 z-7 align-middle m-5 bg-black/80 rounded-4xl cursor-pointer focus:bg-black">X</button>
                         {projects[activeId].video == null && (
                             <>
-                                <div className="z-3 bg-gradient-to-t pointer-events-none from-black via-black/20 to-transparent h-[260px] w-full fixed top-0 bottom-0 left-0 right-0"></div>
+                                <div className="z-3 bg-gradient-to-t pointer-events-none from-black via-black/20 to-transparent h-[260px] w-full fixed top-0 bottom-0 left-0 right-0">
+                                </div>
                                 <img src={`/img/${projects[activeId].title.replaceAll("/","")}.webp`} className="sticky h-[250px] top-0 object-cover w-full"></img>
                             </>
                         )}
