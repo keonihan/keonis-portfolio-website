@@ -4,6 +4,7 @@ import codingProjectData from '../../json/projects.json'
 import graphicDesignProjectData from '../../json/graphic_design_projects.json'
 import { useRef, useState } from 'react';
 import type { Project } from '../../types/project';
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
 function DesktopProjects() {
     let codingProjects: Project[] = codingProjectData.projects
@@ -22,58 +23,61 @@ function DesktopProjects() {
 
         
 
-                <div className={`${activeId != null ? 'opacity-[1.0] pointer-events-auto' : ' opacity-0 pointer-events-none'} rounded-2xl z-2 font-[Mazzard] ease-in-out transition-opacity  duration-325 fixed top-0 bottom-0 w-full bg-black text-white`}>
-                    {activeId !== null && (
-                    <>
-                    <div className='flex flex-col '>
-                    <button onClick={() => {setActiveId(null);}} className="fixed right-0 py-2 px-3 z-7 align-middle m-5 bg-black/80 rounded-4xl cursor-pointer focus:bg-black">X</button>
-                        {projects[activeId].video == null && (
-                            <>
-                                <div className="z-3 bg-gradient-to-t pointer-events-none from-black via-black/20 to-transparent h-[260px] w-full fixed top-0 bottom-0 left-0 right-0">
-                                </div>
-                                <img src={`/img/${projects[activeId].title.replaceAll("/","")}.webp`} className="sticky h-[250px] top-0 object-cover w-full"></img>
-                            </>
-                        )}
-                        {projects[activeId].video != null && (
-                            <>
-                                <div className="z-3 bg-gradient-to-t pointer-events-none from-black via-black/20 to-transparent h-[260px] w-full fixed top-0 bottom-0 left-0 right-0"></div>
-                                <video key={projects[activeId].video} ref={videoRef} className="sticky h-[250px] w-full top-0 object-cover" autoPlay playsInline>
-                                    <source src={`/video/${projects[activeId].video}.mp4`} type="video/mp4" />
-                                    Your browser does not support the video tag.
-                                </video>
-                            </>
-                        )}
-                        <div className="flex flex-col py-5 px-2 justify-end">
-                            <div className="text-2xl">{projects[activeId].title}</div>
-                            <div className="text-md py-3 text-white/85">{projects[activeId].date}</div>
-                            <div className="flex flex-row mb-3 w-[100%] gap-1">
-                                {(projects[activeId].github != null)  && (
-                                    <a href={`${projects[activeId].github}`} target='_blank' className="cursor-pointer justify-center items-center w-[100%] text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard]">
-                                            <FontAwesomeIcon className='p-0 m-0 text-xl' icon={faGithub} />
-                                            <span className='text-sm'>Github</span>
-                                    </a>
-                                )}
-                                {(projects[activeId].youtube != null) && (
-                                    <a href={`${projects[activeId].youtube}`} target='_blank' className="cursor-pointer justify-center items-center w-[100%] text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard]">
-                                        <FontAwesomeIcon className='p-0 m-0 text-[#FF0000] text-xl' icon={faYoutube} />
-                                        <span className='text-sm'>Youtube</span>
-                                    </a>
-                                )}
-            
-                                {(projects[activeId].spotify != null) && (
-                                    <a href={`${projects[activeId].spotify}`} target='_blank' className="cursor-pointer justify-center items-center w-[100%] text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard]">
-                                        <FontAwesomeIcon className='p-0 m-0 text-[#1DB954] text-' icon={faSpotify} />
-                                        <span className=' text-sm'>Spotify</span>
-                                    </a>
-                                )}
-                            </div>
-                            <div className="text-xs font-[Mazzard-Light]">{projects[activeId].description}</div>
+                <div className={`${activeId != null ? 'opacity-[1.0] pointer-events-auto' : ' opacity-0 pointer-events-none'}  z-2 font-[Mazzard] ease-in-out drop-shadow-xl drop-shadow-[#000000] transition-opacity duration-435 fixed translate-x-1/2  rounded-xl  w-1/2 h-10/11 top-0  bg-black text-white`}>
+                                           
+                                           
+                                            {activeId !== null && (
+                                            <>
+                                            <div id="homeCard" className='flex flex-col'>
+                                            <button onClick={() => {setActiveId(null);}} className="fixed leading-[0] right-0 z-7 align-middle m-5 rounded-4xl cursor-pointer focus:bg-black">
+                                                <FontAwesomeIcon className='p-0 m-0 text-4xl' icon={faWindowClose} />
+                                            </button>
+                                                {projects[activeId].video == null && (
+                                                    <>
+                                                        <div className="z-3 bg-gradient-to-t pointer-events-none from-black via-black/20 to-transparent h-[461px] rounded-2xl fixed top-0 bottom-100 left-0 right-0"></div>
+                                                        <img src={`/img/${projects[activeId].title.replaceAll("/","")}.webp`} className="sticky h-[460px] rounded-2xl top-0 object-cover w-full"></img>
+                                                    </>
+                                                )}
+                                                {projects[activeId].video != null && (
+                                                    <>
+                                                        <div className="z-3 bg-gradient-to-t pointer-events-none from-black via-black/10 to-transparent h-[460px] w-full fixed top-0 bottom-0 left-0 right-0"></div>
+                                                        <video key={projects[activeId].video} className="sticky h-[460px] w-full top-0 object-cover" autoPlay playsInline>
+                                                            <source src={`/video/${projects[activeId].video}.mp4`} type="video/mp4" />
+                                                            Your browser does not support the video tag.
+                                                        </video>
+                                                    </>
+                                                )}
+                                                <div className="flex flex-col py-5 px-5 justify-end">
+                                                    <div className="text-2xl">{projects[activeId].title}</div>
+                                                    <div className="text-md py-3 text-white/85">{projects[activeId].date}</div>
+                                                    <div className="flex flex-row mb-3 w-[100%] gap-1">
+                                                        {(projects[activeId].github != null)  && (
+                                                            <a href={`${projects[activeId].github}`} target='_blank' className="cursor-pointer justify-center items-center w-[100%] text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard]">
+                                                                    <FontAwesomeIcon className='p-0 m-0 text-xl' icon={faGithub} />
+                                                                    <span className='text-sm'>Github</span>
+                                                            </a>
+                                                        )}
+                                                        {(projects[activeId].youtube != null) && (
+                                                            <a href={`${projects[activeId].youtube}`} target='_blank' className="cursor-pointer justify-center items-center w-[100%] text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard]">
+                                                                <FontAwesomeIcon className='p-0 m-0 text-[#FF0000] text-xl' icon={faYoutube} />
+                                                                <span className='text-sm'>Youtube</span>
+                                                            </a>
+                                                        )}
+                                    
+                                                        {(projects[activeId].spotify != null) && (
+                                                            <a href={`${projects[activeId].spotify}`} target='_blank' className="cursor-pointer justify-center items-center w-[100%] text-black rounded-md bg-white p-2 flex-row flex font-[Mazzard]">
+                                                                <FontAwesomeIcon className='p-0 m-0 text-[#1DB954] text-' icon={faSpotify} />
+                                                                <span className=' text-sm'>Spotify</span>
+                                                            </a>
+                                                        )}
+                                                    </div>
+                                                    <div className="text-xs font-[Mazzard-Light]">{projects[activeId].description}</div>
+                                                </div>
+                                            </div>
+                                            
+                                        </>
+                                    )}
                         </div>
-                    </div>
-                    
-            </>
-        )}
-                </div>
         
         <div className="rounded-2xl fixed bg-black inset-0 top-0 bottom-0 right-0 left-0 -z-4"></div>
         <div className="flex flex-col w-full overflow-x-hidden pb-30 ">
@@ -94,7 +98,7 @@ function DesktopProjects() {
                     {codingProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
-                            <div className={`${isActive ? 'w-40 drop-shadow-2xl scale-[3] z-1' : ''} transition-transform duration-50 ease-in-out mx-auto relative shrink-0 cursor-pointer  overflow-hidden duration-500 ease-in-out w-full px-3 py-1 rounded-lg flex flex-col justify-end `} 
+                            <div className={`${isActive ? 'w-40 drop-shadow-2xl scale-[1] z-1' : ''} transition-transform duration-50 ease-in-out mx-auto relative shrink-0 cursor-pointer  overflow-hidden duration-500 ease-in-out w-full px-3 py-1 rounded-lg flex flex-col justify-end `} 
                                 onClick={() => {
                                     toggleCard(project.id)
                                 }}>
@@ -113,7 +117,7 @@ function DesktopProjects() {
                     {graphicDesignProjects.map((project) => {
                         const isActive = activeId === project.id;
                         return (<>
-                            <div className={`${isActive ? 'w-40 drop-shadow-2xl scale-[2] z-1' : ''} transition-transform duration-50 ease-in-out mx-auto relative shrink-0 cursor-pointer  overflow-hidden duration-500 ease-in-out w-full px-3 py-1 rounded-lg flex flex-col justify-end `} 
+                            <div className={`${isActive ? 'w-40 drop-shadow-2xl scale-[1] z-1' : ''} transition-transform duration-50 ease-in-out mx-auto relative shrink-0 cursor-pointer  overflow-hidden duration-500 ease-in-out w-full px-3 py-1 rounded-lg flex flex-col justify-end `} 
                                 onClick={() => {
                                     toggleCard(project.id)
                                 }}>
