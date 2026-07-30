@@ -9,7 +9,6 @@ import ProjectMobile from "./mobile/ProjectsMobile";
 import ContactMobile from "./mobile/ContactMobile";
 import HobbiesMobile from "./mobile/HobbiesMobile";
 import DesktopExperience from "./desktop/DesktopExperience";
-import { useLocation } from 'react-router-dom';
 import DesktopContact from "./desktop/DesktopContact";
 import DesktopProjects from "./desktop/DesktopProjects";
 import DesktopHobbies from "./desktop/DesktopHobbies";
