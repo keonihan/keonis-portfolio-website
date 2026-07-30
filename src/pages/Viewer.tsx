@@ -9,6 +9,7 @@ import ProjectMobile from "./mobile/ProjectsMobile";
 import ContactMobile from "./mobile/ContactMobile";
 import HobbiesMobile from "./mobile/HobbiesMobile";
 import DesktopExperience from "./desktop/DesktopExperience";
+import { useLocation } from 'react-router-dom';
 import DesktopContact from "./desktop/DesktopContact";
 import DesktopProjects from "./desktop/DesktopProjects";
 import DesktopHobbies from "./desktop/DesktopHobbies";
@@ -33,7 +34,6 @@ function Viewer() {
             setOverflow(!overflow)
         }
     };
-
     return(<>
         <div className="md:hidden">
             <div className={`${!minimize ? 'opacity-100 ' : 'opacity-0 '}  transition-opacity duration-1000 scale-[0.85] overflow-hidden font-[Mazzard] text-4xl text-white gap-10 flex flex-col h-screen fixed left-[45%] w-[85%] -translate-x-1/2`}>
@@ -141,7 +141,7 @@ function Viewer() {
                             toggleOverflow(),
                             setMinimize(!minimize)
                             }}>Experience</a>
-                    <a className={`px-4 text-xl font-[Mazzard] cursor-pointer hover:text-white ${currentPage == "hobbies" ? 'text-white' : 'text-white/60'}`} onClick={()=> {
+                    <a className={`px-4 text-xl font-[Mazzard] cursor-pointer hover:text-white ${currentPage == "skills" ? 'text-white' : 'text-white/60'}`} onClick={()=> {
                             trigger("success")
                             setCurrentPage("hobbies"),
                             toggleOverflow(),
