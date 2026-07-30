@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faInstagram, faLinkedin,  faSpotify,  faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faInstagram, faLinkedin,  faSpotify,  faTiktok,  faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { useEffect, useState } from 'react';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 
@@ -68,6 +68,11 @@ function DesktopContact() {
                     <a href="https://www.instagram.com/keoni.han/"  className='group' target='_blank'>
                         <button className="cursor-pointer text-black text-2xl rounded-xl bg-white p-4 flex-row flex font-[Mazzard] group-focus:bg-black">
                             <FontAwesomeIcon className='p-0 m-0 text-black ' icon={faInstagram} />
+                        </button>
+                    </a>
+                    <a href="https://www.tiktok.com/@keoni_h"  className='group' target='_blank'>
+                        <button className="cursor-pointer text-black text-2xl rounded-xl bg-white p-4 flex-row flex font-[Mazzard] group-focus:bg-black">
+                            <FontAwesomeIcon className='p-0 m-0 text-black group-hover:text-[#FE2C55]' icon={faTiktok} />
                         </button>
                     </a>
                 </div>
