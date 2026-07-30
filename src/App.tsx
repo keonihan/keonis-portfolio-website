@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
-import DesktopExperience from './pages/desktop/DesktopExperience';
 
 
 function App() {
