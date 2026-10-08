@@ -10,10 +10,6 @@ function DesktopExperience() {
 
     const [activeId, setActiveId] = useState(null);
 
-    const toggleCard = (id : any) => {
-        setActiveId(activeId === id ? activeId : id);
-    };
-
     return (
         <>
 
@@ -73,7 +69,7 @@ function DesktopExperience() {
                 </div>
                 <div className=" px-8 w-full overflow-x-scroll [&::-webkit-scrollbar]:[width:1px] flex flex-col lg:h-full">
                         <div className="drop-shadow-lg drop-shadow-[#000000] transition-transform duration-500 flex flex-col gap-4 h-full min-w-full max-w-full flex-nowrap justify-start gap-2 ">
-                        {educations.map((education, index) => {
+                        {educations.map((education, _) => {
                             // const isActive = activeId === experience.id;
                             return (<>
                                     <div className='bg-zinc-900/70 font-[Mazzard] backdrop-blur-md border border-white/10 rounded-xl p-6 text-white shadow-lg transition-all hover:border-white/40 hover:bg-zinc-900/80 flex flex-row justify-between items-end'>
@@ -96,7 +92,7 @@ function DesktopExperience() {
                 </div>
                 <div className=" px-8 w-full overflow-x-scroll [&::-webkit-scrollbar]:[width:1px] flex flex-col lg:h-full">
                         <div className="drop-shadow-lg drop-shadow-[#000000] transition-transform duration-500 flex flex-col gap-4 h-full min-w-full max-w-full flex-nowrap justify-start gap-2 ">
-                        {experiences.map((experience, index) => {
+                        {experiences.map((experience, _) => {
                             // const isActive = activeId === experience.id;
                             return (<>
                                     <div className='bg-zinc-900/70 font-[Mazzard] backdrop-blur-md border border-white/10 rounded-xl p-6 text-white shadow-lg transition-all hover:border-white/40 hover:bg-zinc-900/80'>
