@@ -1,0 +1,20 @@
+{
+    "education" : [
+        {
+            "id" : 0,
+            "school" : "University of Portland",
+            "degree_type" : "B.S. Computer Science",
+            "start_date" : "Aug 2020",
+            "end_date": "May 2024",
+            "description" : ""
+        },
+        {
+            "id": 1,
+            "school": "Mid-Pacific Institute",
+            "degree_type": "High School",
+            "start_date": "Aug 2016",
+            "end_date": "May 2020",
+            "description": ""
+        }
+    ]
+}

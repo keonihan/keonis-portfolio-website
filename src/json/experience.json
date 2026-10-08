@@ -49,6 +49,11 @@
             "start_date" : "Jun 2024",
             "end_date" : "Aug 2024",
             "description" : "",
+            "tasks": [
+                "Spatial Application Development: Created a hand gesture-based web application deployed on Proto Holo, enhancing user interaction and usability for immersive environments.",
+                "VR Visualization & Analysis: Utilized Unity to design and develop a VR application for analyzing pipe coatings, integrating advanced visualization techniques for enhanced inspection.",
+                "Product Conceptualization & Pitching: Developed and pitched an innovative product concept to Oceanit staff and simulated venture capitalists, gaining hands-on experience in business presentation and product development."
+            ],
             "website" : "https://oceanit.com/",
             "linkedin" : "https://www.linkedin.com/company/oceanit/"
         },
@@ -60,6 +65,11 @@
             "start_date" : "Jun 2023",
             "end_date" : "Apr 2024",
             "description" : "",
+            "tasks": [
+                "Data Analytics & Transformation: Executed Mindbridge imports and General Ledger data transformations using Microsoft Excel and PowerQuery to support audit analysis.",
+                "IT General Controls Testing: Evaluated and tested Information Technology General Controls (ITGCs) across client systems to ensure regulatory compliance and risk mitigation.",
+                "Process Optimization: Authored and refined narrative processes and Standard Operating Procedures (SOPs), improving workflow efficiency by approximately 30%."
+            ],
             "website" : "https://www.accuityadvisors.com/",
             "linkedin" : "https://www.linkedin.com/company/accuityadvisors/"
         },
@@ -71,6 +81,11 @@
             "start_date" : "Jun 2019",
             "end_date" : "Aug 2023",
             "description" : "",
+            "tasks": [
+                "Patient Reception & Communications: Greeted and checked in patients at the front desk, managed phone calls, and scheduled appointments to ensure optimal scheduling flow.",
+                "Documentation & Data Entry: Typed and organized confidential patient reports and records accurately to support clinical staff.",
+                "Facility & Office Support: Prepared treatment rooms by folding linens and completing ad-hoc operational tasks requested by clinic management."
+            ],
             "website" : "https://honpt.com/",
             "linkedin" : "https://www.linkedin.com/company/honolulu-physical-therapy/about/"
         },
@@ -82,6 +97,12 @@
             "start_date" : "Jul 2022",
             "end_date" : "Jan 2023",
             "description" : "",
+            "tasks": [
+                "Customer Service & Guest Support: Delivered welcoming customer service across box office, usher, and concession roles in a fast-paced theater environment.",
+                "POS & Ticket Processing: Processed ticket sales and concession transactions accurately using point-of-sale systems.",
+                "Food Service & Facility Maintenance: Prepared and sold food and beverage items while keeping service areas organized, clean, and compliant with health standards.",
+                "Supervisor Support: Executed daily operational duties and assigned tasks from supervisors to maintain smooth theater flow."
+            ],
             "website" : "https://consolidatedtheatres.com/",
             "linkedin" : "https://www.linkedin.com/company/consolidated-theatres/"
         }

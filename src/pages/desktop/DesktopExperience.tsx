@@ -1,9 +1,12 @@
 import experienceProjectData from '../../json/experience.json'
+import educationProjectData from '../../json/education.json'
 import { useState } from 'react';
 import type { Experience } from '../../types/experience';
+import type { Education } from '../../types/education';
 
 function DesktopExperience() {
     let experiences: Experience[] = experienceProjectData.experience
+    let educations: Education[] = educationProjectData.education
 
     const [activeId, setActiveId] = useState(null);
 
@@ -61,66 +64,58 @@ function DesktopExperience() {
         <div className="fixed top-0 left-0 h-dvh w-dvw bg-black/50 -z-1 rounded-2xl"></div>
         <img src={`/img/Keoni-Hero.webp`} className="-z-3 fixed top-0 h-dvh w-full object-cover rounded-2xl" />
 
-        <div className="flex flex-col justify-end mb-5">
-            <div className="my-10 mx-auto flex flex-col justify-end drop-shadow-lg drop-shadow-[#000000] ">
-                <div className="text-white text-5xl font-[Mazzard] tracking-wide">
-                    Experience
+        <div className="grid grid-cols-2">
+            <div className="flex flex-col justify-end mb-5">
+                <div className="my-10 mx-auto flex flex-col justify-end drop-shadow-lg drop-shadow-[#000000] ">
+                    <div className="text-white text-5xl font-[Mazzard] tracking-wide">
+                        Education
+                    </div>
                 </div>
-            </div>
-
-            {/* <div className="opacity-40 z-1 bg-gradient-to-b pointer-events-none from-black/50 via-black/10 to-transparent lg:h-[400px] h-[calc(60dvh)] w-full fixed bottom-0 left-0 right-0"></div> */}
-            <div className=" px-8 w-full overflow-x-scroll [&::-webkit-scrollbar]:[width:1px] flex flex-col lg:h-full">
-                    <div className="drop-shadow-lg drop-shadow-[#000000] transition-transform duration-500 flex flex-col h-full min-w-full max-w-full flex-nowrap justify-start gap-2 ">
-                    {experiences.map((experience, index) => {
-                        // const isActive = activeId === experience.id;
-                        return (<>
-                                {
-                                    (() => {
-                                        const isEven = index % 2 == 0
-                                            return (
-                                            <>
-                                                <div className="text-white flex flex-row items-center mx-1/2">
-                                                    <div className={`w-1/2 flex flex-col ${isEven ? 'justify-end pr-4 items-end' : 'justify-start pl-4'}  cursor-pointer`}  onClick={() => {
-                                                            toggleCard(experience.id)
-                                                        }}>
-                                                        {isEven && (
-                                                            <>
-                                                                <p className="font-[Mazzard] text-white/95 text-lg tracking-wide">{experience.company}</p>
-                                                                <p className="font-[Mazzard-Light] text-white/95 text-sm">{experience.position}</p>
-                                                                <p className="font-[Mazzard-Light] text-white/95 text-md">{experience.start_date} - {experience.end_date != null ? experience.end_date  : "Current"}</p>
-                                                            </>
-                                                            )} 
-                                                    </div>
-                                                    <div className="flex justify-center items-center z-10">
-                                                        <svg height="40" width="40" xmlns="http://www.w3.org/2000/svg">
-                                                            <circle r="10" cx="20" cy="20" fill="white" />
-                                                        </svg>
-                                                        {/* <svg className='-translate-x-5' height="40" width="40" >
-                                                            <line x1="0" y1="20" x2="150" y2="20" 
-                                                                className="stroke-white stroke-2 fill-none" 
-                                                                stroke-linecap="round" />
-                                                        </svg> */}
-                                                    </div>
-                                                    <div className={`w-1/2 flex flex-col ${!isEven ? 'justify-start pl-4' : 'justify-end pr-4'}  cursor-pointer`} onClick={() => {
-                                                            toggleCard(experience.id)
-                                                        }}>
-                                                        {!isEven && (
-                                                            <>
-                                                                <p className="font-[Mazzard] text-white/95 text-lg tracking-wide">{experience.company}</p>
-                                                                <p className="font-[Mazzard-Light] text-white/95 text-sm">{experience.position}</p>
-                                                                <p className="font-[Mazzard-Light] text-white/95 text-md">{experience.start_date} - {experience.end_date != null ? experience.end_date  : "Current"}</p>
-                                                            </>
-                                                            )} 
-                                                    </div>
-                                                </div>      
-                                            </>)
-                                    })()
-                                }
-                        </>)
-                    })}
-                </div>
+                <div className=" px-8 w-full overflow-x-scroll [&::-webkit-scrollbar]:[width:1px] flex flex-col lg:h-full">
+                        <div className="drop-shadow-lg drop-shadow-[#000000] transition-transform duration-500 flex flex-col gap-4 h-full min-w-full max-w-full flex-nowrap justify-start gap-2 ">
+                        {educations.map((education, index) => {
+                            // const isActive = activeId === experience.id;
+                            return (<>
+                                    <div className='bg-zinc-900/70 font-[Mazzard] backdrop-blur-md border border-white/10 rounded-xl p-6 text-white shadow-lg transition-all hover:border-white/40 hover:bg-zinc-900/80 flex flex-row justify-between items-end'>
+                                        <div className="">
+                                            <span className='text-xs font-semibold uppercase tracking-wider text-zinc-400'>{education.start_date} - {education.end_date}</span>
+                                            <h3 className='text-xl font-bold text-white mt-1 tracking-wider'>{education.school}</h3>
+                                        </div>
+                                        <h3 className='text-lg font-bold text-white/80 tracking-wider'>{education.degree_type}</h3>
+                                    </div>
+                            </>)
+                        })}
+                    </div>
                 </div>  
             </div>
+            <div className="flex flex-col justify-end mb-5">
+                <div className="my-10 mx-auto flex flex-col justify-end drop-shadow-lg drop-shadow-[#000000] ">
+                    <div className="text-white text-5xl font-[Mazzard] tracking-wide">
+                        Experience
+                    </div>
+                </div>
+                <div className=" px-8 w-full overflow-x-scroll [&::-webkit-scrollbar]:[width:1px] flex flex-col lg:h-full">
+                        <div className="drop-shadow-lg drop-shadow-[#000000] transition-transform duration-500 flex flex-col gap-4 h-full min-w-full max-w-full flex-nowrap justify-start gap-2 ">
+                        {experiences.map((experience, index) => {
+                            // const isActive = activeId === experience.id;
+                            return (<>
+                                    <div className='bg-zinc-900/70 font-[Mazzard] backdrop-blur-md border border-white/10 rounded-xl p-6 text-white shadow-lg transition-all hover:border-white/40 hover:bg-zinc-900/80'>
+                                        <span className='text-xs font-semibold uppercase tracking-wider text-zinc-400'>{experience.start_date} - {experience.end_date ? experience.end_date : "Current"}</span>
+                                        <h3 className='text-xl font-bold text-white mt-1 tracking-wider'>{experience.company}</h3>
+                                        <h3 className='text-lg font-bold text-white/80 tracking-wider'>{experience.position}</h3>
+                                        <ul className='list-disc pl-5 space-y-3 text-sm font-sans font-normal text-zinc-300 leading-relaxed mt-4'>
+                                            {experience.tasks?.map((task, taskIndex) => (
+                                            <li key={taskIndex}>{task}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                            </>)
+                        })}
+                    </div>
+                </div>  
+            </div>
+        
+        </div>
         </>
     )
 }
