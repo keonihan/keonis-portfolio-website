@@ -86,15 +86,6 @@ export const VideoModal: React.FC<VideoModalProps> = ({
         <div className="flex items-center justify-between px-4 py-3 border-b border-blue-500/15 bg-navy-950/90 shrink-0">
           <div className="flex items-center gap-2 max-w-[85%]">
             <h3 className="font-bold text-sm text-white truncate">{title}</h3>
-            {youtubeUrl ? (
-              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-900/60 text-blue-300 border border-blue-500/20 shrink-0">
-                1080p HD
-              </span>
-            ) : (
-              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-900/60 text-emerald-300 border border-emerald-500/20 shrink-0 inline-flex items-center gap-1">
-                <Play size={9} className="fill-current" /> HD Video
-              </span>
-            )}
           </div>
           <button
             onClick={onClose}

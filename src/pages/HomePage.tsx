@@ -381,14 +381,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                       <Play size={11} className="fill-current text-blue-400" /> Play Video
                     </span>
                   )}
-                  {item.spotify && (
-                    <span
-                      className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-950/70 group-hover:bg-emerald-900 text-emerald-300 border border-emerald-500/30 group-hover:border-emerald-400 transition-colors"
-                      title="Open in Spotify"
-                    >
-                      <Music size={11} className="text-emerald-400" /> Spotify Loop
-                    </span>
-                  )}
+                
                 </div>
                 <h3 className="text-base font-bold text-white mb-1.5 group-hover:text-blue-300 transition-colors truncate">
                   {item.title}
