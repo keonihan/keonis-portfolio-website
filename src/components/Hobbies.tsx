@@ -8,14 +8,24 @@ import { VideoModal } from './VideoModal';
 
 export const Hobbies: React.FC = () => {
   const [subTab, setSubTab] = useState<'design' | 'personal'>('design');
-  const [activeVideo, setActiveVideo] = useState<{ url: string; title: string; startTime?: number } | null>(null);
+  const [activeVideo, setActiveVideo] = useState<{ url?: string; videoSrc?: string; title: string; startTime?: number } | null>(null);
 
   const designProjects = graphicDesignData.projects as GraphicDesignProjectItem[];
   const personalHobbies = hobbiesData.hobbies as HobbyItem[];
 
+  const resolveVideoUrl = (videoName?: string) => {
+    if (!videoName) return undefined;
+    if (videoName.startsWith('/') || videoName.startsWith('http')) return videoName;
+    const nameWithExt = videoName.endsWith('.mp4') ? videoName : `${videoName}.mp4`;
+    return `/videos/projects/${nameWithExt}`;
+  };
+
   const handleCardClick = (item: GraphicDesignProjectItem) => {
+    const videoFile = resolveVideoUrl(item.video);
     if (item.youtube) {
       setActiveVideo({ url: item.youtube, title: item.title, startTime: item.start_time });
+    } else if (videoFile) {
+      setActiveVideo({ videoSrc: videoFile, title: item.title });
     } else if (item.spotify) {
       window.open(item.spotify, '_blank', 'noopener,noreferrer');
     }
@@ -29,6 +39,7 @@ export const Hobbies: React.FC = () => {
           isOpen={!!activeVideo}
           onClose={() => setActiveVideo(null)}
           youtubeUrl={activeVideo.url}
+          videoSrc={activeVideo.videoSrc}
           title={activeVideo.title}
           startTime={activeVideo.startTime}
         />

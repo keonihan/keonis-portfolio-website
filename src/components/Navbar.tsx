@@ -31,7 +31,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <header className="sticky top-0 left-0 w-full z-40 bg-navy-950/85 backdrop-blur-md border-b border-blue-500/15">
-      <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Brand & Mobile Hamburger */}
         <div className="flex items-center gap-3">
           <button

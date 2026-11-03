@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { X } from 'lucide-react';
+import { X, Play } from 'lucide-react';
 
 interface VideoModalProps {
   isOpen: boolean;
   onClose: () => void;
-  youtubeUrl: string;
+  youtubeUrl?: string;
+  videoSrc?: string;
   title: string;
   startTime?: number;
 }
@@ -13,6 +14,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
   isOpen,
   onClose,
   youtubeUrl,
+  videoSrc,
   title,
   startTime
 }) => {
@@ -26,10 +28,11 @@ export const VideoModal: React.FC<VideoModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
-  if (!isOpen || !youtubeUrl) return null;
+  if (!isOpen || (!youtubeUrl && !videoSrc)) return null;
 
   // Extract YouTube Video ID, start time, and force 1080p
-  const getEmbedUrl = (url: string, explicitStartTime?: number) => {
+  const getEmbedUrl = (url?: string, explicitStartTime?: number) => {
+    if (!url) return '';
     try {
       let videoId = '';
       let startSeconds = explicitStartTime || 0;
@@ -66,7 +69,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
     }
   };
 
-  const embedUrl = getEmbedUrl(youtubeUrl, startTime);
+  const embedUrl = youtubeUrl ? getEmbedUrl(youtubeUrl, startTime) : '';
 
   return (
     <div 
@@ -76,36 +79,63 @@ export const VideoModal: React.FC<VideoModalProps> = ({
       role="dialog"
     >
       <div 
-        className="relative w-full max-w-4xl bg-navy-900 border border-blue-500/30 rounded-md overflow-hidden shadow-2xl shadow-black/80"
+        className="relative w-full max-w-4xl bg-navy-900 border border-blue-500/30 rounded-md overflow-hidden shadow-2xl shadow-black/80 flex flex-col max-h-[92vh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Top Bar */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-blue-500/15 bg-navy-950/80">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-blue-500/15 bg-navy-950/90 shrink-0">
           <div className="flex items-center gap-2 max-w-[85%]">
             <h3 className="font-bold text-sm text-white truncate">{title}</h3>
+            {youtubeUrl ? (
+              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-900/60 text-blue-300 border border-blue-500/20 shrink-0">
+                1080p HD
+              </span>
+            ) : (
+              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-900/60 text-emerald-300 border border-emerald-500/20 shrink-0 inline-flex items-center gap-1">
+                <Play size={9} className="fill-current" /> HD Video
+              </span>
+            )}
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded text-slate-400 hover:text-white hover:bg-navy-800 transition-colors"
+            className="p-1 rounded text-slate-400 hover:text-white hover:bg-navy-800 transition-colors cursor-pointer"
             aria-label="Close video modal"
           >
             <X size={18} />
           </button>
         </div>
 
-        {/* 16:9 Video Embed Container */}
-        <div className="relative w-full aspect-video bg-black">
-          {embedUrl ? (
-            <iframe
-              src={embedUrl}
-              title={title}
-              className="w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
+        {/* Video Container (handles both 16:9 YouTube and local MP4s of any aspect ratio) */}
+        <div className="relative w-full bg-black flex items-center justify-center overflow-hidden flex-grow">
+          {youtubeUrl ? (
+            <div className="w-full aspect-video">
+              {embedUrl ? (
+                <iframe
+                  src={embedUrl}
+                  title={title}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <div className="flex items-center justify-center h-full text-slate-400 text-sm">
+                  Unable to load video.
+                </div>
+              )}
+            </div>
+          ) : videoSrc ? (
+            <video
+              src={videoSrc}
+              controls
+              autoPlay
+              playsInline
+              className="max-h-[78vh] max-w-full w-auto h-auto object-contain mx-auto"
+            >
+              Your browser does not support the video tag.
+            </video>
           ) : (
-            <div className="flex items-center justify-center h-full text-slate-400 text-sm">
-              Unable to load video.
+            <div className="flex items-center justify-center py-20 text-slate-400 text-sm">
+              No video available.
             </div>
           )}
         </div>

@@ -1,5 +1,16 @@
-import React, { useState } from 'react';
-import { ArrowRight, FolderGit2, Briefcase, MapPin, ExternalLink, Github, Play } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { 
+  ArrowRight, 
+  FolderGit2, 
+  Briefcase, 
+  MapPin, 
+  ExternalLink, 
+  Github, 
+  Play, 
+  ChevronLeft, 
+  ChevronRight,
+  Music 
+} from 'lucide-react';
 import profileData from '../data/profile.json';
 import projectsData from '../data/projects.json';
 import experienceData from '../data/experience.json';
@@ -13,11 +24,31 @@ interface HomePageProps {
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
-  const [activeVideo, setActiveVideo] = useState<{ url: string; title: string; startTime?: number } | null>(null);
+  const [activeVideo, setActiveVideo] = useState<{ url?: string; videoSrc?: string; title: string; startTime?: number } | null>(null);
 
-  const featuredProjects = (projectsData.projects as CodingProjectItem[]).slice(0, 3);
+  const projectsScrollRef = useRef<HTMLDivElement>(null);
+  const designScrollRef = useRef<HTMLDivElement>(null);
+
+  const allProjects = projectsData.projects as CodingProjectItem[];
   const recentExperience = (experienceData.experience as ExperienceItem[]).slice(0, 2);
-  const featuredDesign = (graphicDesignData.projects as GraphicDesignProjectItem[]).slice(0, 2);
+  const allDesign = graphicDesignData.projects as GraphicDesignProjectItem[];
+
+  const scrollFeed = (ref: React.RefObject<HTMLDivElement | null>, direction: 'left' | 'right') => {
+    if (ref.current) {
+      const scrollAmount = 370;
+      ref.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const resolveVideoSrc = (videoField?: string) => {
+    if (!videoField) return undefined;
+    if (videoField.startsWith('/') || videoField.startsWith('http')) return videoField;
+    const withExt = videoField.endsWith('.mp4') ? videoField : `${videoField}.mp4`;
+    return `/videos/projects/${withExt}`;
+  };
 
   const handleProjectCardClick = (githubUrl?: string) => {
     if (githubUrl) {
@@ -28,8 +59,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   const handleDesignCardClick = (item: GraphicDesignProjectItem) => {
     if (item.youtube) {
       setActiveVideo({ url: item.youtube, title: item.title, startTime: item.start_time });
-    } else if (item.spotify) {
-      window.open(item.spotify, '_blank', 'noopener,noreferrer');
+    } else {
+      const localSrc = resolveVideoSrc(item.video);
+      if (localSrc) {
+        setActiveVideo({ videoSrc: localSrc, title: item.title });
+      } else if (item.spotify) {
+        window.open(item.spotify, '_blank', 'noopener,noreferrer');
+      }
     }
   };
 
@@ -41,6 +77,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           isOpen={!!activeVideo}
           onClose={() => setActiveVideo(null)}
           youtubeUrl={activeVideo.url}
+          videoSrc={activeVideo.videoSrc}
           title={activeVideo.title}
           startTime={activeVideo.startTime}
         />
@@ -48,7 +85,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* Hero Introduction */}
       <section className="py-16 md:py-20 border-b border-blue-500/15">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl flex flex-col items-start">
             {/* Status Badge (if defined in profile.json) */}
             {('status' in profileData) && (profileData as any).status && (
@@ -83,7 +120,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 onClick={() => onNavigate('projects')} 
                 className="btn btn-primary"
               >
-                <FolderGit2 size={17} /> Explore Projects <ArrowRight size={16} />
+                <FolderGit2 size={17} /> View Projects <ArrowRight size={16} />
               </button>
               <button 
                 onClick={() => onNavigate('experience')} 
@@ -95,40 +132,70 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 onClick={() => onNavigate('socials')} 
                 className="btn btn-secondary"
               >
-                Get in Touch
+                Contact Me
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Projects Summary */}
-      <section className="py-14 border-b border-blue-500/15">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="flex justify-between items-end mb-8 flex-wrap gap-4">
+      {/* Featured Projects Summary — Netflix-style horizontal feed */}
+      <section className="py-14 border-b border-blue-500/15 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-end mb-6 flex-wrap gap-4">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-blue-400 block mb-1">
-                Featured Code
+                Projects
               </span>
               <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-                Selected Projects
+                Web/Software Development
               </h2>
             </div>
-            <button
-              onClick={() => onNavigate('projects')}
-              className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 font-semibold text-sm transition-colors group cursor-pointer"
-            >
-              View all ({projectsData.projects.length}) projects 
-              <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
-            </button>
-          </div>
+            
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => onNavigate('projects')}
+                className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 font-semibold text-sm transition-colors group cursor-pointer mr-2"
+              >
+                View all ({allProjects.length})
+                <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
+              </button>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {featuredProjects.map((project) => (
+              <div className="flex items-center gap-1.5">
+                <button
+                  onClick={() => scrollFeed(projectsScrollRef, 'left')}
+                  className="w-8 h-8 rounded bg-[#0a1324]/90 hover:bg-blue-600 text-slate-300 hover:text-white border border-blue-500/20 hover:border-blue-500 flex items-center justify-center transition-all cursor-pointer shadow-sm"
+                  aria-label="Scroll projects left"
+                  title="Scroll left"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+                <button
+                  onClick={() => scrollFeed(projectsScrollRef, 'right')}
+                  className="w-8 h-8 rounded bg-[#0a1324]/90 hover:bg-blue-600 text-slate-300 hover:text-white border border-blue-500/20 hover:border-blue-500 flex items-center justify-center transition-all cursor-pointer shadow-sm"
+                  aria-label="Scroll projects right"
+                  title="Scroll right"
+                >
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Netflix-style horizontal feed row (spans FULL screen width) */}
+        <div className="max-w-7xl mx-auto px-6">
+          <div 
+            ref={projectsScrollRef}
+            className="flex gap-5 overflow-x-auto no-scrollbar scroll-feed-mask scroll-smooth py-4 px-6 md:px-12 lg:px-16"
+            style={{ scrollSnapType: 'x proximity' }}
+          >
+            {allProjects.map((project) => (
               <article 
                 key={project.id} 
                 onClick={() => handleProjectCardClick(project.github)}
-                className="p-6 bg-[#0a1324]/85 hover:bg-[#101c36]/95 border border-blue-500/15 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-900/20 rounded-md backdrop-blur-md transition-all duration-200 flex flex-col cursor-pointer group hover:-translate-y-0.5"
+                className="w-[300px] sm:w-[340px] md:w-[360px] shrink-0 p-5 bg-[#0a1324]/85 hover:bg-[#101c36]/95 border border-blue-500/15 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-900/25 rounded-md backdrop-blur-md transition-all duration-200 flex flex-col cursor-pointer group hover:-translate-y-1"
+                style={{ scrollSnapAlign: 'start' }}
               >
                 <ProjectImageGallery
                   images={project.images}
@@ -137,7 +204,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 />
                 <div className="flex justify-between items-center mb-2">
                   <div className="flex items-center gap-2">
-                    <FolderGit2 className="text-blue-400" size={20} />
+                    <FolderGit2 className="text-blue-400" size={18} />
                     <span className="text-xs text-slate-400 font-mono">{project.date}</span>
                   </div>
                   {project.github && (
@@ -145,16 +212,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                       className="text-slate-400 group-hover:text-blue-400 transition-colors p-1"
                       aria-label={`View ${project.title} on GitHub`}
                     >
-                      <Github size={18} />
+                      <Github size={17} />
                     </span>
                   )}
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">
+                <h3 className="text-base font-bold text-white mb-1.5 group-hover:text-blue-300 transition-colors truncate">
                   {project.title}
                 </h3>
-                <p className="text-slate-300 text-sm leading-relaxed flex-grow">{project.description}</p>
+                <p className="text-slate-300 text-xs leading-relaxed line-clamp-3 mb-3 flex-grow">
+                  {project.description}
+                </p>
                 {project.github && (
-                  <div className="pt-3 mt-3 border-t border-blue-500/15 flex items-center justify-between text-xs text-blue-400 font-semibold">
+                  <div className="pt-2.5 mt-auto border-t border-blue-500/15 flex items-center justify-between text-xs text-blue-400 font-semibold">
                     <span>View Repository</span>
                     <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -167,11 +236,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* Recent Experience Summary */}
       <section className="py-14 border-b border-blue-500/15 bg-blue-950/20">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-end mb-8 flex-wrap gap-4">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-blue-400 block mb-1">
-                Career Snapshot
+                Career
               </span>
               <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
                 Recent Experience
@@ -231,33 +300,63 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Creative & Design Snapshot */}
-      <section className="py-14 border-b border-blue-500/15">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="flex justify-between items-end mb-8 flex-wrap gap-4">
+      {/* Creative & Design Snapshot — Netflix-style horizontal feed */}
+      <section className="py-14 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-end mb-6 flex-wrap gap-4">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-blue-400 block mb-1">
-                Creative & Motion
+                Projects
               </span>
               <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-                Design Highlights
+                Graphic Design
               </h2>
             </div>
-            <button
-              onClick={() => onNavigate('hobbies')}
-              className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 font-semibold text-sm transition-colors group cursor-pointer"
-            >
-              Explore all hobbies & visuals 
-              <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
-            </button>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {featuredDesign.map((item) => (
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => onNavigate('hobbies')}
+                className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 font-semibold text-sm transition-colors group cursor-pointer mr-2"
+              >
+                Explore all ({allDesign.length})
+                <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
+              </button>
+
+              <div className="flex items-center gap-1.5">
+                <button
+                  onClick={() => scrollFeed(designScrollRef, 'left')}
+                  className="w-8 h-8 rounded bg-[#0a1324]/90 hover:bg-blue-600 text-slate-300 hover:text-white border border-blue-500/20 hover:border-blue-500 flex items-center justify-center transition-all cursor-pointer shadow-sm"
+                  aria-label="Scroll design left"
+                  title="Scroll left"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+                <button
+                  onClick={() => scrollFeed(designScrollRef, 'right')}
+                  className="w-8 h-8 rounded bg-[#0a1324]/90 hover:bg-blue-600 text-slate-300 hover:text-white border border-blue-500/20 hover:border-blue-500 flex items-center justify-center transition-all cursor-pointer shadow-sm"
+                  aria-label="Scroll design right"
+                  title="Scroll right"
+                >
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Netflix-style horizontal feed row (spans FULL screen width) */}
+        <div className="max-w-7xl mx-auto px-6">
+          <div 
+            ref={designScrollRef}
+            className="flex gap-5 overflow-x-auto no-scrollbar scroll-feed-mask scroll-smooth py-4 px-6 md:px-12 lg:px-16"
+            style={{ scrollSnapType: 'x proximity' }}
+          >
+            {allDesign.map((item) => (
               <article 
                 key={item.id} 
                 onClick={() => handleDesignCardClick(item)}
-                className="p-6 bg-[#0a1324]/85 hover:bg-[#101c36]/95 border border-blue-500/15 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-900/20 rounded-md backdrop-blur-md transition-all duration-200 flex flex-col cursor-pointer group hover:-translate-y-0.5"
+                className="w-[300px] sm:w-[340px] md:w-[360px] shrink-0 p-5 bg-[#0a1324]/85 hover:bg-[#101c36]/95 border border-blue-500/15 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-900/25 rounded-md backdrop-blur-md transition-all duration-200 flex flex-col cursor-pointer group hover:-translate-y-1"
+                style={{ scrollSnapAlign: 'start' }}
               >
                 <ProjectImageGallery
                   images={item.images}
@@ -266,49 +365,48 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 />
                 <div className="flex justify-between items-center mb-2">
                   <div className="text-xs font-mono text-slate-400">{item.date}</div>
-                  {item.youtube && (
+                   {item.youtube && (
                     <span
-                      className="inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded bg-red-950/70 group-hover:bg-red-900 text-red-300 border border-red-500/30 group-hover:border-red-400 transition-colors"
+                      className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded bg-red-950/70 group-hover:bg-red-900 text-red-300 border border-red-500/30 group-hover:border-red-400 transition-colors"
                       title="Watch video in popup"
                     >
                       <Play size={11} className="fill-current text-red-400" /> Watch Video
                     </span>
                   )}
+                  {!item.youtube && item.video && (
+                    <span
+                      className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded bg-blue-950/70 group-hover:bg-blue-900 text-blue-300 border border-blue-500/30 group-hover:border-blue-400 transition-colors"
+                      title="Play local video"
+                    >
+                      <Play size={11} className="fill-current text-blue-400" /> Play Video
+                    </span>
+                  )}
+                  {item.spotify && (
+                    <span
+                      className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-950/70 group-hover:bg-emerald-900 text-emerald-300 border border-emerald-500/30 group-hover:border-emerald-400 transition-colors"
+                      title="Open in Spotify"
+                    >
+                      <Music size={11} className="text-emerald-400" /> Spotify Loop
+                    </span>
+                  )}
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">
+                <h3 className="text-base font-bold text-white mb-1.5 group-hover:text-blue-300 transition-colors truncate">
                   {item.title}
                 </h3>
-                <p className="text-slate-300 text-sm leading-relaxed flex-grow">{item.description}</p>
+                <p className="text-slate-300 text-xs leading-relaxed line-clamp-3 mb-3 flex-grow">
+                  {item.description}
+                </p>
+                <div className="pt-2.5 mt-auto border-t border-blue-500/15 flex items-center justify-between text-xs text-blue-400 font-semibold">
+                  {/* <span>{item.youtube ? 'Watch in 1080p' : item.video ? 'Play Video' : item.spotify ? 'Listen on Spotify' : 'View Visuals'}</span> */}
+                  <span>View Visuals</span>
+                  <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
+                </div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Quick Contact Banner */}
-      <section className="py-14">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="p-8 bg-[#0a1324]/90 border border-blue-500/20 rounded-md backdrop-blur-md flex justify-between items-center flex-wrap gap-6">
-            <div className="max-w-lg">
-              <span className="text-xs font-bold uppercase tracking-wider text-blue-400 block mb-1">
-                Get In Touch
-              </span>
-              <h3 className="text-2xl font-extrabold text-white mb-2">
-                Let's connect & collaborate
-              </h3>
-              <p className="text-slate-300 text-sm leading-relaxed">
-                Open to software engineering roles, full-stack projects, and creative motion inquiries.
-              </p>
-            </div>
-            <button
-              onClick={() => onNavigate('socials')}
-              className="btn btn-primary"
-            >
-              Reach Out <ArrowRight size={16} />
-            </button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
