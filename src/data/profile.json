@@ -5,6 +5,7 @@
   "bio": "Full Stack Web Developer at University of Hawai'i System and Computer Science graduate from the University of Portland.",
   "status": "Available for select opportunities & collaboration",
   "hero_background_image": "/images/hero/Keoni-Hero-Full.webp",
+  "contact_form_endpoint": "https://formspree.io/f/mkjjkjen",
   "socials": [
     {
       "name": "GitHub",

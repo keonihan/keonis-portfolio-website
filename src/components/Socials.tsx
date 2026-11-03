@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Github, Linkedin, Instagram, Music, Mail, Send, CheckCircle2, ExternalLink } from 'lucide-react';
+import { Github, Linkedin, Instagram, Music, Mail, Send, CheckCircle2, AlertCircle, ExternalLink } from 'lucide-react';
 import profileData from '../data/profile.json';
 
 export const Socials: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const getSocialIcon = (name: string) => {
     switch (name.toLowerCase()) {
@@ -23,19 +24,45 @@ export const Socials: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
+    setErrorMessage('');
+    setSubmitted(false);
 
-    setTimeout(() => {
+    const endpoint = profileData.contact_form_endpoint || 'https://formspree.io/f/mkjjkjen';
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 6000);
+      } else {
+        const data = await response.json().catch(() => ({}));
+        setErrorMessage(
+          data.error || 'There was a problem sending your message. Please try again or reach out via direct email.'
+        );
+      }
+    } catch {
+      setErrorMessage('Network error: Unable to reach the server. Please try again later.');
+    } finally {
       setSubmitting(false);
-      setSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
-
-      setTimeout(() => {
-        setSubmitted(false);
-      }, 5000);
-    }, 700);
+    }
   };
 
   return (
@@ -82,7 +109,7 @@ export const Socials: React.FC = () => {
           <div className="p-8 bg-[#0a1324]/90 border border-blue-500/20 rounded-md backdrop-blur-md">
             <h3 className="text-xl font-bold text-white mb-1">Send a Message</h3>
             <p className="text-slate-300 text-sm mb-6">
-              Drop a note below and I'll respond as soon as possible.
+              Drop a note below and it will be sent directly to my inbox.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -93,6 +120,7 @@ export const Socials: React.FC = () => {
                   </label>
                   <input
                     id="user-name"
+                    name="name"
                     type="text"
                     placeholder="Alex Morgan"
                     value={formData.name}
@@ -107,6 +135,7 @@ export const Socials: React.FC = () => {
                   </label>
                   <input
                     id="user-email"
+                    name="email"
                     type="email"
                     placeholder="alex@example.com"
                     value={formData.email}
@@ -123,6 +152,7 @@ export const Socials: React.FC = () => {
                 </label>
                 <textarea
                   id="user-msg"
+                  name="message"
                   rows={4}
                   placeholder="Hi Keoni..."
                   value={formData.message}
@@ -132,14 +162,25 @@ export const Socials: React.FC = () => {
                 ></textarea>
               </div>
 
-              <button type="submit" className="btn btn-primary" disabled={submitting}>
+              <button 
+                type="submit" 
+                className="btn btn-primary cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" 
+                disabled={submitting}
+              >
                 {submitting ? 'Sending...' : 'Send Message'} <Send size={15} />
               </button>
 
               {submitted && (
-                <div className="inline-flex items-center gap-2 p-3 rounded bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 text-sm font-medium w-full">
+                <div className="inline-flex items-center gap-2 p-3 rounded bg-emerald-950/70 border border-emerald-500/30 text-emerald-300 text-sm font-medium w-full">
                   <CheckCircle2 size={16} />
-                  <span>Message sent! Thank you for getting in touch.</span>
+                  <span>Message sent! Thank you for reaching out—I'll reply soon.</span>
+                </div>
+              )}
+
+              {errorMessage && (
+                <div className="inline-flex items-center gap-2 p-3 rounded bg-red-950/70 border border-red-500/30 text-red-300 text-sm font-medium w-full">
+                  <AlertCircle size={16} />
+                  <span>{errorMessage}</span>
                 </div>
               )}
             </form>

@@ -67,5 +67,6 @@ export interface ProfileData {
   bio: string;
   status: string;
   hero_background_image?: string;
+  contact_form_endpoint?: string;
   socials: SocialItem[];
 }
