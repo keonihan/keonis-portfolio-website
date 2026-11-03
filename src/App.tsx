@@ -82,7 +82,7 @@ export const App: React.FC = () => {
 
   return (
     <div className={`app-shell relative min-h-screen ${isSideMenuOpen ? 'menu-active' : ''}`}>
-      {/* Fixed background behind ALL content (z-index: -2 and -1) */}
+      {/* Fixed background behind ALL content (z-index: 0 and 1) */}
       <div className="site-bg-backdrop" aria-hidden="true" />
       <div className="site-bg-overlay" aria-hidden="true" />
 

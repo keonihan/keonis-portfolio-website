@@ -25,22 +25,22 @@ body {
 }
 
 /* ==========================================================================
-   Fixed Site-wide Background (Stays STRICTLY BEHIND all content: z-index -20 / -10)
+   Fixed Site-wide Background (Stays directly behind main window content)
    ========================================================================== */
 
 .site-bg-backdrop {
   position: fixed;
-  top: -20px;
-  left: -20px;
-  right: -20px;
-  bottom: -20px;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
   background-image: url('/images/hero/Keoni-Hero-Full.webp');
   background-size: cover;
-  background-position: center top;
+  background-position: center 65%;
   background-repeat: no-repeat;
   filter: blur(4px);
-  transform: scale(1.04);
-  z-index: -20;
+  transform: scale(1.03);
+  z-index: 0;
   pointer-events: none;
 }
 
@@ -52,20 +52,20 @@ body {
   bottom: 0;
   background: linear-gradient(
     180deg,
-    rgba(5, 11, 20, 0.65) 0%,
-    rgba(5, 11, 20, 0.82) 35%,
-    rgba(5, 11, 20, 0.94) 100%
+    rgba(5, 11, 20, 0.45) 0%,
+    rgba(5, 11, 20, 0.65) 40%,
+    rgba(5, 11, 20, 0.85) 100%
   );
-  z-index: -10;
+  z-index: 1;
   pointer-events: none;
 }
 
 [data-theme="light"] .site-bg-overlay {
   background: linear-gradient(
     180deg,
-    rgba(240, 244, 249, 0.72) 0%,
-    rgba(240, 244, 249, 0.88) 35%,
-    rgba(240, 244, 249, 0.96) 100%
+    rgba(240, 244, 249, 0.50) 0%,
+    rgba(240, 244, 249, 0.70) 40%,
+    rgba(240, 244, 249, 0.90) 100%
   );
 }
 

@@ -1,11 +1,17 @@
 import React from 'react';
-import { FolderGit2, Github, Calendar } from 'lucide-react';
+import { FolderGit2, Github, Calendar, ArrowRight } from 'lucide-react';
 import projectsData from '../data/projects.json';
 import { CodingProjectItem } from '../types';
 import { ProjectImageGallery } from './ProjectImageGallery';
 
 export const Projects: React.FC = () => {
   const projects = projectsData.projects as CodingProjectItem[];
+
+  const handleCardClick = (githubUrl?: string) => {
+    if (githubUrl) {
+      window.open(githubUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
 
   return (
     <div className="min-h-[82vh] py-12 pb-20">
@@ -27,7 +33,8 @@ export const Projects: React.FC = () => {
           {projects.map((project) => (
             <article 
               key={project.id} 
-              className="p-6 bg-[#0a1324]/85 hover:bg-[#101c36]/90 border border-blue-500/15 hover:border-blue-500/40 rounded-md backdrop-blur-md transition-all duration-200 flex flex-col"
+              onClick={() => handleCardClick(project.github)}
+              className="p-6 bg-[#0a1324]/85 hover:bg-[#101c36]/95 border border-blue-500/15 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-900/20 rounded-md backdrop-blur-md transition-all duration-200 flex flex-col cursor-pointer group hover:-translate-y-0.5"
             >
               <ProjectImageGallery
                 images={project.images}
@@ -43,32 +50,27 @@ export const Projects: React.FC = () => {
                   </span>
                 </div>
                 {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-slate-400 hover:text-blue-400 transition-colors p-1"
+                  <span
+                    className="text-slate-400 group-hover:text-blue-400 transition-colors p-1"
                     aria-label={`View ${project.title} on GitHub`}
                     title="View GitHub Repository"
                   >
                     <Github size={18} />
-                  </a>
+                  </span>
                 )}
               </div>
 
-              <h3 className="text-lg font-bold text-white mb-2">{project.title}</h3>
+              <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">
+                {project.title}
+              </h3>
               <p className="text-slate-300 text-sm leading-relaxed mb-4 flex-grow">{project.description}</p>
 
               {project.github && (
-                <div className="pt-3 border-t border-blue-500/15">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-400 hover:text-blue-400 transition-colors truncate max-w-full"
-                  >
-                    <Github size={13} /> <span className="truncate">{project.github.replace('https://github.com/', '')}</span>
-                  </a>
+                <div className="pt-3 border-t border-blue-500/15 flex items-center justify-between text-xs text-blue-400 font-semibold">
+                  <span className="truncate max-w-[80%] font-mono text-slate-400 group-hover:text-blue-400 transition-colors">
+                    {project.github.replace('https://github.com/', '')}
+                  </span>
+                  <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform flex-shrink-0" />
                 </div>
               )}
             </article>

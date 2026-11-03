@@ -41,6 +41,7 @@ export interface GraphicDesignProjectItem {
   video?: string;
   youtube?: string;
   spotify?: string;
+  start_time?: number;
   images?: string[];
   image?: string;
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Github, Linkedin, Instagram, Music, Mail, Send, CheckCircle2, AlertCircle, ExternalLink } from 'lucide-react';
+import { Github, Linkedin, Instagram, Music, Mail, Send, CheckCircle2, AlertCircle, ExternalLink, Youtube } from 'lucide-react';
 import profileData from '../data/profile.json';
 
 export const Socials: React.FC = () => {
@@ -17,6 +17,10 @@ export const Socials: React.FC = () => {
       case 'instagram':
         return <Instagram size={20} className="text-pink-400" />;
       case 'spotify':
+        return <Music size={20} className="text-emerald-400" />;
+      case 'youtube':
+        return <Youtube size={20} className="text-red-400" />;
+      case 'tiktok':
         return <Music size={20} className="text-emerald-400" />;
       case 'email':
       default:

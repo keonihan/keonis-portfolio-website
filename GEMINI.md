@@ -46,6 +46,7 @@ This file contains a growing ruleset that will improve over time. **At session s
 7. [ARCH] Use dedicated page views for Home, Experience, Hobbies, Projects, Socials with a summarized landing page, rather than one long continuous scroll page – user preference, rejected single-page anchor scrolling.
 8. [STYLE] Use a dark blue / navy color scheme and subtle background blur (~4px) so background artwork remains recognizable – user design preference.
 9. [STYLE] Always use Tailwind CSS for styling instead of raw custom CSS – user preference for modern utility-first workflow.
+10. [STYLE] Never use negative z-index (e.g. `z-index: -20`) for site-wide background backdrops when `body` has a background color – because browsers paint negative z-index behind the root body canvas, completely hiding the image. Use positive layering (`z-index: 0` for backdrop, `1` for overlay, `10` for content).
 
 
 

@@ -1,0 +1,115 @@
+import React, { useEffect } from 'react';
+import { X } from 'lucide-react';
+
+interface VideoModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  youtubeUrl: string;
+  title: string;
+  startTime?: number;
+}
+
+export const VideoModal: React.FC<VideoModalProps> = ({
+  isOpen,
+  onClose,
+  youtubeUrl,
+  title,
+  startTime
+}) => {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
+  if (!isOpen || !youtubeUrl) return null;
+
+  // Extract YouTube Video ID, start time, and force 1080p
+  const getEmbedUrl = (url: string, explicitStartTime?: number) => {
+    try {
+      let videoId = '';
+      let startSeconds = explicitStartTime || 0;
+
+      if (url.includes('youtube.com/watch')) {
+        const urlObj = new URL(url);
+        videoId = urlObj.searchParams.get('v') || '';
+        const tParam = urlObj.searchParams.get('t') || urlObj.searchParams.get('start');
+        if (tParam && !startSeconds) {
+          startSeconds = parseInt(tParam.replace('s', ''), 10) || 0;
+        }
+      } else if (url.includes('youtu.be/')) {
+        const parts = url.split('youtu.be/')[1].split('?');
+        videoId = parts[0];
+        if (parts[1] && !startSeconds) {
+          const params = new URLSearchParams(parts[1]);
+          const tParam = params.get('t') || params.get('start');
+          if (tParam) {
+            startSeconds = parseInt(tParam.replace('s', ''), 10) || 0;
+          }
+        }
+      }
+
+      if (!videoId) return '';
+
+      // Force 1080p via vq=hd1080 & hd=1, autoplay, and start offset
+      let embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&vq=hd1080&hd=1&rel=0`;
+      if (startSeconds > 0) {
+        embedUrl += `&start=${startSeconds}`;
+      }
+      return embedUrl;
+    } catch {
+      return '';
+    }
+  };
+
+  const embedUrl = getEmbedUrl(youtubeUrl, startTime);
+
+  return (
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm animate-fade-in"
+      onClick={onClose}
+      aria-modal="true"
+      role="dialog"
+    >
+      <div 
+        className="relative w-full max-w-4xl bg-navy-900 border border-blue-500/30 rounded-md overflow-hidden shadow-2xl shadow-black/80"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Modal Top Bar */}
+        <div className="flex items-center justify-between px-4 py-3 border-b border-blue-500/15 bg-navy-950/80">
+          <div className="flex items-center gap-2 max-w-[85%]">
+            <h3 className="font-bold text-sm text-white truncate">{title}</h3>
+          </div>
+          <button
+            onClick={onClose}
+            className="p-1 rounded text-slate-400 hover:text-white hover:bg-navy-800 transition-colors"
+            aria-label="Close video modal"
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        {/* 16:9 Video Embed Container */}
+        <div className="relative w-full aspect-video bg-black">
+          {embedUrl ? (
+            <iframe
+              src={embedUrl}
+              title={title}
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          ) : (
+            <div className="flex items-center justify-center h-full text-slate-400 text-sm">
+              Unable to load video.
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};

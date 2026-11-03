@@ -1,18 +1,39 @@
 import React, { useState } from 'react';
-import { Palette, Youtube, Music, Heart } from 'lucide-react';
+import { Palette, Music, Heart, Play } from 'lucide-react';
 import graphicDesignData from '../data/graphic_design_projects.json';
 import hobbiesData from '../data/hobbies.json';
 import { GraphicDesignProjectItem, HobbyItem } from '../types';
 import { ProjectImageGallery } from './ProjectImageGallery';
+import { VideoModal } from './VideoModal';
 
 export const Hobbies: React.FC = () => {
   const [subTab, setSubTab] = useState<'design' | 'personal'>('design');
+  const [activeVideo, setActiveVideo] = useState<{ url: string; title: string; startTime?: number } | null>(null);
 
   const designProjects = graphicDesignData.projects as GraphicDesignProjectItem[];
   const personalHobbies = hobbiesData.hobbies as HobbyItem[];
 
+  const handleCardClick = (item: GraphicDesignProjectItem) => {
+    if (item.youtube) {
+      setActiveVideo({ url: item.youtube, title: item.title, startTime: item.start_time });
+    } else if (item.spotify) {
+      window.open(item.spotify, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <div className="min-h-[82vh] py-12 pb-20">
+      {/* Video Modal */}
+      {activeVideo && (
+        <VideoModal
+          isOpen={!!activeVideo}
+          onClose={() => setActiveVideo(null)}
+          youtubeUrl={activeVideo.url}
+          title={activeVideo.title}
+          startTime={activeVideo.startTime}
+        />
+      )}
+
       <div className="max-w-5xl mx-auto px-6">
         {/* Page Header */}
         <div className="mb-10">
@@ -56,7 +77,8 @@ export const Hobbies: React.FC = () => {
             {designProjects.map((item) => (
               <article 
                 key={item.id} 
-                className="p-6 bg-[#0a1324]/85 hover:bg-[#101c36]/90 border border-blue-500/15 hover:border-blue-500/40 rounded-md backdrop-blur-md transition-all duration-200 flex flex-col"
+                onClick={() => handleCardClick(item)}
+                className="p-6 bg-[#0a1324]/85 hover:bg-[#101c36]/95 border border-blue-500/15 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-900/20 rounded-md backdrop-blur-md transition-all duration-200 flex flex-col cursor-pointer group hover:-translate-y-0.5"
               >
                 <ProjectImageGallery
                   images={item.images}
@@ -68,33 +90,27 @@ export const Hobbies: React.FC = () => {
                   <span className="text-xs font-mono text-slate-400">{item.date}</span>
                   <div className="flex gap-2">
                     {item.youtube && (
-                      <a
-                        href={item.youtube}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded bg-red-950/60 text-red-300 border border-red-500/30 hover:border-red-400 transition-colors"
-                        title="Watch on YouTube"
-                        aria-label={`Watch ${item.title} on YouTube`}
+                      <span
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded bg-red-950/70 group-hover:bg-red-900 text-red-300 border border-red-500/30 group-hover:border-red-400 transition-colors"
+                        title="Watch video in popup"
                       >
-                        <Youtube size={14} className="text-red-400" /> YouTube
-                      </a>
+                        <Play size={12} className="fill-current text-red-400" /> Watch Video
+                      </span>
                     )}
                     {item.spotify && (
-                      <a
-                        href={item.spotify}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-500/30 hover:border-emerald-400 transition-colors"
+                      <span
+                        className="inline-flex items-center gap-1 text-xs font-semibold px-2 py-1 rounded bg-emerald-950/60 group-hover:bg-emerald-900 text-emerald-300 border border-emerald-500/30 group-hover:border-emerald-400 transition-colors"
                         title="Open on Spotify"
-                        aria-label={`Open ${item.title} on Spotify`}
                       >
                         <Music size={13} className="text-emerald-400" /> Spotify
-                      </a>
+                      </span>
                     )}
                   </div>
                 </div>
 
-                <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">
+                  {item.title}
+                </h3>
                 {item.description ? (
                   <p className="text-slate-300 text-sm leading-relaxed mb-4 flex-grow">{item.description}</p>
                 ) : (
