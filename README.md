@@ -1,54 +1,32 @@
-# React + TypeScript + Vite
+# Keoni Han - Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive, clean portfolio built with **React**, **TypeScript**, and **Vite** using **npm**, completely driven by human-editable JSON files.
 
-Currently, two official plugins are available:
+## Editing Your Site (JSON Driven)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+All site data is separated from the code into `src/data/`. To update anything on the site, simply edit the corresponding `.json` file:
 
-## Expanding the ESLint configuration
+- **[src/data/profile.json](file:///c:/Users/Keoni/Desktop/Agent%20Practice/src/data/profile.json)**: Edit your name, title, location, bio, availability status, and social profile links.
+- **[src/data/experience.json](file:///c:/Users/Keoni/Desktop/Agent%20Practice/src/data/experience.json)**: Add or edit jobs, roles, dates, company websites, and task bullet points.
+- **[src/data/education.json](file:///c:/Users/Keoni/Desktop/Agent%20Practice/src/data/education.json)**: Add or edit schools, degrees, and graduation years.
+- **[src/data/projects.json](file:///c:/Users/Keoni/Desktop/Agent%20Practice/src/data/projects.json)**: Add or edit coding projects, dates, descriptions, and GitHub repositories.
+- **[src/data/graphic_design_projects.json](file:///c:/Users/Keoni/Desktop/Agent%20Practice/src/data/graphic_design_projects.json)**: Add or edit graphic design work, visualizers, and YouTube/Spotify links.
+- **[src/data/hobbies.json](file:///c:/Users/Keoni/Desktop/Agent%20Practice/src/data/hobbies.json)**: Add or edit personal hobbies.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Whenever you save a JSON file, Vite instantly hot-reloads the site in your browser.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Styling Rules
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **Corner Radii**: Cards, boxes, and containers use subtle/sharp corners (`4px`–`6px`). Only main CTA action buttons feature fully rounded pill shapes.
+- **Simplicity**: No fake or exaggerated metrics—clean, direct presentation of your real work and experience.
+- **Mobile Push Navigation**: On mobile, the hamburger menu slides and scales the main window out to reveal the sidebar navigation.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Quick Commands
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```powershell
+# Start Vite development server
+npm run dev
+
+# Production build
+npm run build
 ```

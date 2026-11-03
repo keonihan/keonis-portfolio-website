@@ -1,0 +1,40 @@
+{
+  "name": "Keoni Han",
+  "title": "Web & Software Developer",
+  "location": "Honolulu, Hawaii",
+  "bio": "Full Stack Web Developer at University of Hawai'i System and Computer Science graduate from the University of Portland. Focused on building clean, accessible web applications, spatial interfaces, and creative digital media.",
+  "status": "Available for select opportunities & collaboration",
+  "hero_background_image": "/images/hero/Keoni-Hero-Full.webp",
+  "socials": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/keonihan",
+      "handle": "keonihan",
+      "description": "Repositories & code"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/keonihan/",
+      "handle": "Keoni Han",
+      "description": "Professional network"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/keoni.han/",
+      "handle": "@keoni.han",
+      "description": "Visuals & motion"
+    },
+    {
+      "name": "Spotify",
+      "url": "https://open.spotify.com/track/5GWTfmLR3Gc8llywNHKhRn",
+      "handle": "DJAL / Guilty Pleasures",
+      "description": "Canvas loops & audio"
+    },
+    {
+      "name": "Email",
+      "url": "mailto:keonihan@example.com",
+      "handle": "keonihan@example.com",
+      "description": "Direct inquiries"
+    }
+  ]
+}

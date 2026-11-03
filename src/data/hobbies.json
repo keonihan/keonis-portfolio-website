@@ -1,0 +1,41 @@
+{
+  "hobbies": [
+    {
+      "id": 0,
+      "name": "Watching Basketball",
+      "category": "Sports",
+      "icon": "Trophy",
+      "image": "/images/projects/Watching Basketball.webp"
+    },
+    {
+      "id": 1,
+      "name": "Playing Golf",
+      "category": "Sports",
+      "icon": "Flag"
+    },
+    {
+      "id": 2,
+      "name": "Watching Football",
+      "category": "Sports",
+      "icon": "Tv"
+    },
+    {
+      "id": 3,
+      "name": "Playing Guitar",
+      "category": "Music",
+      "icon": "Music"
+    },
+    {
+      "id": 4,
+      "name": "Cooking",
+      "category": "Culinary",
+      "icon": "Utensils"
+    },
+    {
+      "id": 5,
+      "name": "Weightlifting & Gym",
+      "category": "Fitness",
+      "icon": "Dumbbell"
+    }
+  ]
+}
