@@ -11,9 +11,9 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="border-t border-blue-500/15 py-8 text-xs text-slate-400">
-      {/* <div className="max-w-5xl mx-auto px-6 flex justify-between items-center flex-wrap gap-4">
+      <div className="max-w-5xl mx-auto px-6 flex justify-between items-center flex-wrap gap-4">
         <div>
-          &copy; {currentYear} <span className="text-slate-300 font-semibold">{profileData.name}</span>. Built with Vite, React & Tailwind CSS.
+          {currentYear} <span className="text-slate-300 font-semibold">{profileData.name}</span>
         </div>
         <button 
           onClick={scrollToTop} 
@@ -23,7 +23,7 @@ export const Footer: React.FC = () => {
           <span>Back to Top</span>
           <ArrowUp size={14} />
         </button>
-      </div> */}
+      </div>
     </footer>
   );
 };
