@@ -81,7 +81,11 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className={`app-shell ${isSideMenuOpen ? 'menu-active' : ''}`}>
+    <div className={`app-shell relative min-h-screen ${isSideMenuOpen ? 'menu-active' : ''}`}>
+      {/* Fixed background behind ALL content (z-index: -2 and -1) */}
+      <div className="site-bg-backdrop" aria-hidden="true" />
+      <div className="site-bg-overlay" aria-hidden="true" />
+
       {/* Off-canvas Side Menu */}
       <SideMenu
         currentPage={currentPage}
@@ -92,12 +96,8 @@ export const App: React.FC = () => {
         onToggleTheme={toggleTheme}
       />
 
-      {/* Main Window */}
-      <div className={`main-window ${isSideMenuOpen ? 'pushed' : ''}`}>
-        {/* Full-site background image with subtle 4px blur and dark blue overlay */}
-        <div className="site-bg-backdrop" aria-hidden="true" />
-        <div className="site-bg-overlay" aria-hidden="true" />
-
+      {/* Main Window (relative z-10, always in FRONT of background) */}
+      <div className={`main-window relative z-10 min-h-screen ${isSideMenuOpen ? 'pushed' : ''}`}>
         {/* Transparent click catcher overlay when pushed */}
         {isSideMenuOpen && (
           <div
@@ -116,7 +116,7 @@ export const App: React.FC = () => {
           onToggleSideMenu={() => setIsSideMenuOpen(!isSideMenuOpen)}
         />
 
-        <main className="main-content">
+        <main className="main-content relative z-10">
           {renderCurrentPage()}
         </main>
 
