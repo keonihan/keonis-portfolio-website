@@ -6,7 +6,6 @@ import { Experience } from './components/Experience';
 import { Hobbies } from './components/Hobbies';
 import { Projects } from './components/Projects';
 import { Socials } from './components/Socials';
-import { Footer } from './components/Footer';
 
 export const App: React.FC = () => {
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
@@ -120,7 +119,6 @@ export const App: React.FC = () => {
           {renderCurrentPage()}
         </main>
 
-        <Footer />
       </div>
     </div>
   );

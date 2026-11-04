@@ -1,31 +1,56 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy-950: #050b14;
-  --color-navy-900: #0a1324;
-  --color-navy-850: #0e1a32;
-  --color-navy-800: #101c36;
-  --color-navy-700: #172a50;
-  --color-navy-border: rgba(59, 130, 246, 0.16);
-  --color-brand-blue: #2563eb;
-  --color-brand-lightblue: #60a5fa;
-}
+  /* Core palette — deep navy, not pure black */
+  --color-bg:          #060c16;
+  --color-surface:     #0c1420;
+  --color-surface-2:   #111b2c;
+  --color-border:      rgba(255, 255, 255, 0.07);
+  --color-border-hover:rgba(255, 255, 255, 0.14);
 
-html {
-  scroll-behavior: smooth;
-  background-color: #050b14;
-}
+  /* Text */
+  --color-text-primary:   #f2f2ef;
+  --color-text-secondary: #8b96a8;
+  --color-text-muted:     #4a5568;
 
-body {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: #050b14;
-  color: #f8fafc;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+  /* Single deliberate accent */
+  --color-accent:       #3b7bff;
+  --color-accent-dim:   rgba(59, 123, 255, 0.12);
+
+  /* Legacy navy aliases kept for components not yet updated */
+  --color-navy-950: #060c16;
+  --color-navy-900: #0c1420;
+  --color-navy-850: #0e1a2e;
+  --color-navy-800: #111b2c;
+  --color-navy-700: #172540;
 }
 
 /* ==========================================================================
-   Fixed Site-wide Background (Stays directly behind main window content)
+   Base
+   ========================================================================== */
+
+html {
+  scroll-behavior: smooth;
+  background-color: #060c16;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #060c16;
+  color: #f2f2ef;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Display serif — only for accent names/headings */
+.font-display {
+  font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   Fixed Site-wide Background — hero photo
    ========================================================================== */
 
 .site-bg-backdrop {
@@ -46,27 +71,15 @@ body {
 
 .site-bg-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(5, 11, 20, 0.45) 0%,
-    rgba(5, 11, 20, 0.65) 40%,
-    rgba(5, 11, 20, 0.85) 100%
+    rgba(6, 12, 22, 0.42) 0%,
+    rgba(6, 12, 22, 0.70) 45%,
+    rgba(6, 12, 22, 0.90) 100%
   );
   z-index: 1;
   pointer-events: none;
-}
-
-[data-theme="light"] .site-bg-overlay {
-  background: linear-gradient(
-    180deg,
-    rgba(240, 244, 249, 0.50) 0%,
-    rgba(240, 244, 249, 0.70) 40%,
-    rgba(240, 244, 249, 0.90) 100%
-  );
 }
 
 /* ==========================================================================
@@ -87,8 +100,8 @@ body {
   .main-window.pushed {
     transform: translateX(260px) scale(0.92);
     border-radius: 10px;
-    background-color: #050b14;
-    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6), 0 15px 40px rgba(0, 0, 0, 0.5);
+    background-color: #060c16;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.7), 0 15px 40px rgba(0,0,0,0.5);
     overflow: hidden;
     height: 100vh;
   }
@@ -96,18 +109,15 @@ body {
 
 .push-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.45);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
   z-index: 150;
   cursor: pointer;
   border-radius: inherit;
 }
 
 /* ==========================================================================
-   Buttons (Pill shape reserved strictly for main buttons)
+   Buttons
    ========================================================================== */
 
 .btn {
@@ -115,45 +125,56 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.65rem 1.35rem;
+  padding: 0.65rem 1.4rem;
   border-radius: 9999px;
   font-size: 0.875rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: all 0.18s ease;
   cursor: pointer;
 }
 
+/* Primary: solid accent — no gradient, no box-shadow glow */
 .btn-primary {
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-  color: #ffffff;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  background-color: #3b7bff;
+  color: #fff;
 }
-
 .btn-primary:hover {
+  background-color: #5590ff;
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
 }
 
+/* Secondary: ghost with crisp 1px border */
 .btn-secondary {
-  background: rgba(13, 23, 44, 0.85);
-  backdrop-filter: blur(8px);
-  color: #f8fafc;
-  border: 1px solid rgba(59, 130, 246, 0.25);
+  background-color: transparent;
+  color: #f2f2ef;
+  border: 1px solid rgba(255, 255, 255, 0.14);
 }
-
 .btn-secondary:hover {
-  border-color: #3b82f6;
+  border-color: rgba(255, 255, 255, 0.28);
   transform: translateY(-1px);
 }
 
 /* ==========================================================================
-   Horizontal Scroll Utilities (Netflix-style feeds)
+   Shared card surface
    ========================================================================== */
 
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+.card {
+  background-color: rgba(12, 20, 32, 0.80);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 6px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.card:hover {
+  border-color: rgba(255, 255, 255, 0.13);
+  background-color: rgba(17, 27, 44, 0.90);
 }
 
+/* ==========================================================================
+   Horizontal Scroll Feed (Netflix-style)
+   ========================================================================== */
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;

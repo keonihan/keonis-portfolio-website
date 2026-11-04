@@ -48,6 +48,7 @@ This file contains a growing ruleset that will improve over time. **At session s
 9. [STYLE] Always use Tailwind CSS for styling instead of raw custom CSS – user preference for modern utility-first workflow.
 10. [STYLE] Never use negative z-index (e.g. `z-index: -20`) for site-wide background backdrops when `body` has a background color – because browsers paint negative z-index behind the root body canvas, completely hiding the image. Use positive layering (`z-index: 0` for backdrop, `1` for overlay, `10` for content).
 11. [UX] For homepage project and design showcases, use horizontal scrollable feeds (Netflix-style rows that bleed off-screen with navigation controls) instead of static 3-column card grids – user preference, finds static 3-card grids generic/AI-like.
+12. [STYLE] For Netflix-style cards, make the entire card a 16:9 full-bleed image with title and action badges overlaid directly on top (using tight gaps and subtle drop-shadows), avoiding nested thumbnail boxes, outer card padding, or glowing blue borders.
 
 
 

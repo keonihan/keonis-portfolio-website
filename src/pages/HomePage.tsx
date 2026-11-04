@@ -1,8 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { 
   ArrowRight, 
-  FolderGit2, 
-  Briefcase,  
   ExternalLink, 
   Github, 
   Play, 
@@ -14,7 +12,6 @@ import projectsData from '../data/projects.json';
 import experienceData from '../data/experience.json';
 import graphicDesignData from '../data/graphic_design_projects.json';
 import { CodingProjectItem, ExperienceItem, GraphicDesignProjectItem } from '../types';
-import { ProjectImageGallery } from '../components/ProjectImageGallery';
 import { VideoModal } from '../components/VideoModal';
 
 interface HomePageProps {
@@ -33,7 +30,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
   const scrollFeed = (ref: React.RefObject<HTMLDivElement | null>, direction: 'left' | 'right') => {
     if (ref.current) {
-      const scrollAmount = 370;
+      const scrollAmount = 340;
       ref.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth',
@@ -82,150 +79,120 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       )}
 
       {/* Hero Introduction */}
-      <section className="py-16 md:py-20 border-b border-blue-500/15">
+      <section className="pt-16 md:pt-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl flex flex-col items-start">
-            {/* Status Badge (if defined in profile.json) */}
+            {/* Status Badge */}
             {('status' in profileData) && (profileData as any).status && (
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-blue-950/60 border border-blue-500/20 text-blue-200 text-xs font-semibold mb-5 backdrop-blur-md">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500 animate-pulse"></span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300 text-xs font-medium mb-5">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500"></span>
                 <span>{(profileData as any).status}</span>
               </div>
             )}
 
             {/* Headline */}
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-3">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">{profileData.name}</span>
+              {profileData.name}
             </h1>
 
             {/* Subtitle / Role / Location */}
             <div className="flex items-center gap-2.5 text-base md:text-lg text-slate-300 font-medium mb-5 flex-wrap">
               <span className="text-blue-400 font-semibold">{profileData.title}</span>
-              <span className="text-blue-500/40">•</span>
-              {/* <span className="inline-flex items-center gap-1.5 text-slate-300 text-sm md:text-base">
-                <MapPin size={16} className="text-blue-400" /> {profileData.location}
-              </span> */}
+              <span className="text-slate-500">•</span>
+              <span className="text-slate-400">{profileData.location}</span>
             </div>
 
             {/* Bio */}
             <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-8 max-w-2xl font-normal">
               {profileData.bio}
             </p>
-
-            {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3">
-              <button 
-                onClick={() => onNavigate('projects')} 
-                className="btn btn-primary"
-              >
-                <FolderGit2 size={17} /> View Projects <ArrowRight size={16} />
-              </button>
-              <button 
-                onClick={() => onNavigate('experience')} 
-                className="btn btn-secondary"
-              >
-                <Briefcase size={17} /> Experience & Education
-              </button>
-              <button 
-                onClick={() => onNavigate('socials')} 
-                className="btn btn-secondary"
-              >
-                Contact Me
-              </button>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Projects Summary — Netflix-style horizontal feed */}
-      <section className="py-14 border-b border-blue-500/15 overflow-hidden">
+      {/* Web & Software Development Feed — Netflix Style */}
+      <section className="py-10 md:py-14 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-end mb-6 flex-wrap gap-4">
+          <div className="flex justify-between items-end mb-4 flex-wrap gap-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-blue-400 block mb-1">
-                Projects
-              </span>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-                Web/Software Development
-              </h2>
+              <button 
+                onClick={() => onNavigate('projects')}
+                className="group inline-flex items-baseline gap-2 cursor-pointer text-left"
+              >
+                <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight group-hover:text-blue-400 transition-colors">
+                  Web & Software Development
+                </h2>
+                <span className="text-xs text-blue-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-0.5">
+                  Explore all <ArrowRight size={12} />
+                </span>
+              </button>
             </div>
             
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <button
-                onClick={() => onNavigate('projects')}
-                className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 font-semibold text-sm transition-colors group cursor-pointer mr-2"
+                onClick={() => scrollFeed(projectsScrollRef, 'left')}
+                className="w-8 h-8 rounded-full bg-black/60 hover:bg-white text-slate-300 hover:text-black border border-white/10 hover:border-white flex items-center justify-center transition-all cursor-pointer shadow-md"
+                aria-label="Scroll projects left"
+                title="Scroll left"
               >
-                View all ({allProjects.length})
-                <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
+                <ChevronLeft size={16} />
               </button>
-
-              <div className="flex items-center gap-1.5">
-                <button
-                  onClick={() => scrollFeed(projectsScrollRef, 'left')}
-                  className="w-8 h-8 rounded bg-[#0a1324]/90 hover:bg-blue-600 text-slate-300 hover:text-white border border-blue-500/20 hover:border-blue-500 flex items-center justify-center transition-all cursor-pointer shadow-sm"
-                  aria-label="Scroll projects left"
-                  title="Scroll left"
-                >
-                  <ChevronLeft size={16} />
-                </button>
-                <button
-                  onClick={() => scrollFeed(projectsScrollRef, 'right')}
-                  className="w-8 h-8 rounded bg-[#0a1324]/90 hover:bg-blue-600 text-slate-300 hover:text-white border border-blue-500/20 hover:border-blue-500 flex items-center justify-center transition-all cursor-pointer shadow-sm"
-                  aria-label="Scroll projects right"
-                  title="Scroll right"
-                >
-                  <ChevronRight size={16} />
-                </button>
-              </div>
+              <button
+                onClick={() => scrollFeed(projectsScrollRef, 'right')}
+                className="w-8 h-8 rounded-full bg-black/60 hover:bg-white text-slate-300 hover:text-black border border-white/10 hover:border-white flex items-center justify-center transition-all cursor-pointer shadow-md"
+                aria-label="Scroll projects right"
+                title="Scroll right"
+              >
+                <ChevronRight size={16} />
+              </button>
             </div>
           </div>
         </div>
 
-        {/* Netflix-style horizontal feed row (spans FULL screen width) */}
+        {/* Netflix-style horizontal feed row (tight gap, whole card is image) */}
         <div className="max-w-7xl mx-auto px-6">
           <div 
             ref={projectsScrollRef}
-            className="flex gap-5 overflow-x-auto no-scrollbar scroll-feed-mask scroll-smooth py-4 px-6 md:px-12 lg:px-16"
+            className="flex gap-2.5 sm:gap-3 md:gap-3.5 overflow-x-auto no-scrollbar scroll-smooth py-3 px-6 md:px-12 lg:px-16"
             style={{ scrollSnapType: 'x proximity' }}
           >
             {allProjects.map((project) => (
               <article 
                 key={project.id} 
                 onClick={() => handleProjectCardClick(project.github)}
-                className="w-[300px] sm:w-[340px] md:w-[360px] shrink-0 p-5 bg-[#0a1324]/85 hover:bg-[#101c36]/95 border border-blue-500/15 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-900/25 rounded-md backdrop-blur-md transition-all duration-200 flex flex-col cursor-pointer group hover:-translate-y-1"
+                className="rounded-xl w-[240px] sm:w-[280px] md:w-[320px] aspect-video shrink-0 relative rounded-[4px] overflow-hidden cursor-pointer group transition-all duration-300 ease-out hover:scale-105 hover:z-20 shadow-md shadow-black/60 hover:shadow-2xl hover:shadow-black bg-black"
                 style={{ scrollSnapAlign: 'start' }}
               >
-                <ProjectImageGallery
-                  images={project.images}
-                  singleImage={project.image}
-                  title={project.title}
+                {/* Full cover image */}
+                <img
+                  src={project.images?.[0] || project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                  loading="lazy"
                 />
-                <div className="flex justify-between items-center mb-2">
-                  <div className="flex items-center gap-2">
-                    <FolderGit2 className="text-blue-400" size={18} />
-                    <span className="text-xs text-slate-400 font-mono">{project.date}</span>
-                  </div>
-                  {project.github && (
-                    <span
-                      className="text-slate-400 group-hover:text-blue-400 transition-colors p-1"
-                      aria-label={`View ${project.title} on GitHub`}
-                    >
-                      <Github size={17} />
-                    </span>
-                  )}
+
+                {/* Subtle vignette + bottom gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/35 to-black/10 opacity-90 group-hover:opacity-95 transition-opacity" />
+
+                {/* Top Corner Badge */}
+                <div className="absolute top-2 right-2">
+                  <span className="px-1.5 py-0.5 rounded-[2px] bg-red-600/90 text-[9px] font-black text-white uppercase tracking-wider shadow-sm">
+                    {project.date.split(' ')[1] || 'CODE'}
+                  </span>
                 </div>
-                <h3 className="text-base font-bold text-white mb-1.5 group-hover:text-blue-300 transition-colors truncate">
-                  {project.title}
-                </h3>
-                <p className="text-slate-300 text-xs leading-relaxed line-clamp-3 mb-3 flex-grow">
-                  {project.description}
-                </p>
-                {project.github && (
-                  <div className="pt-2.5 mt-auto border-t border-blue-500/15 flex items-center justify-between text-xs text-blue-400 font-semibold">
-                    <span>View Repository</span>
-                    <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
+
+                {/* Bottom Overlay: Title & Netflix-style badges */}
+                <div className="absolute inset-x-0 bottom-0 p-3 sm:p-3.5 flex flex-col justify-end">
+                  <h3 className="text-xs sm:text-sm font-bold text-white tracking-tight leading-snug drop-shadow-md truncate">
+                    {project.title}
+                  </h3>
+
+                  <div className="flex items-center gap-1.5 mt-1.5">
+                    <span className="px-2 py-0.5 rounded-[2px] bg-white/20 text-[9px] font-semibold text-white backdrop-blur-sm group-hover:bg-white group-hover:text-black transition-colors flex items-center gap-1">
+                      <Github size={10} /> View Repo
+                    </span>
                   </div>
-                )}
+                </div>
               </article>
             ))}
           </div>
@@ -233,14 +200,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* Recent Experience Summary */}
-      <section className="py-14 border-b border-blue-500/15 bg-blue-950/20">
+      <section className="py-14 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-end mb-8 flex-wrap gap-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-blue-400 block mb-1">
-                Career
-              </span>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+              <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight">
                 Recent Experience
               </h2>
             </div>
@@ -248,7 +212,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               onClick={() => onNavigate('experience')}
               className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 font-semibold text-sm transition-colors group cursor-pointer"
             >
-              View full background & education 
+              View full background
               <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
             </button>
           </div>
@@ -257,18 +221,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             {recentExperience.map((item) => (
               <div 
                 key={item.id} 
-                className="p-6 bg-[#0a1324]/85 hover:bg-[#101c36]/90 border border-blue-500/15 hover:border-blue-500/40 rounded-md backdrop-blur-md transition-all duration-200"
+                className="rounded-xl p-5 md:p-6 bg-[#0c1420]/80 hover:bg-[#111b2c]/90 border border-white/8 hover:border-white/16 rounded-[4px] transition-all duration-200"
               >
-                <div className="flex justify-between items-start flex-wrap gap-3 mb-3">
+                <div className="flex justify-between items-start flex-wrap gap-3 mb-2.5">
                   <div>
                     <div className="flex items-center gap-2.5 flex-wrap">
-                      <h3 className="text-lg font-bold text-white">{item.position}</h3>
-                      <span className="text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-900/60 text-blue-300 border border-blue-500/20 font-mono">
+                      <h3 className="text-base md:text-lg font-bold text-white">{item.position}</h3>
+                      <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-[2px] bg-white/10 text-slate-300 font-mono">
                         {item.type}
                       </span>
                     </div>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-sm font-semibold text-blue-300">{item.company}</span>
+                      <span className="text-sm font-semibold text-blue-400">{item.company}</span>
                       {item.website && (
                         <a
                           href={item.website}
@@ -277,12 +241,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                           className="text-slate-400 hover:text-blue-400 transition-colors"
                           aria-label={`Visit ${item.company} website`}
                         >
-                          <ExternalLink size={14} />
+                          <ExternalLink size={13} />
                         </a>
                       )}
                     </div>
                   </div>
-                  <div className="text-xs font-mono text-slate-300 px-2.5 py-1 rounded bg-[#101c36] border border-blue-500/20">
+                  <div className="text-xs font-mono text-slate-400 px-2.5 py-1 rounded-[2px] bg-white/5 border border-white/10">
                     {item.start_date} — {item.end_date || 'Present'}
                   </div>
                 </div>
@@ -298,99 +262,85 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Creative & Design Snapshot — Netflix-style horizontal feed */}
-      <section className="py-14 overflow-hidden">
+      {/* Graphic Design & Motion Feed — Netflix Style */}
+      <section className="py-10 md:py-14 border-t border-white/5 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-end mb-6 flex-wrap gap-4">
+          <div className="flex justify-between items-end mb-4 flex-wrap gap-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-blue-400 block mb-1">
-                Projects
-              </span>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-                Graphic Design
-              </h2>
+              <button 
+                onClick={() => onNavigate('hobbies')}
+                className="group inline-flex items-baseline gap-2 cursor-pointer text-left"
+              >
+                <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight group-hover:text-blue-400 transition-colors">
+                  Graphic Design & Motion
+                </h2>
+                <span className="text-xs text-blue-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-0.5">
+                  Explore all <ArrowRight size={12} />
+                </span>
+              </button>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <button
-                onClick={() => onNavigate('hobbies')}
-                className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 font-semibold text-sm transition-colors group cursor-pointer mr-2"
+                onClick={() => scrollFeed(designScrollRef, 'left')}
+                className="w-8 h-8 rounded-full bg-black/60 hover:bg-white text-slate-300 hover:text-black border border-white/10 hover:border-white flex items-center justify-center transition-all cursor-pointer shadow-md"
+                aria-label="Scroll design left"
+                title="Scroll left"
               >
-                Explore all ({allDesign.length})
-                <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
+                <ChevronLeft size={16} />
               </button>
-
-              <div className="flex items-center gap-1.5">
-                <button
-                  onClick={() => scrollFeed(designScrollRef, 'left')}
-                  className="w-8 h-8 rounded bg-[#0a1324]/90 hover:bg-blue-600 text-slate-300 hover:text-white border border-blue-500/20 hover:border-blue-500 flex items-center justify-center transition-all cursor-pointer shadow-sm"
-                  aria-label="Scroll design left"
-                  title="Scroll left"
-                >
-                  <ChevronLeft size={16} />
-                </button>
-                <button
-                  onClick={() => scrollFeed(designScrollRef, 'right')}
-                  className="w-8 h-8 rounded bg-[#0a1324]/90 hover:bg-blue-600 text-slate-300 hover:text-white border border-blue-500/20 hover:border-blue-500 flex items-center justify-center transition-all cursor-pointer shadow-sm"
-                  aria-label="Scroll design right"
-                  title="Scroll right"
-                >
-                  <ChevronRight size={16} />
-                </button>
-              </div>
+              <button
+                onClick={() => scrollFeed(designScrollRef, 'right')}
+                className="w-8 h-8 rounded-full bg-black/60 hover:bg-white text-slate-300 hover:text-black border border-white/10 hover:border-white flex items-center justify-center transition-all cursor-pointer shadow-md"
+                aria-label="Scroll design right"
+                title="Scroll right"
+              >
+                <ChevronRight size={16} />
+              </button>
             </div>
           </div>
         </div>
 
-        {/* Netflix-style horizontal feed row (spans FULL screen width) */}
+        {/* Netflix-style horizontal feed row (tight gap, whole card is image) */}
         <div className="max-w-7xl mx-auto px-6">
           <div 
             ref={designScrollRef}
-            className="flex gap-5 overflow-x-auto no-scrollbar scroll-feed-mask scroll-smooth py-4 px-6 md:px-12 lg:px-16"
+            className="flex gap-2.5 sm:gap-3 md:gap-3.5 overflow-x-auto no-scrollbar scroll-smooth py-3 px-6 md:px-12 lg:px-16"
             style={{ scrollSnapType: 'x proximity' }}
           >
             {allDesign.map((item) => (
               <article 
                 key={item.id} 
                 onClick={() => handleDesignCardClick(item)}
-                className="w-[300px] sm:w-[340px] md:w-[360px] shrink-0 p-5 bg-[#0a1324]/85 hover:bg-[#101c36]/95 border border-blue-500/15 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-900/25 rounded-md backdrop-blur-md transition-all duration-200 flex flex-col cursor-pointer group hover:-translate-y-1"
+                className="rounded-xl w-[240px] sm:w-[280px] md:w-[320px] aspect-video shrink-0 relative rounded-[4px] overflow-hidden cursor-pointer group transition-all duration-300 ease-out hover:scale-105 hover:z-20 shadow-md shadow-black/60 hover:shadow-2xl hover:shadow-black bg-black"
                 style={{ scrollSnapAlign: 'start' }}
               >
-                <ProjectImageGallery
-                  images={item.images}
-                  singleImage={item.image}
-                  title={item.title}
+                {/* Full cover image */}
+                <img
+                  src={item.images?.[0] || item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                  loading="lazy"
                 />
-                <div className="flex justify-between items-center mb-2">
-                  <div className="text-xs font-mono text-slate-400">{item.date}</div>
-                   {item.youtube && (
-                    <span
-                      className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded bg-red-950/70 group-hover:bg-red-900 text-red-300 border border-red-500/30 group-hover:border-red-400 transition-colors"
-                      title="Watch video in popup"
-                    >
-                      <Play size={11} className="fill-current text-red-400" /> Watch Video
-                    </span>
-                  )}
-                  {!item.youtube && item.video && (
-                    <span
-                      className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded bg-blue-950/70 group-hover:bg-blue-900 text-blue-300 border border-blue-500/30 group-hover:border-blue-400 transition-colors"
-                      title="Play local video"
-                    >
-                      <Play size={11} className="fill-current text-blue-400" /> Play Video
-                    </span>
-                  )}
-                
+
+                {/* Subtle vignette + bottom gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/35 to-black/10 opacity-90 group-hover:opacity-95 transition-opacity" />
+
+                {/* Top Corner Badge */}
+                <div className="absolute top-2 right-2">
                 </div>
-                <h3 className="text-base font-bold text-white mb-1.5 group-hover:text-blue-300 transition-colors truncate">
-                  {item.title}
-                </h3>
-                <p className="text-slate-300 text-xs leading-relaxed line-clamp-3 mb-3 flex-grow">
-                  {item.description}
-                </p>
-                <div className="pt-2.5 mt-auto border-t border-blue-500/15 flex items-center justify-between text-xs text-blue-400 font-semibold">
-                  {/* <span>{item.youtube ? 'Watch in 1080p' : item.video ? 'Play Video' : item.spotify ? 'Listen on Spotify' : 'View Visuals'}</span> */}
-                  <span>View Visuals</span>
-                  <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
+
+                {/* Bottom Overlay: Title & Netflix-style badges */}
+                <div className="absolute inset-x-0 bottom-0 p-3 sm:p-3.5 flex flex-col justify-end">
+                  <h3 className="text-xs sm:text-sm font-bold text-white tracking-tight leading-snug drop-shadow-md truncate">
+                    {item.title}
+                  </h3>
+
+                  <div className="flex items-center gap-1.5 mt-1.5">
+                    <span className="px-2 py-0.5 rounded-[2px] bg-white/20 text-[9px] font-semibold text-white backdrop-blur-sm group-hover:bg-white group-hover:text-black transition-colors flex items-center gap-1">
+                      <Play size={9} className="fill-current" /> Watch
+                    </span>
+                  </div>
                 </div>
               </article>
             ))}

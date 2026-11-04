@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, Play } from 'lucide-react';
+import { X } from 'lucide-react';
 
 interface VideoModalProps {
   isOpen: boolean;
