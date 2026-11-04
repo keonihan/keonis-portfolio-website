@@ -2,14 +2,12 @@ import React, { useState, useRef } from 'react';
 import { 
   ArrowRight, 
   FolderGit2, 
-  Briefcase, 
-  MapPin, 
+  Briefcase,  
   ExternalLink, 
   Github, 
   Play, 
   ChevronLeft, 
-  ChevronRight,
-  Music 
+  ChevronRight
 } from 'lucide-react';
 import profileData from '../data/profile.json';
 import projectsData from '../data/projects.json';
@@ -97,16 +95,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
             {/* Headline */}
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-3">
-              Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">{profileData.name}</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">{profileData.name}</span>
             </h1>
 
             {/* Subtitle / Role / Location */}
             <div className="flex items-center gap-2.5 text-base md:text-lg text-slate-300 font-medium mb-5 flex-wrap">
               <span className="text-blue-400 font-semibold">{profileData.title}</span>
               <span className="text-blue-500/40">•</span>
-              <span className="inline-flex items-center gap-1.5 text-slate-300 text-sm md:text-base">
+              {/* <span className="inline-flex items-center gap-1.5 text-slate-300 text-sm md:text-base">
                 <MapPin size={16} className="text-blue-400" /> {profileData.location}
-              </span>
+              </span> */}
             </div>
 
             {/* Bio */}
