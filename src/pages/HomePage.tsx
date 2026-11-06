@@ -11,7 +11,8 @@ import profileData from '../data/profile.json';
 import projectsData from '../data/projects.json';
 import experienceData from '../data/experience.json';
 import graphicDesignData from '../data/graphic_design_projects.json';
-import { CodingProjectItem, ExperienceItem, GraphicDesignProjectItem } from '../types';
+import videoEditsData from '../data/video_edits.json';
+import { CodingProjectItem, ExperienceItem, GraphicDesignProjectItem, VideoEditItem } from '../types';
 import { VideoModal } from '../components/VideoModal';
 
 interface HomePageProps {
@@ -19,14 +20,22 @@ interface HomePageProps {
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
-  const [activeVideo, setActiveVideo] = useState<{ url?: string; videoSrc?: string; title: string; startTime?: number } | null>(null);
+  const [activeVideo, setActiveVideo] = useState<{ 
+    url?: string; 
+    videoSrc?: string; 
+    title: string; 
+    startTime?: number;
+    aspectRatio?: 'horizontal' | 'vertical';
+  } | null>(null);
 
   const projectsScrollRef = useRef<HTMLDivElement>(null);
   const designScrollRef = useRef<HTMLDivElement>(null);
+  const videoScrollRef = useRef<HTMLDivElement>(null);
 
   const allProjects = projectsData.projects as CodingProjectItem[];
   const recentExperience = (experienceData.experience as ExperienceItem[]).slice(0, 2);
   const allDesign = graphicDesignData.projects as GraphicDesignProjectItem[];
+  const allVideoEdits = (videoEditsData.edits || []) as VideoEditItem[];
 
   const scrollFeed = (ref: React.RefObject<HTMLDivElement | null>, direction: 'left' | 'right') => {
     if (ref.current) {
@@ -53,15 +62,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
   const handleDesignCardClick = (item: GraphicDesignProjectItem) => {
     if (item.youtube) {
-      setActiveVideo({ url: item.youtube, title: item.title, startTime: item.start_time });
+      setActiveVideo({ url: item.youtube, title: item.title, startTime: item.start_time, aspectRatio: 'horizontal' });
     } else {
       const localSrc = resolveVideoSrc(item.video);
       if (localSrc) {
-        setActiveVideo({ videoSrc: localSrc, title: item.title });
+        setActiveVideo({ videoSrc: localSrc, title: item.title, aspectRatio: 'horizontal' });
       } else if (item.spotify) {
         window.open(item.spotify, '_blank', 'noopener,noreferrer');
       }
     }
+  };
+
+  const handleVideoEditCardClick = (item: VideoEditItem) => {
+    setActiveVideo({
+      url: item.youtube,
+      title: item.title,
+      aspectRatio: item.orientation,
+    });
   };
 
   return (
@@ -75,6 +92,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           videoSrc={activeVideo.videoSrc}
           title={activeVideo.title}
           startTime={activeVideo.startTime}
+          aspectRatio={activeVideo.aspectRatio}
         />
       )}
 
@@ -339,6 +357,95 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   <div className="flex items-center gap-1.5 mt-1.5">
                     <span className="px-2 py-0.5 rounded-[2px] bg-white/20 text-[9px] font-semibold text-white backdrop-blur-sm group-hover:bg-white group-hover:text-black transition-colors flex items-center gap-1">
                       <Play size={9} className="fill-current" /> Watch
+                    </span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Video Editing Feed — Netflix Style */}
+      <section className="py-10 md:py-14 border-t border-white/5 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-end mb-4 flex-wrap gap-4">
+            <div>
+              <button 
+                onClick={() => onNavigate('hobbies')}
+                className="group inline-flex items-baseline gap-2 cursor-pointer text-left"
+              >
+                <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight group-hover:text-blue-400 transition-colors">
+                  Video Editing
+                </h2>
+                <span className="text-xs text-blue-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-0.5">
+                  Explore all <ArrowRight size={12} />
+                </span>
+              </button>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => scrollFeed(videoScrollRef, 'left')}
+                className="w-8 h-8 rounded-full bg-black/60 hover:bg-white text-slate-300 hover:text-black border border-white/10 hover:border-white flex items-center justify-center transition-all cursor-pointer shadow-md"
+                aria-label="Scroll video edits left"
+                title="Scroll left"
+              >
+                <ChevronLeft size={16} />
+              </button>
+              <button
+                onClick={() => scrollFeed(videoScrollRef, 'right')}
+                className="w-8 h-8 rounded-full bg-black/60 hover:bg-white text-slate-300 hover:text-black border border-white/10 hover:border-white flex items-center justify-center transition-all cursor-pointer shadow-md"
+                aria-label="Scroll video edits right"
+                title="Scroll right"
+              >
+                <ChevronRight size={16} />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Netflix-style horizontal feed row */}
+        <div className="max-w-7xl mx-auto px-6">
+          <div 
+            ref={videoScrollRef}
+            className="flex gap-2.5 sm:gap-3 md:gap-3.5 overflow-x-auto no-scrollbar scroll-smooth py-3 items-center"
+            style={{ scrollSnapType: 'x proximity' }}
+          >
+            {allVideoEdits.map((item) => (
+              <article 
+                key={item.id} 
+                onClick={() => handleVideoEditCardClick(item)}
+                className={`shrink-0 relative rounded-[4px] overflow-hidden cursor-pointer group transition-all duration-300 ease-out hover:scale-105 hover:z-20 shadow-md shadow-black/60 hover:shadow-2xl hover:shadow-black bg-black ${
+                  item.orientation === 'vertical'
+                    ? 'w-[150px] sm:w-[170px] md:w-[190px] aspect-[9/16]'
+                    : 'w-[240px] sm:w-[280px] md:w-[320px] aspect-video'
+                }`}
+                style={{ scrollSnapAlign: 'start' }}
+              >
+                {/* Full cover thumbnail */}
+                <img
+                  src={item.thumbnail}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                  loading="lazy"
+                />
+
+                {/* Subtle vignette + bottom gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/35 to-black/10 opacity-90 group-hover:opacity-95 transition-opacity" />
+
+                {/* Bottom Overlay: Title, Location/Date & Watch button */}
+                <div className="absolute inset-x-0 bottom-0 p-3 sm:p-3.5 flex flex-col justify-end">
+                  <div className="text-[10px] text-blue-300 font-mono mb-0.5 truncate">
+                    {item.location ? `${item.location} • ` : ''}{item.date}
+                  </div>
+                  <h3 className="text-xs sm:text-sm font-bold text-white tracking-tight leading-snug drop-shadow-md truncate">
+                    {item.title}
+                  </h3>
+
+                  <div className="flex items-center gap-1.5 mt-1.5">
+                    <span className="px-2 py-0.5 rounded-[2px] bg-white/20 text-[9px] font-semibold text-white backdrop-blur-sm group-hover:bg-white group-hover:text-black transition-colors flex items-center gap-1">
+                      <Play size={9} className="fill-current text-red-400 group-hover:text-red-600" /> Watch
                     </span>
                   </div>
                 </div>

@@ -1,0 +1,26 @@
+{
+  "edits": [
+    {
+      "id": 1,
+      "title": "Europe Summer Trip Edit 2026",
+      "location": "Europe",
+      "date": "Summer 2026",
+      "category": "Travel",
+      "orientation": "horizontal",
+      "youtube": "https://youtu.be/kXAR0GsspnY?is=0OOxxbIgXwgMsqti",
+      "thumbnail": "https://img.youtube.com/vi/kXAR0GsspnY/hqdefault.jpg",
+      "description": "Cinematic visual memories and highlights captured across Europe in Summer 2026."
+    },
+    {
+      "id": 2,
+      "title": "Japan Spring Trip Edit 2026",
+      "location": "Japan",
+      "date": "Spring 2026",
+      "category": "Travel",
+      "orientation": "vertical",
+      "youtube": "https://youtube.com/shorts/ko8ggRQekxw?is=ccKSYMwZ0Bmte6t9",
+      "thumbnail": "https://img.youtube.com/vi/ko8ggRQekxw/hqdefault.jpg",
+      "description": "Fast-paced vertical reel capturing cherry blossoms, street scenes, and culture across Japan in Spring 2026."
+    }
+  ]
+}

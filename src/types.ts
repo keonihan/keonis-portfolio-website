@@ -46,6 +46,18 @@ export interface GraphicDesignProjectItem {
   image?: string;
 }
 
+export interface VideoEditItem {
+  id: number;
+  type?: string;
+  title: string;
+  location?: string;
+  date: string;
+  description: string;
+  orientation: 'horizontal' | 'vertical';
+  youtube: string;
+  thumbnail?: string;
+}
+
 export interface HobbyItem {
   id: number;
   name: string;

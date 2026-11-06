@@ -8,6 +8,7 @@ interface VideoModalProps {
   videoSrc?: string;
   title: string;
   startTime?: number;
+  aspectRatio?: 'horizontal' | 'vertical';
 }
 
 export const VideoModal: React.FC<VideoModalProps> = ({
@@ -16,7 +17,8 @@ export const VideoModal: React.FC<VideoModalProps> = ({
   youtubeUrl,
   videoSrc,
   title,
-  startTime
+  startTime,
+  aspectRatio
 }) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -37,7 +39,17 @@ export const VideoModal: React.FC<VideoModalProps> = ({
       let videoId = '';
       let startSeconds = explicitStartTime || 0;
 
-      if (url.includes('youtube.com/watch')) {
+      if (url.includes('youtube.com/shorts/')) {
+        const parts = url.split('youtube.com/shorts/')[1].split('?');
+        videoId = parts[0];
+        if (parts[1] && !startSeconds) {
+          const params = new URLSearchParams(parts[1]);
+          const tParam = params.get('t') || params.get('start');
+          if (tParam) {
+            startSeconds = parseInt(tParam.replace('s', ''), 10) || 0;
+          }
+        }
+      } else if (url.includes('youtube.com/watch')) {
         const urlObj = new URL(url);
         videoId = urlObj.searchParams.get('v') || '';
         const tParam = urlObj.searchParams.get('t') || urlObj.searchParams.get('start');
@@ -69,6 +81,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
     }
   };
 
+  const isVertical = aspectRatio === 'vertical' || (youtubeUrl ? youtubeUrl.includes('/shorts/') : false);
   const embedUrl = youtubeUrl ? getEmbedUrl(youtubeUrl, startTime) : '';
 
   return (
@@ -79,7 +92,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
       role="dialog"
     >
       <div 
-        className="relative w-full max-w-4xl bg-navy-900 border border-blue-500/30 rounded-md overflow-hidden shadow-2xl shadow-black/80 flex flex-col max-h-[92vh]"
+        className={`relative w-full ${isVertical ? 'max-w-sm sm:max-w-md' : 'max-w-4xl'} bg-navy-900 border border-blue-500/30 rounded-md overflow-hidden shadow-2xl shadow-black/80 flex flex-col max-h-[92vh] transition-all`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Top Bar */}
@@ -96,10 +109,10 @@ export const VideoModal: React.FC<VideoModalProps> = ({
           </button>
         </div>
 
-        {/* Video Container (handles both 16:9 YouTube and local MP4s of any aspect ratio) */}
+        {/* Video Container (handles both 16:9 YouTube, 9:16 Shorts, and local MP4s) */}
         <div className="relative w-full bg-black flex items-center justify-center overflow-hidden flex-grow">
           {youtubeUrl ? (
-            <div className="w-full aspect-video">
+            <div className={`w-full ${isVertical ? 'aspect-[9/16] max-h-[78vh]' : 'aspect-video'}`}>
               {embedUrl ? (
                 <iframe
                   src={embedUrl}
